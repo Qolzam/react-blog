@@ -1,31 +1,20 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var {Provider} = require('react-redux');
-var {Route, Router, IndexRoute, hashHistory} = require('react-router');
+// Import general components refrence
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {Provider} from 'react-redux';
+import {Route, Router, IndexRoute, hashHistory} from 'react-router';
 
-var TodoApp = require('TodoApp');
-var actions = require('actions');
-var store = require('configureStore').configure();
-var TodoAPI = require('TodoAPI');
+//Import project components refrence
+import Blog from 'Blog';
 
-store.subscribe(() => {
-  var state = store.getState();
-  console.log('New state', state);
-  TodoAPI.setTodos(state.todos);
-});
-
-var initialTodos = TodoAPI.getTodos();
-store.dispatch(actions.addTodos(initialTodos));
 
 // Load foundation
-$(document).foundation();
+//$(document).foundation();
 
 // App css
-require('style!css!sass!applicationStyles')
+//require('./styles/app.scss')
 
 ReactDOM.render(
-  <Provider store={store}>
-    <TodoApp/>
-  </Provider>,
+<Blog/>,
   document.getElementById('app')
 );

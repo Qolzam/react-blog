@@ -9,10 +9,10 @@ import Blog from 'Blog';
 
 
 // Load foundation
-//$(document).foundation();
+$(document).foundation();
 
 // App css
-//require('./styles/app.scss')
+require('./styles/app.scss')
 
 ReactDOM.render(
 <Blog/>,

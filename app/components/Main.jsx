@@ -2,17 +2,17 @@
 import React, {Component} from 'react';
 import ReactDom from 'react-dom';
 
+import Navigation from 'Navigation'
+
 // Create main class
 export default class Main extends Component {
 
     render() {
           return (
-              <div>
 
-                  <h1>Hello world!</h1>
-                  <h2>Everything works as expected</h2>
-                </div>
-
+              <div className="main">
+                <Navigation/>
+                  <h1>Hello Main!</h1>
               </div>
 
           );

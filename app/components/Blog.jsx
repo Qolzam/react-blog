@@ -10,7 +10,9 @@ export default class Blog extends Component {
   {
       return (
         <div className="row">
+          <div className=" columns"></div>
 
+        <div className=" columns"></div>
         </div>
       );
 

@@ -5,7 +5,7 @@ import {Provider} from 'react-redux';
 import {Route, Router, IndexRoute, hashHistory} from 'react-router';
 
 //Import project components refrence
-import Blog from 'Blog';
+import Main from 'Main';
 
 
 // Load foundation
@@ -15,6 +15,6 @@ $(document).foundation();
 require('./styles/app.scss')
 
 ReactDOM.render(
-<Blog/>,
+<Main/>,
   document.getElementById('app')
 );

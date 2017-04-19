@@ -3,6 +3,7 @@
 // foundation
 @import "base/foundation-settings";
 @import "foundation";
-@include foundation-everything;
+@include foundation-everything(true);
 
 // Components
+@import 'components/navigation';

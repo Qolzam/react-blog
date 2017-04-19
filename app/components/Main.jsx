@@ -7,6 +7,14 @@ import Navigation from 'Navigation'
 // Create main class
 export default class Main extends Component {
 
+
+    componentDidMount(){
+      // Load foundation
+      $(document).foundation();
+      console.log("foundation has been lunched");
+    }
+
+
     render() {
           return (
 

@@ -1,11 +1,22 @@
 import React from 'react'
-import { Card, Icon } from 'semantic-ui-react'
+import { Card, Icon, Menu } from 'semantic-ui-react'
+
+
 
 const extra = (
-  <a>
-    <Icon name='smile' />
-    Read More
-  </a>
+  <Menu>
+       <Menu.Item link
+         name='readmore'
+       >
+         Read more ...
+       </Menu.Item>
+      <Menu.Menu position="right">
+       <Menu.Item link icon="comments outline" name='21'/>
+       <Menu.Item link icon="star" name='2'/>
+
+       </Menu.Menu>
+     </Menu>
+
 )
 
 const Post = () => (

@@ -2,6 +2,7 @@ import React from 'react'
 import { Card, Icon, Image } from 'semantic-ui-react'
 
 const Summary = () => (
+
   <Card fluid>
     <Image src={require('../dist/images/15.jpg')} />
     <Card.Content>

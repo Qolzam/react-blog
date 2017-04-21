@@ -10,7 +10,7 @@ import {Route, Router, IndexRoute, hashHistory} from 'react-router';
 import Main from 'Main';
 
 // App css
-require('./styles/app.scss')
+require('./styles/app.scss');
 
 
 

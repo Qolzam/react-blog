@@ -3,8 +3,8 @@ var path = require('path');
 
 module.exports = {
   entry: [
-    'script-loader!jquery/dist/jquery.min.js',
-    'script-loader!foundation-sites/dist/js/foundation.min.js',
+    'react-image-gallery/styles/scss/image-gallery.scss',
+    'semantic-ui-css/semantic.min.css',
     './app/app.jsx'
   ],
   externals: {
@@ -17,8 +17,9 @@ module.exports = {
     })
   ],
   output: {
-    path: __dirname,
-    filename: './public/bundle.js'
+    path: path.resolve(__dirname, './public'),
+    filename: 'bundle.js',
+
   },
   resolve: {
     modules: [
@@ -27,37 +28,54 @@ module.exports = {
       './app/api'
     ],
     alias: {
-    //  applicationStyles: './app/styles/app.scss'
+      //  applicationStyles: './app/styles/app.scss'
     },
-    extensions: ['.scss','.js', '.jsx']
+    extensions: ['.scss', '.js', '.jsx']
   },
   module: {
-    rules: [
-      {
-      test: /\.jsx$/,
-      exclude: /(node_modules|bower_components)/,
-      use: {
-        loader: 'babel-loader',
-        options: {
-          presets: ['react', 'latest', 'stage-0']
+    rules: [{
+        test: /\.jsx$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['react', 'latest', 'stage-0']
+          }
         }
-      }
-    },
+      },
       {
-            test: /\.scss$/,
-            use: [{
-                loader: "style-loader"
-            }, {
-                loader: "css-loader"
-            }, {
-                loader: "sass-loader",
-                options: {
-                  includePaths: [
-                    path.resolve(__dirname, './node_modules/foundation-sites/scss')
-                  ]
-                }
-            }]
-        }
+        test: /\.scss$/,
+        use: [{
+          loader: "style-loader"
+        }, {
+          loader: "css-loader"
+        }, {
+          loader: "sass-loader",
+          options: {
+            includePaths: [
+
+            ]
+          }
+        }]
+      },
+      {
+        test: /\.css$/,
+        use: [{
+          loader: "style-loader"
+        }, {
+          loader: "css-loader"
+
+        }]
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: 'url-loader'
+      },{
+					test: /\.(jpe?g|png|webp|gif|cur)$/,
+          loader: 'file-loader?name=/images/[name].[ext]'
+				}
+
+
     ]
   },
   devtool: 'cheap-module-eval-source-map'

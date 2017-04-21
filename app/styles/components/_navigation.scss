@@ -1,19 +1,11 @@
-.top-bar, .top-bar ul {
-  background-color: $nav-background;
-
-}
-
-.top-bar {
-  .menu-text {
-    color: $nav-text-color;
-  }
-
-  .menu > .menu-text > a {
-    display: inline;
-    padding: 0;
-  }
-
-  .active-link {
-    font-weight: bold;
-  }
+.nav__blur {
+  z-index: 100;
+  background-color: black;
+  opacity: 0.5;
+  filter: blur(10px);
+  -webkit-filter: blur(10px);
+  -moz-filter: blur(10px);
+  -o-filter: blur(10px);
+  -ms-filter: blur(10px);
+  filter: url( "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='svgMask'><feGaussianBlur stdDeviation='10' /></filter></svg>#svgMask");
 }

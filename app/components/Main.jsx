@@ -1,31 +1,27 @@
-// Add components refrences
-import React, {Component} from 'react';
-import ReactDom from 'react-dom';
+import React from 'react'
+import {Grid, Image, Segment, Divider} from 'semantic-ui-react'
+
 
 import Navigation from 'Navigation'
+import Blog from 'Blog'
+import SlideShow from 'SlideShow'
 
-// Create main class
-export default class Main extends Component {
+const Main = () => (
+  <div id="main">
+          <Segment padded>
+            <SlideShow/>
+            <Divider horizontal>
+              Green's Diary
+            </Divider>
 
+            <Navigation/>
 
-    componentDidMount(){
-      // Load foundation
-      $(document).foundation();
-      console.log("foundation has been lunched");
-    }
+          </Segment>
+    <Segment>
+      <Blog/>
+    </Segment>
+  </div>
 
+)
 
-    render() {
-          return (
-
-              <div className="main">
-                <Navigation/>
-                  <h1>Hello Main!</h1>
-              </div>
-
-          );
-
-
-    }
-
-};
+export default Main

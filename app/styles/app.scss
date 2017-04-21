@@ -1,9 +1,7 @@
 @import "base/variables";
 
-// foundation
-@import "base/foundation-settings";
-@import "foundation";
-@include foundation-everything(true);
 
-// Components
+// Component styles
+@import 'components/main';
+@import 'components/global';
 @import 'components/navigation';

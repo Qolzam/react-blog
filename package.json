@@ -12,10 +12,12 @@
   "dependencies": {
     "axios": "^0.16.1",
     "express": "^4.15.2",
-    "react": "^15.5.4",
+    "react": "^15.4.2",
     "react-addons-test-utils": "^15.5.1",
-    "react-dom": "^15.5.4",
-    "react-router": "^4.1.1 "
+    "react-dom": "^15.4.2",
+    "react-router": "^4.1.1 ",
+    "semantic-ui-css": "^2.2.10",
+    "semantic-ui-react": "^0.68.0"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",
@@ -26,7 +28,7 @@
     "css-loader": "^0.28.0",
     "deep-freeze-strict": "^1.1.1",
     "expect": "^1.20.2",
-    "foundation-sites": "^6.3.1",
+    "file-loader": "^0.11.1",
     "jquery": "^3.2.1",
     "karma": "^1.6.0",
     "karma-chrome-launcher": "^2.0.0",
@@ -37,11 +39,15 @@
     "mocha": "^3.2.0",
     "moment": "^2.18.1",
     "node-sass": "^4.5.2",
+    "prop-types": "^15.5.8",
+    "react-image-gallery": "^0.7.15",
     "react-redux": "^5.0.4",
     "redux": "^3.6.0",
+    "resize-image-loader": "^1.0.2",
     "sass-loader": "^6.0.3",
     "script-loader": "^0.7.0",
     "style-loader": "^0.16.1",
+    "url-loader": "^0.5.8",
     "uuid": "^3.0.1",
     "webpack": "^2.4.1"
   }

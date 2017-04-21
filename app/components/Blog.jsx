@@ -1,21 +1,24 @@
-//Import components
-import React, {Component} from 'react';
+import React from 'react'
+import { Grid, Image, Segment } from 'semantic-ui-react'
 
+import Summary from 'Summary'
+import Post from 'Post'
 
+const Blog = () => (
+  <Grid stackable divided padded>
+    <Grid.Row>
+       <Grid.Column width={13}>
+         <Post/>
+          <Post/>
+           <Post/>
+            <Post/>
+       </Grid.Column>
+       <Grid.Column width={3}>
+         <Summary/>
+       </Grid.Column>
+     </Grid.Row>
+  </Grid>
 
-// Create blog class
-export default class Blog extends Component {
+)
 
-  render()
-  {
-      return (
-        <div className="row">
-          <div className=" columns"></div>
-
-        <div className=" columns"></div>
-        </div>
-      );
-
-  }
-
-};
+export default Blog

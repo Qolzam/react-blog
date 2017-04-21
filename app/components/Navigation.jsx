@@ -1,58 +1,31 @@
-//Import components
-import React, {Component} from 'react';
-import ReactDOM from 'react-dom';
-import ReactDOMServer from 'react-dom/server';
+import React, { Component } from 'react'
+import { Input, Menu, Search, Segment } from 'semantic-ui-react'
 
-// Create navigation class
-export default class Navigation extends Component {
+const color = 'teal';
+const colorKey = 'blue';
 
+export default class MenuExampleSecondary extends Component {
+  state = { activeItem: 'home' }
 
- componentDidMount() {
-   var modalMarkup =(
-
-     <div className="top-bar">
-   <div className="top-bar-title">
-     <span data-responsive-toggle="responsive-menu" data-hide-for="medium">
-       <button className="menu-icon dark" type="button" data-toggle></button>
-     </span>
-     <strong>Site Title</strong>
-   </div>
-   <div id="responsive-menu">
-     <div className="top-bar-left">
-       <ul className="dropdown menu" data-dropdown-menu>
-         <li>
-           <a href="#">One</a>
-           <ul className="menu vertical">
-             <li><a href="#">One</a></li>
-             <li><a href="#">Two</a></li>
-             <li><a href="#">Three</a></li>
-           </ul>
-         </li>
-         <li><a href="#">Two</a></li>
-         <li><a href="#">Three</a></li>
-       </ul>
-     </div>
-     <div className="top-bar-right">
-       <ul className="menu">
-         <li><input type="search" placeholder="Search"/></li>
-         <li><button type="button" className="button">Search</button></li>
-       </ul>
-     </div>
-   </div>
- </div>
-   );
-
-var $modal = $(ReactDOMServer.renderToString(modalMarkup));
-$(ReactDOM.findDOMNode(this)).html($modal);
-console.log("modal has been rendereds");
- }
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
   render() {
+    const { activeItem } = this.state
+
     return (
-  <div>
 
-  </div>
-    );
+        <Menu color={color} secondary stackable>
+          <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick} />
+          <Menu.Item name='messages' active={activeItem === 'messages'} onClick={this.handleItemClick} />
+          <Menu.Item name='friends' active={activeItem === 'friends'} onClick={this.handleItemClick} />
+          <Menu.Menu position='right'>
+            <Menu.Item>
+            <Search/>
+            </Menu.Item>
+            <Menu.Item name='logout' active={activeItem === 'logout'} onClick={this.handleItemClick} />
+          </Menu.Menu>
+        </Menu>
+
+    )
   }
-
-};
+}

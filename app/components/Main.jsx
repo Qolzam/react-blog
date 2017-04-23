@@ -8,13 +8,15 @@ import SlideShow from 'SlideShow'
 
 const Main = () => (
   <div id="main">
-          <Segment padded>
+
+          <Segment>
+
             <SlideShow/>
             <Divider horizontal>
               Green's Diary
             </Divider>
-
             <Navigation/>
+
 
           </Segment>
     <Segment>

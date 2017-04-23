@@ -7,7 +7,7 @@ import PopularPosts from 'PopularPosts'
 import Tags from 'Tags'
 
 const Blog = () => (
-  <Grid stackable divided padded>
+  <Grid stackable divided padded columns={2}>
     <Grid.Row>
        <Grid.Column computer={12} mobile={16} tablet={11}>
          <Post/>

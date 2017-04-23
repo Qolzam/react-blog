@@ -23,6 +23,7 @@ const Summary = () => (
         <Icon name='user' />
        Contact Me
       </a>
+      
     </Card.Content>
   </Card>
 )

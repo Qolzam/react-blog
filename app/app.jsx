@@ -7,7 +7,7 @@ import {Route, Router, IndexRoute, hashHistory} from 'react-router';
 
 
 //Import project components refrence
-import Main from 'Main';
+import RouterPath from 'RouterPath';
 
 // App css
 require('./styles/app.scss');
@@ -15,6 +15,6 @@ require('./styles/app.scss');
 
 
 ReactDOM.render(
-<Main/>,
+  <RouterPath/>,
   document.getElementById('app')
 );

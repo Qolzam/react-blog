@@ -2,12 +2,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
-import {Route, Router, IndexRoute, hashHistory} from 'react-router';
+import {Route, BrowserRouter, Switch} from 'react-router-dom';
 
 
 
 //Import project components refrence
-import RouterPath from 'RouterPath';
+import Home from 'Home';
+import Master from 'Master';
+import Blog from 'Blog';
+
 
 // App css
 require('./styles/app.scss');
@@ -15,6 +18,9 @@ require('./styles/app.scss');
 
 
 ReactDOM.render(
-  <RouterPath/>,
+  <BrowserRouter>
+    <Route component={Home}/>
+
+  </BrowserRouter>,
   document.getElementById('app')
 );

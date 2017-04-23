@@ -1,29 +1,31 @@
 import React from 'react'
 import {Grid, Image, Segment, Divider} from 'semantic-ui-react'
+import {Route, Switch} from 'react-router-dom'
 
-
+import Signup from 'Signup'
 import Navigation from 'Navigation'
 import Blog from 'Blog'
 import SlideShow from 'SlideShow'
 
-const Main = () => (
-  <div id="main">
 
+const Home = () => (
+  <div id="home">
           <Segment>
-
             <SlideShow/>
             <Divider horizontal>
               Green's Diary
             </Divider>
             <Navigation/>
-
+          </Segment>
+          <Segment centered width={7}>
+            <Switch>
+              <Route path="/singup" component={Signup}/>
+              <Route exact patch="/" component={Blog}/>
+            </Switch>
 
           </Segment>
-    <Segment>
-      <Blog/>
-    </Segment>
   </div>
 
 )
 
-export default Main
+export default Home

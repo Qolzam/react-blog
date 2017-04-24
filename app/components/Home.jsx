@@ -19,8 +19,8 @@ const Home = () => (
           </Segment>
           <Segment centered width={7}>
             <Switch>
-              <Route path="/singup" component={Signup}/>
-              <Route exact patch="/" component={Blog}/>
+              <Route path="/signup" component={Signup}/>
+              <Route exact={true} patch="/" component={Blog}/>
             </Switch>
 
           </Segment>

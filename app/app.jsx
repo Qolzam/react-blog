@@ -7,20 +7,14 @@ import {Route, BrowserRouter, Switch} from 'react-router-dom';
 
 
 //Import project components refrence
-import Home from 'Home';
 import Master from 'Master';
-import Blog from 'Blog';
-
 
 // App css
 require('./styles/app.scss');
 
-
-
 ReactDOM.render(
   <BrowserRouter>
-    <Route component={Home}/>
-
+    <Route component={Master}/>
   </BrowserRouter>,
   document.getElementById('app')
 );

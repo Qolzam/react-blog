@@ -1,5 +1,5 @@
 # React Blog Application
-The React Blog Application is a portfolio app blog based on [Semantic ui React](https://react.semantic-ui.com) and [React](https://facebook.github.io/react/docs/hello-world.html) as an open source project.
+The React Blog Application is a diary app blog based on [Semantic ui React](https://react.semantic-ui.com) and [React](https://facebook.github.io/react/docs/hello-world.html) as an open source project.
 
 
 

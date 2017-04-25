@@ -36,7 +36,7 @@ export default class Login extends Component {
               <Button color='blue'>Sign in</Button>
             </Form>
 
-            <Message attached="bottom" color="yellow">
+            <Message attached="bottom" color="teal">
               <NavLink to='/signup'>Create an account</NavLink>
             </Message>
           </Grid.Column>

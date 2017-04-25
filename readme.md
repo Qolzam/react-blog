@@ -10,8 +10,8 @@ This project is a blog based on [Semantic ui React](https://react.semantic-ui.co
 
 
 
-
-If you're using Windows you can now install all node-gyp dependencies with single command:
+# Warning
+- If you're using Windows you can now install all node-gyp dependencies with single command:
 
 ` $ npm install --global --production windows-build-tools`
 and then install the package

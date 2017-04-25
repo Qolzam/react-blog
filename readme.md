@@ -5,22 +5,22 @@ This project is a blog based on [Semantic ui React](https://react.semantic-ui.co
 
 # Atom plugins
 
-  atom-beautify
-  react
+- atom-beautify
+-  react
 
 
 
 
->If you're using Windows you can now install all node-gyp dependencies with single command:
+If you're using Windows you can now install all node-gyp dependencies with single command:
 
-`` $ npm install --global --production windows-build-tools`
+` $ npm install --global --production windows-build-tools`
 and then install the package
 
 ` $ npm install --global node-gyp`
 
 
 # Authors
-- Amir Hossein movahedi
+- Amir Movahedi
 
 # License
 This project is licensed under the MIT License.

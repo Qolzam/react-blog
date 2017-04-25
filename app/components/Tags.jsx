@@ -9,7 +9,6 @@ export default class Tags extends Component {
           Tags
         </Header>
         <Segment attached>
-
           <Label.Group color='teal'>
             <Label as='a'>
               Happy
@@ -23,7 +22,6 @@ export default class Tags extends Component {
             </Label>
             <Label as='a'>Exciting
               <Label.Detail>19</Label.Detail>
-
             </Label>
           </Label.Group>
         </Segment>

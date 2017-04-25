@@ -12,21 +12,17 @@ import {
 import {NavLink} from 'react-router-dom';
 
 export default class Login extends Component {
+
+    constructor(props){
+      super(props);
+
+    }
+
   render() {
     return (
 
       <Grid centered columns={1} padded>
-        <Grid.Row>
-          <Header as='h2' icon textAlign='center' color="green">
-            <Icon name='suitcase' circular/>
-            <Header.Content>
-              Green's Diary
-            </Header.Content>
-            <Header.Subheader>
-              Sign in your account
-            </Header.Subheader>
-          </Header>
-        </Grid.Row>
+
         <Grid.Row>
 
           <Grid.Column computer={6} tablet={10} mobile={16}>
@@ -36,7 +32,7 @@ export default class Login extends Component {
               <Button color='blue'>Sign in</Button>
             </Form>
 
-            <Message attached="bottom" color="teal">
+            <Message attached="bottom">
               <NavLink to='/signup'>Create an account</NavLink>
             </Message>
           </Grid.Column>

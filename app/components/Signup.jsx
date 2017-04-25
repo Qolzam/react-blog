@@ -1,28 +1,53 @@
-import React from 'react'
-import { Button, Checkbox, Form, Icon, Message } from 'semantic-ui-react'
+import React,{Component} from 'react';
+import {
+  Button,
+  Checkbox,
+  Form,
+  Icon,
+  Message,
+  Segment,
+  Header,
+  Grid
+} from 'semantic-ui-react';
+import {NavLink} from 'react-router-dom';
 
-const Signup = () => (
-  <div>
-    <Message
-      attached
-      header='Welcome to our site!'
-      content='Fill out the form below to sign-up for a new account'
-    />
-    <Form className='attached fluid segment'>
-      <Form.Group widths='equal'>
-        <Form.Input label='First Name' placeholder='First Name' type='text' />
-        <Form.Input label='Last Name' placeholder='Last Name' type='text' />
-      </Form.Group>
-      <Form.Input label='Username' placeholder='Username' type='text' />
-      <Form.Input label='Password' type='password' />
-      <Form.Checkbox inline label='I agree to the terms and conditions' />
-      <Button color='blue'>Submit</Button>
-    </Form>
-    <Message attached='bottom' warning>
-      <Icon name='help' />
-      Already signed up?&nbsp;<a href='#'>Login here</a>&nbsp;instead.
-    </Message>
-  </div>
-)
+export default class Signup extends Component {
+  render() {
+    return (
 
-export default Signup
+      <Grid centered columns={1} padded>
+        <Grid.Row>
+          <Header as='h2' icon textAlign='center' color="green">
+            <Icon name='suitcase' circular/>
+            <Header.Content>
+              Green's Diary
+            </Header.Content>
+            <Header.Subheader>
+              Create your account
+            </Header.Subheader>
+          </Header>
+        </Grid.Row>
+        <Grid.Row>
+
+          <Grid.Column computer={6} tablet={10} mobile={16}>
+            <Form className='attached medium segment yellow'>
+
+              <Form.Input label='Full Name' placeholder='Full Name' type='text'/>
+              <Form.Input label='Email' placeholder='Email' type='email'/>
+              <Form.Input label='Password' type='password'/>
+              <Form.Input label='Confirm Password' type='password'/>
+              <Form.Checkbox inline label='I agree to the terms and conditions'/>
+              <Button color='blue'>Create</Button>
+
+            </Form>
+
+            <Message attached="bottom" positive>
+
+              Already signed up?&nbsp;<NavLink to='/login'>Login here</NavLink>&nbsp;instead.
+            </Message>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+    )
+  }
+}

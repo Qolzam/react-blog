@@ -1,16 +1,23 @@
-import React, {Component} from 'react'
-import {Route, Switch} from 'react-router-dom'
+import React, {Component} from 'react';
+import {Route, Switch, NavLink} from 'react-router-dom';
 
 // Import components
-import Home from 'Home'
+import Home from 'Home';
+import Signup from 'Signup';
+import Login from 'Login';
 
- const Master = () => (
+export default class Master extends Component {
 
-      <div id="container">
+  render() {
+    return (
+      <div>
+    
       <Switch>
+        <Route path="/signup" component={Signup}/>
+        <Route path="/Login" component={Login}/>
         <Route path="/" component={Home}/>
-
       </Switch>
       </div>
-)
-export default Master
+    )
+  }
+}

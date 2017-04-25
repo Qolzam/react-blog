@@ -34,6 +34,7 @@ export default class SlideShow extends Component {
     ]
 
     return (
+      
       <ImageGallery
         items={images}
         slideInterval={4000}

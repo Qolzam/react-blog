@@ -19,7 +19,6 @@ export default class Post extends Component {
 
               </Card.Header>
               <Card.Meta>
-
               </Card.Meta>
               <Card.Description>
               My love story was out of my imagination. Cupid shot me when I was in pursuit

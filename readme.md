@@ -11,7 +11,7 @@ The React Blog Application is a diary app blog based on [Semantic ui React](http
 
 
 # Warning
-- If you're using Windows you can now install all node-gyp dependencies with single command:
+- If you're using Windows you should install all node-gyp dependencies with following commands:
 
 ` $ npm install --global --production windows-build-tools`
 and then install the package

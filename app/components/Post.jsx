@@ -11,7 +11,7 @@ export default class Post extends Component {
             <Card.Content>
               <Card.Header>
                 <Image shape='circular' avatar src={require('../dist/images/matthew.png')} />
-                  {' '}<span className="post__avatar__title">Nguyen Thuy</span>
+                  {' '}<span className="post__avatar__title">Nguyen Thuy{'  '}</span>
                   <span className='post__date'>
                      <Icon name="world"/>
                     March 30 at 9:58pm

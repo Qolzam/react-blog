@@ -20,8 +20,11 @@ export default class AdminNav extends Component {
         <Menu.Item as="div" name='manageusers' active={activeItem === 'manageusers'} onClick={this.handleItemClick}>
           <NavLink to="/admin/users">Manage Users</NavLink>
         </Menu.Item>
-        <Menu.Item as="div" name='messages' active={activeItem === 'messages'} onClick={this.handleItemClick}>
+        <Menu.Item as="div" name='account' active={activeItem === 'account'} onClick={this.handleItemClick}>
           <NavLink to="/admin/account">Account</NavLink>
+        </Menu.Item>
+        <Menu.Item as="div" name='profile' active={activeItem === 'profile'} onClick={this.handleItemClick}>
+          <NavLink to="/admin/profile">Profile</NavLink>
         </Menu.Item>
       </Menu>
     )

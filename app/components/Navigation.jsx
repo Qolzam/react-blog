@@ -20,9 +20,9 @@ export default class Navigation extends Component {
 
     return (
       <Menu color={color} stackable fluid>
-        <Menu.Item icon="home" name='home' active={activeItem === 'home'} onClick={this.handleItemClick}/>
-        <Menu.Item name='account' active={activeItem === 'account'} onClick={this.handleItemClick}>
-          <NavLink to="/admin/account">Account</NavLink>
+        <Menu.Item as="div" icon="home" name='home' active={activeItem === 'home'} onClick={this.handleItemClick}/>
+        <Menu.Item as="div" name='account' active={activeItem === 'account'} onClick={this.handleItemClick}>
+          <NavLink as="div" to="/admin/account">Account</NavLink>
         </Menu.Item>
         <Menu.Item name='logout'  active={activeItem === 'Logout'} onClick={this.handleItemClick}>
           <Button primary>Logout</Button>

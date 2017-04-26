@@ -1,14 +1,17 @@
+// - Import react components
 import React, {Component} from 'react';
 import {Route, Switch} from 'react-router-dom';
 import {Grid} from 'semantic-ui-react';
 
 
-// Import app components
+// - Import app components
 import ManageUsers from 'ManageUsers';
 import Account from 'Account';
 import AdminNav from 'AdminNav';
+import Profile from 'Profile';
 
-// Create admin component class
+
+// - Create Admin component class
 export default class Admin extends Component {
 
   render() {
@@ -23,6 +26,7 @@ export default class Admin extends Component {
                 <Grid.Column computer={12} tablet="12" mobile="16" floated="left">
                   <Switch>
                     <Route path="/admin/users" component={ManageUsers}/>
+                    <Route path="/admin/profile" component={Profile}/>
                     <Route path="/admin" component={Account}/>
 
                   </Switch>

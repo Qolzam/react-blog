@@ -24,15 +24,9 @@ export default class Account extends Component {
               <Form.Input label='Email' placeholder='Email' type='email'/>
               <Form.Input label='Password' type='password'/>
               <Form.Input label='Confirm Password' type='password'/>
-              <Form.Checkbox inline label='I agree to the terms and conditions'/>
-              <Button color='blue'>Create</Button>
+              <Button color='blue'>Save Changes</Button>
 
             </Form>
-
-            <Message attached="bottom">
-
-              Already signed up?&nbsp;<NavLink to='/login'>Login here</NavLink>&nbsp;instead.
-            </Message>
               </div>
     )
   }

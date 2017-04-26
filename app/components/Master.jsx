@@ -15,7 +15,7 @@ export default class Master extends Component {
 
   render() {
     return (
-      <div>
+      <div id="master">
 
           <Header as='h2' icon textAlign='center' color="green">
             <Icon name='suitcase' circular/>

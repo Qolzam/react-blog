@@ -14,19 +14,19 @@ export default class Admin extends Component {
   render() {
 
     return (
-             <Grid stackable padded>
+             <Grid stackable padded columns={2}>
               <Grid.Row>
-                <Grid.Column width={11}>
+
+                <Grid.Column computer={4} tablet="4" mobile="16" floated="left">
+                  <AdminNav/>
+                </Grid.Column>
+                <Grid.Column computer={12} tablet="12" mobile="16" floated="left">
                   <Switch>
                     <Route path="/admin/users" component={ManageUsers}/>
                     <Route path="/admin" component={Account}/>
 
                   </Switch>
                 </Grid.Column>
-                <Grid.Column width={4}>
-                  <AdminNav/>
-                </Grid.Column>
-
               </Grid.Row>
 
              </Grid>

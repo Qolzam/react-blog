@@ -4,3 +4,10 @@ body{
 .glob__shadow {
   box-shadow: $glob-box-shadow;
 }
+.global__color-teal
+{
+  color: $teal;
+}
+input[type="file"] {
+    display: none;
+}

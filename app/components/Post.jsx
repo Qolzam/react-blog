@@ -34,7 +34,7 @@ export default class Post extends Component {
         <Card.Content extra>
           <Menu>
             <Menu.Item link name='readmore'>
-              Read more ...
+              <span className="global__color-teal">Read more ...</span>
             </Menu.Item>
             <Menu.Menu position="right">
               <Menu.Item link icon="comments outline" name='21'/>

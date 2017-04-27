@@ -34,13 +34,17 @@ export default class SlideShow extends Component {
     ]
 
     return (
-      
+
       <ImageGallery
         items={images}
         slideInterval={4000}
         onImageLoad={this.handleImageLoad}
         showThumbnails={false}
         autoPlay={true}
+        showNav={false}
+        showFullscreenButton={false}
+        showPlayButton={false}
+        showBullets={true}
         />
 
     );

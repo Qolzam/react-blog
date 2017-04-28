@@ -1,4 +1,5 @@
-import React,{Component} from 'react';
+// - Import react components
+import React, {Component} from 'react';
 import {
   Button,
   Checkbox,
@@ -10,35 +11,30 @@ import {
   Grid,
   Divider
 } from 'semantic-ui-react';
-import {NavLink} from 'react-router-dom';
 
-export default class Account extends Component {
+// - Import app components
+import {NavLink} from 'react-router-dom';
+import ImageUp from 'ImageUploader';
+
+// - Create Profile component class
+export default class Profile extends Component {
 
   render() {
     return (
       <div id="account">
-            <Form className='attached medium segment yellow'>
-              <Header as='h3' dividing>
-                About
-              </Header>
-              <Form.TextArea label='Summary' placeholder='Tell us a summary about you...' />
-              <Form.Input label='Contact' placeholder='Your contact' />
-                <Header as='h3' dividing>
-                  Upload Avatar
-                </Header>
-                <Grid>
-                  <Grid.Row centered>
-                    <label htmlFor="file-upload">
-                      <Button inverted as="div" color="blue">  <Icon name="cloud upload"/>Upload Photo</Button>
-                    </label>
-                    <input id="file-upload" type="file"/>
-                  </Grid.Row>
-                </Grid>
-                 <Divider />
-              <Button color='blue'>Save Changes</Button>
+        <Form className='attached medium segment yellow'>
+          <Divider horizontal>About</Divider>
+          <Form.TextArea label='Summary' placeholder='Tell us a summary about you...'/>
+          <Form.Input label='Contact' placeholder='Your contact'/>
+          <Divider horizontal>Upload Avater</Divider>
+          <ImageUp iconColor="teal"/>
+          <Divider horizontal> Upload Backgound</Divider>
+          <ImageUp width="300"iconColor="teal"/>
+         <Divider/>
+          <Button color='blue'>Save Changes</Button>
 
-            </Form>
-              </div>
+        </Form>
+      </div>
     )
   }
 }

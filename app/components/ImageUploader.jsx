@@ -14,7 +14,8 @@ export default class ImageUploader extends Component {
       previewImage: null,
       zoom: 1,
       rotate: 0,
-      fileTagId: Faker.random.word()
+      fileTagId: Faker.random.word(),
+
     };
     this.onChange = this.onChange.bind(this);
     this.editor = this.setEditorRef.bind(this);
@@ -80,7 +81,7 @@ export default class ImageUploader extends Component {
           </label>
           <Button inverted as="div" color="green" onClick={this.onClickSave}><Icon name="cloud upload"/>Upload</Button>
           <input type="file" ref="file_avatar" id={this.state.fileTagId} onChange={this.onChange}/>
-          
+
         </Grid.Row>
       </Grid>
     );

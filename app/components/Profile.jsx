@@ -27,9 +27,9 @@ export default class Profile extends Component {
           <Form.TextArea label='Summary' placeholder='Tell us a summary about you...'/>
           <Form.Input label='Contact' placeholder='Your contact'/>
           <Divider horizontal>Upload Avater</Divider>
-          <ImageUp iconColor="teal"/>
+          <ImageUp border="20" iconColor="teal"/>
           <Divider horizontal> Upload Backgound</Divider>
-          <ImageUp width="300"iconColor="teal"/>
+          <ImageUp height="150" width="200" border="20"iconColor="teal"/>
          <Divider/>
           <Button color='blue'>Save Changes</Button>
 

@@ -1,12 +1,30 @@
+// - Import react components
 import React, {Component} from 'react'
-import {Card, Icon, Menu, Image} from 'semantic-ui-react'
+import {Card, Icon, Menu, Image, Segment, Grid, Divider} from 'semantic-ui-react'
+import Faker from 'faker'
 
 const avatarImage = require('../dist/images/15.jpg');
 const avatarStyle = {
   backgroundImage: 'url(' + avatarImage + ')'
 };
 
+// - Import app components
+import CommentGroup from 'CommentGroup'
+
+// - Create Post component class
 export default class Post extends Component {
+constructor(props){
+  super(props)
+  this.state = {
+    text: Faker.lorem.sentence()
+  }
+  this.readMore = this.readMore.bind(this);
+}
+readMore(evt,data){
+  this.setState({
+    text: Faker.lorem.paragraphs()
+  });
+}
 
   render() {
     return (
@@ -28,13 +46,13 @@ export default class Post extends Component {
           </Card.Header>
           <Card.Meta></Card.Meta>
           <Card.Description>
-            My love story was out of my imagination. Cupid shot me when I was in pursuit of my dream named Silk road. As a result, instead of exploring an ancient network of trade routes, I followed the call of love. Will you marry me, Green?
+            {this.state.text}
           </Card.Description>
         </Card.Content>
-        <Card.Content extra>
+        <Card.Content extra className="attached">
           <Menu>
             <Menu.Item link name='readmore'>
-              <span className="global__color-teal">Read more ...</span>
+              <span className="global__color-teal" onClick={this.readMore}>Read more ...</span>
             </Menu.Item>
             <Menu.Menu position="right">
               <Menu.Item link icon="comments outline" name='21'/>
@@ -43,7 +61,11 @@ export default class Post extends Component {
             </Menu.Menu>
           </Menu>
         </Card.Content>
-      </Card>
+
+ <CommentGroup className="container basic secondary segment"/>
+        </Card>
+
+
 
     )
   }

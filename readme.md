@@ -5,7 +5,7 @@ The React Blog Application is a diary app blog based on [Semantic ui React](http
  Install [NodeJs](https://nodejs.org/en/)
 
 # Installing
- 1. installing all nodejs modules:
+ 1. Installing all nodejs modules:
   `npm install`
  2. Running server:
   `node server.js`

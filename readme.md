@@ -1,6 +1,15 @@
 # React Blog Application
 The React Blog Application is a diary app blog based on [Semantic ui React](https://react.semantic-ui.com) and [React](https://facebook.github.io/react/docs/hello-world.html) as an open source project.
 
+# Prerequisites
+ Install [NodeJs](https://nodejs.org/en/)
+
+# Installing
+ 1- installing all nodejs modules:
+  `npm install`
+ 2- Running server:
+  `node server.js`
+
 
 
 # Atom plugins

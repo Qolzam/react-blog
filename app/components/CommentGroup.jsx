@@ -5,35 +5,58 @@ import Faker from 'faker'
 
 // - Import app components
 import PostComment from 'PostComment'
+import CommentWrite from 'CommentWrite'
 
 // - Create Blog component class
 export default class CommentGroup extends Component {
-  constructor(props){
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      
+      commentWriteShow: false,
+      commentText: ""
+
     }
+
+    // Binding functions
+    this.onCommentChange = this.onCommentChange.bind(this);
+    this.closeWriteComment = this.closeWriteComment.bind(this);
+
   }
+  onCommentChange(evt, data) {
+    var text = data.value;
+
+    this.setState({commentWriteShow: true, commentText: text});
+
+    data.value = "";
+
+  }
+  closeWriteComment = () => {
+    this.setState({
+      commentWriteShow: false
+    });
+  }
+
+
   render() {
     return (
-      <Comment.Group {...this.props}>
+      <Comment.Group size="mini" minimal{...this.props}>
 
-        <PostComment date={Faker.date.weekday()} avatarSrc={Faker.image.avatar()} author={Faker.name.findName()} text={Faker.lorem.paragraph()}/>
-        <PostComment date={Faker.date.weekday()} avatarSrc={Faker.image.avatar()} author={Faker.name.findName()} text={Faker.lorem.paragraph()}/>
-        <PostComment date={Faker.date.weekday()} avatarSrc={Faker.image.avatar()} author={Faker.name.findName()} text={Faker.lorem.paragraph()}/>
+        {/*<PostComment date={Faker.date.weekday()} avatarSrc={Faker.image.avatar()} author={Faker.name.findName()} text={Faker.lorem.paragraph()}/>*/}
+        {/*<PostComment date={Faker.date.weekday()} avatarSrc={Faker.image.avatar()} author={Faker.name.findName()} text={Faker.lorem.paragraph()}/>*/}
+        {/*<PostComment date={Faker.date.weekday()} avatarSrc={Faker.image.avatar()} author={Faker.name.findName()} text={Faker.lorem.paragraph()}/>*/}
         <PostComment date={Faker.date.weekday()} avatarSrc={Faker.image.avatar()} author={Faker.name.findName()} text={Faker.lorem.paragraph()}/>
 
-        <Form reply onSubmit={e => e.preventDefault()} >
+        <Form reply onSubmit={e => e.preventDefault()}>
 
-          <Input fluid icon={{
-            name: 'comment',
-            circular: true,
-            link: true
-          }} placeholder='Comment...'/>
-          <div className="global__hidden">
-          <Form.TextArea/>
-          <Button content='Add Comment' labelPosition='left' primary/>
-          </div>
+          {!this.state.commentWriteShow
+            ? <Input fluid onChange={this.onCommentChange} icon={{
+                name: 'comment',
+                circular: true,
+                link: true
+              }} placeholder='Comment...'/>
+            : <CommentWrite commentText={this.state.commentText} close={this.closeWriteComment}/>
+
+          }
         </Form>
       </Comment.Group>
 

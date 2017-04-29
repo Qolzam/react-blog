@@ -1,6 +1,16 @@
 // - Import react components
 import React, {Component} from 'react'
-import {Card, Icon, Menu, Image, Segment, Grid, Divider} from 'semantic-ui-react'
+import {
+  Card,
+  Icon,
+  Menu,
+  Image,
+  Segment,
+  Grid,
+  Divider,
+  Button,
+  Label
+} from 'semantic-ui-react'
 import Faker from 'faker'
 
 const avatarImage = require('../dist/images/15.jpg');
@@ -13,18 +23,17 @@ import CommentGroup from 'CommentGroup'
 
 // - Create Post component class
 export default class Post extends Component {
-constructor(props){
-  super(props)
-  this.state = {
-    text: Faker.lorem.sentence()
+  constructor(props) {
+    super(props)
+    this.state = {
+      text: Faker.lorem.sentence()
+    }
+    this.readMore = this.readMore.bind(this);
   }
-  this.readMore = this.readMore.bind(this);
-}
-readMore(evt,data){
-  this.setState({
-    text: Faker.lorem.paragraphs()
-  });
-}
+  readMore(evt, data) {
+
+    this.setState({text: Faker.lorem.paragraphs()});
+  }
 
   render() {
     return (
@@ -37,35 +46,43 @@ readMore(evt,data){
             <div className="post__avatar" style={avatarStyle}></div>
             {' '}<div className="post__meta">
               <span className="post__avatar-title">Nguyen Thuy{'  '}</span>
-              <span className='post__date'>
+
                 <Icon name="world"/>
-                March 30 at 9:58pm
-              </span>
+
+
             </div>
 
           </Card.Header>
-          <Card.Meta></Card.Meta>
+          <Card.Meta> <span className='post__date'> March 30 at 9:58pm  </span></Card.Meta>
           <Card.Description>
-            {this.state.text}
+            {this.state.text} <Icon name='ellipsis horizontal' color='teal' size='big' onClick={this.readMore}/><Label pointing='left'>Read More</Label>
           </Card.Description>
         </Card.Content>
         <Card.Content extra className="attached">
-          <Menu>
-            <Menu.Item link name='readmore'>
-              <span className="global__color-teal" onClick={this.readMore}>Read more ...</span>
-            </Menu.Item>
+          <Menu secondary >
+            <Button
+               color='red'
+               icon='heart'
+               labelPosition='right'
+               label={{ basic: true, color: 'red', pointing: 'left', content: '248' }}
+             />
+
             <Menu.Menu position="right">
-              <Menu.Item link icon="comments outline" name='21'/>
-              <Menu.Item link icon="star" name='2'/>
+              <Button
+
+       color='grey'
+       icon='comment'
+       labelPosition='right'
+       label={{ basic: true, color: 'grey', pointing: 'left', content: '24' }}
+     />
+
 
             </Menu.Menu>
           </Menu>
         </Card.Content>
-
-        <CommentGroup className="container basic secondary segment"/>
-        </Card>
-
-
+        <Divider fitted />
+        <CommentGroup className="container basic segment"/>
+      </Card>
 
     )
   }

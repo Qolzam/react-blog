@@ -62,7 +62,7 @@ readMore(evt,data){
           </Menu>
         </Card.Content>
 
- <CommentGroup className="container basic secondary segment"/>
+        <CommentGroup className="container basic secondary segment"/>
         </Card>
 
 

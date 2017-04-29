@@ -14,7 +14,7 @@
     "classnames": "^2.2.5",
     "express": "^4.15.2",
     "faker": "^4.1.0",
-    "morgan": "^1.8.1",
+    "morgan": "^1.8.1", 
     "react": "^15.4.2",
     "react-addons-test-utils": "^15.5.1",
     "react-avatar-editor": "^9.1.1",

@@ -23,18 +23,27 @@ import CommentGroup from 'CommentGroup'
 
 // - Create Post component class
 export default class Post extends Component {
+
+// Constructor
   constructor(props) {
     super(props)
     this.state = {
-      text: Faker.lorem.sentence()
+      text: Faker.lorem.sentence(),
+      readMoreState: false
     }
-    this.readMore = this.readMore.bind(this);
-  }
-  readMore(evt, data) {
 
-    this.setState({text: Faker.lorem.paragraphs()});
+    // Binding functions to this
+    this.handleReadMore = this.handleReadMore.bind(this);
+  }
+  // Handle read more event
+  handleReadMore(evt, data) {
+
+    this.setState({text: Faker.lorem.paragraphs(),
+      readMoreState: !this.readMoreState
+    });
   }
 
+// Render app DOM
   render() {
     return (
 
@@ -55,7 +64,7 @@ export default class Post extends Component {
           </Card.Header>
           <Card.Meta> <span className='post__date'> March 30 at 9:58pm  </span></Card.Meta>
           <Card.Description>
-            {this.state.text} <Icon name='ellipsis horizontal' color='teal' size='big' onClick={this.readMore}/><Label pointing='left'>Read More</Label>
+            {this.state.text} <Icon name='ellipsis horizontal' color='teal' size='big' onClick={this.handleReadMore}/><Label pointing='left'>Read More</Label>
           </Card.Description>
         </Card.Content>
         <Card.Content extra className="attached">

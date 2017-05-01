@@ -1,22 +1,44 @@
-body{
-  background-color: $light-grey
+body {
+  background-color: $light-grey;
 }
+
 .glob__shadow {
   box-shadow: $glob-box-shadow;
 }
-.global__color-teal
-{
+
+.global__color-teal {
   color: $teal;
 }
-.global__color-gold{
-  color:$gold;
+
+.global__color-gold {
+  color: $gold;
 }
-.global__color-lightGrey{
+
+.global__color-lightGrey {
   color: $light-grey3;
 }
+
 input[type="file"] {
-    display: none;
+  display: none;
 }
-.global__hidden{
+
+textarea {
+  border: none;
+  overflow:hidden;
+  outline: none;
+  border-color: Transparent;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  resize: none;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  max-height: 120px;
+min-height: 100px;
+}
+
+.global__hidden {
   display: none;
 }

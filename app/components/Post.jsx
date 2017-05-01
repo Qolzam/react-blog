@@ -10,7 +10,8 @@ import {
   Divider,
   Button,
   Label,
-  Embed
+  Embed,
+  Rail
 } from 'semantic-ui-react'
 import Faker from 'faker'
 
@@ -42,8 +43,8 @@ export default class Post extends Component {
 
     this.setState({
       text: Faker.lorem.paragraphs(),
-      readMoreState: !this.readMoreState,
-      picturePostState: false
+      readMoreState: !this.readMoreState
+
     });
   }
 
@@ -53,7 +54,7 @@ export default class Post extends Component {
 
       <Card fluid>
         {
-            this.state.picturePostState
+            this.props.pictureState
               ? <Image src={require('../dist/images/22.jpg')}/>
               : <Embed id='O6Xo21L0ybE' placeholder='/assets/images/image-16by9.png' source='youtube'/>
           }

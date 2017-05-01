@@ -1,9 +1,9 @@
 // - Impoer react components
 import React, {Component} from 'react'
-import {Button, Header, Icon, Modal} from 'semantic-ui-react'
+import {Button, Header, Icon, Modal, Card, Menu, Image  } from 'semantic-ui-react'
 
 // - Import app components
-import PostSelectPhoto from 'PostSelectPhoto'
+import PhotoSelect from 'PhotoSelect'
 
 // - Create PostWritePage component class
 export default class PostWritePage extends Component {
@@ -32,19 +32,36 @@ export default class PostWritePage extends Component {
   // Render DOM
   render() {
     return (
-      <Modal dimmer={'inverted'} open={this.state.active} onClose={this.close}>
-        <Modal.Header>Modal #1</Modal.Header>
-        <Modal.Content image>
-          <div className='image'>
-            <Icon name='right arrow'/>
-          </div>
+        <Modal basic size='small' dimmer={'inverted'} open={this.state.active} onClose={this.close}>
+
+        <Modal.Content>
+
           <Modal.Description>
-            <p>We have more to share with you. Follow us along to modal 2</p>
+            <Card centered>
+               <Image src={require('../dist/images/22.jpg')} />
+               <Card.Content>
+
+                 <Card.Description>
+                   <textarea autoFocus='true' placeholder="What's new with you?"></textarea>
+
+                   </Card.Description>
+               </Card.Content>
+               <Card.Content extra>
+                 <Menu icon compact>
+                         <Menu.Item link name='camera' >
+                           <Icon name='camera' />
+                         </Menu.Item>
+
+                         <Menu.Item link name='video' >
+                           <Icon name='video' />
+                         </Menu.Item>
+
+                  </Menu>
+                   <Icon circular color='teal' link name='chevron right' style={{float: 'right'}} size='large' />
+               </Card.Content>
+           </Card>
           </Modal.Description>
         </Modal.Content>
-        <Modal.Actions>
-          <PostSelectPhoto/>
-        </Modal.Actions>
       </Modal>
     );
   }

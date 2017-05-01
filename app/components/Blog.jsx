@@ -13,16 +13,18 @@ import PostWrite from 'PostWrite'
 
 // - Create Blog component class
 export default class Blog extends Component {
+
+  // Render DOM
   render() {
     return (
       <Grid stackable divided padded columns={2}>
         <Grid.Row>
           <Grid.Column computer={12} mobile={16} tablet={11}>
             <PostWrite/>
-            <Post/>
-            <Post/>
-            <Post/>
-            <Post/>
+            <Post pictureState={true}/>
+            <Post pictureState={false}/>
+            <Post pictureState={true}/>
+            <Post pictureState={true}/>
           </Grid.Column>
           <Grid.Column computer={4} mobile={16} tablet={5}>
             <Summary/>

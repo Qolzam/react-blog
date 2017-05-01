@@ -1,5 +1,6 @@
 // - Import react components
 import React, {Component} from 'react'
+import {connect} from 'react-redux'
 import {
   Card,
   Icon,
@@ -13,38 +14,34 @@ import {
   Container
 } from 'semantic-ui-react'
 
-// Define variables
-const avatarImage = require('../dist/images/15.jpg');
+// - Define variables
+const avatarImage = require('../dist/images/15.jpg')
 const avatarStyle = {
   backgroundImage: 'url(' + avatarImage + ')'
 };
 
 // - Import app components
-import PostWritePage from 'PostWritePage';
-import ImageGallery from 'ImageGallery';
+import PostWritePage from 'PostWritePage'
+import ImageGallery from 'ImageGallery'
+
+// - Import actions
+import * as imageGalleryAction from 'imageGalleryAction'
 
 
 // - Create PostWrite component class
-export default class PostWrite extends Component {
+export class PostWrite extends Component {
 
   // Constructor
   constructor(props) {
     super(props)
 
-    this.state = {
-      postWriteOpen: false,
-      postImageOpen:false
-    };
     // Binding functions to `this`
     this.handleWriteClick = this.handleWriteClick.bind(this);
   }
 
   // Handle write post event
   handleWriteClick = (evt) => {
-    this.setState({
-      postWriteOpen: true
-    });
-
+    this.props.dispatch(imageGalleryAction.openImageGallery(true))
   }
   // Render app DOM
   render() {
@@ -56,10 +53,17 @@ export default class PostWrite extends Component {
           <Icon link onClick={this.handleWriteClick} name='write' color='grey' size='large' circular style={{
         marginLeft: '5px'
       }}/>
-    <PostWritePage open={this.state.postWriteOpen}/>
-    <ImageGallery open={this.state.postImageOpen} callBack={this.handleWriteClick}/>
+    <PostWritePage open={this.props.postWriteOpen}/>
+    <ImageGallery open={this.props.postImageOpen} />
       </Container>
 
     );
   }
 }
+
+export default connect(
+  (state) => {
+    return{
+      postImageOpen: state.imageGallery.status
+    }
+})(PostWrite)

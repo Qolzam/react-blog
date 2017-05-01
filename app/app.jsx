@@ -3,7 +3,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import {Route, BrowserRouter, Switch} from 'react-router-dom';
+import * as imageGalleryAction from 'imageGalleryAction';
+var store = require('configureStore').configure();
 
+store.subscribe(() => {
+  var state = store.getState();
+  console.log('New state', state);
+
+});
 
 
 //Import project components refrence
@@ -13,8 +20,10 @@ import Master from 'Master';
 require('./styles/app.scss');
 
 ReactDOM.render(
-  <BrowserRouter>
-    <Route component={Master}/>
-  </BrowserRouter>,
+ <Provider store={store}>
+    <BrowserRouter>
+      <Route component={Master}/>
+    </BrowserRouter>
+  </Provider>,
   document.getElementById('app')
 );

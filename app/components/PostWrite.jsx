@@ -21,6 +21,8 @@ const avatarStyle = {
 
 // - Import app components
 import PostWritePage from 'PostWritePage';
+import ImageGallery from 'ImageGallery';
+
 
 // - Create PostWrite component class
 export default class PostWrite extends Component {
@@ -30,7 +32,8 @@ export default class PostWrite extends Component {
     super(props)
 
     this.state = {
-      postWriteOpen: false
+      postWriteOpen: false,
+      postImageOpen:false
     };
     // Binding functions to `this`
     this.handleWriteClick = this.handleWriteClick.bind(this);
@@ -51,9 +54,10 @@ export default class PostWrite extends Component {
         <div className="post__avatar" style={avatarStyle}>  </div>
           <span className='global__color-lightGrey'>What's new with you?</span>
           <Icon link onClick={this.handleWriteClick} name='write' color='grey' size='large' circular style={{
-        marginLeft: '10px'
+        marginLeft: '5px'
       }}/>
     <PostWritePage open={this.state.postWriteOpen}/>
+    <ImageGallery open={this.state.postImageOpen} callBack={this.handleWriteClick}/>
       </Container>
 
     );

@@ -11,7 +11,7 @@ import Login from 'Login';
 import Admin from 'Admin';
 import BlogHeader from 'BlogHeader';
 import MasterLoading from 'MasterLoading';
-
+import * as types from 'actionTypes';
 
 
 
@@ -28,7 +28,7 @@ constructor(props){
 }
 
 componentDidMount = ()=> {
-  console.log(this.state.active);
+
   this.setState({
     active: false
   });

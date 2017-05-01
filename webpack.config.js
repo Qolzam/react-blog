@@ -25,10 +25,13 @@ module.exports = {
     modules: [
       'node_modules',
       './app/components',
-      './app/api'
+      './app/api',
+      './app/constants',
+      './app/actions'
+
     ],
     alias: {
-      //  applicationStyles: './app/styles/app.scss'
+
     },
     extensions: ['.scss', '.js', '.jsx']
   },

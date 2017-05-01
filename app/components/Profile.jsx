@@ -19,6 +19,7 @@ import ImageUp from 'ImageUploader';
 // - Create Profile component class
 export default class Profile extends Component {
 
+  // Render DOM
   render() {
     return (
       <div id="account">

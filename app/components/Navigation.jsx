@@ -15,6 +15,7 @@ export default class Navigation extends Component {
 
   handleItemClick = (e, {name}) => this.setState({activeItem: name})
 
+  // Render DOM
   render() {
     const {activeItem} = this.state
 

@@ -7,7 +7,7 @@ import Faker from 'faker'
 import PostComment from 'PostComment'
 import CommentWrite from 'CommentWrite'
 
-// - Create Blog component class
+// - Create CommentGroup component class
 export default class CommentGroup extends Component {
   constructor(props) {
     super(props);
@@ -36,7 +36,7 @@ export default class CommentGroup extends Component {
     });
   }
 
-
+// Render DOM
   render() {
     return (
       <Comment.Group size="mini" minimal{...this.props}>

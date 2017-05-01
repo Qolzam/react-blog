@@ -8,6 +8,7 @@ import Summary from 'Summary'
 import Post from 'Post'
 import PopularPosts from 'PopularPosts'
 import Tags from 'Tags'
+import PostWrite from 'PostWrite'
 
 
 // - Create Blog component class
@@ -17,7 +18,7 @@ export default class Blog extends Component {
       <Grid stackable divided padded columns={2}>
         <Grid.Row>
           <Grid.Column computer={12} mobile={16} tablet={11}>
-            
+            <PostWrite/>
             <Post/>
             <Post/>
             <Post/>

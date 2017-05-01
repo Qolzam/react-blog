@@ -1,3 +1,4 @@
+// - Import react components
 import React, {Component} from 'react';
 import {
   Button,
@@ -11,13 +12,16 @@ import {
 } from 'semantic-ui-react';
 import {NavLink} from 'react-router-dom';
 
+// - Create Login component class
 export default class Login extends Component {
 
+  // Constructor
     constructor(props){
       super(props);
 
     }
 
+  // Render DOM
   render() {
     return (
 

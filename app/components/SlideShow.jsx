@@ -1,12 +1,15 @@
+// - Impport react components
 import React, {Component} from 'react';
 import ImageGallery from 'react-image-gallery';
 
+// - Create SlideShow component class
 export default class SlideShow extends Component {
 
   handleImageLoad(event) {
     console.log('Image loaded ', event.target)
   }
 
+  // Render DOM
   render() {
 
     const images = [

@@ -1,7 +1,11 @@
+// - Import react components
 import React, {Component} from 'react'
 import {Icon, Label, Segment, Header} from 'semantic-ui-react'
 
+// - Create Tags component class
 export default class Tags extends Component {
+
+  // Render DOM
   render() {
     return (
       <div>

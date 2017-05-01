@@ -1,7 +1,11 @@
+// - Import react components
 import React, {Component} from 'react'
 import {Card, Icon, Image} from 'semantic-ui-react'
 
+// - Create Summary component class
 export default class Summary extends Component {
+
+  // Render DOM
   render() {
     return (
 

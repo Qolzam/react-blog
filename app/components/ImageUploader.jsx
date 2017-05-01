@@ -7,6 +7,7 @@ import Faker from 'faker';
 // - Create Image uploader component class
 export default class ImageUploader extends Component {
 
+// Constructor
   constructor(props) {
     super(props);
     this.state = {
@@ -54,6 +55,8 @@ export default class ImageUploader extends Component {
   }
   handleChangeZoom = (e) => this.setState({ zoom: e.target.value })
   handleChangeRotate = (e) => this.setState({ rotate: e.target.value })
+
+  // Render DOM
   render() {
     return (
       <Grid centered>

@@ -7,9 +7,10 @@ const avatarStyle = {
   backgroundImage: 'url(' + avatarImage + ')'
 };
 
-// - Create Post component class
+// - Create PostContent component class
 export default class PostContent extends Component {
 
+  // Render DOM
   render() {
     return (
 

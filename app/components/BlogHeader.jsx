@@ -4,7 +4,7 @@ import {Header, Icon} from 'semantic-ui-react';
 
 // - Import components
 
-// - Create Master component class
+// - Create BlogHeader component class
 export default class BlogHeader extends Component {
 
   // Render app DOM component

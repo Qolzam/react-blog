@@ -1,7 +1,11 @@
+// - Import react components
 import React, {Component} from 'react'
 import {Card, Feed} from 'semantic-ui-react'
 
+// - Create PopularPosts component class
 export default class PopularPosts extends Component {
+
+  // Render DOM
   render() {
     return (
       <Card fluid>

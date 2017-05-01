@@ -9,10 +9,12 @@ import {
   Grid,
   Divider,
   Button,
-  Label
+  Label,
+  Embed
 } from 'semantic-ui-react'
 import Faker from 'faker'
 
+// Define variables
 const avatarImage = require('../dist/images/15.jpg');
 const avatarStyle = {
   backgroundImage: 'url(' + avatarImage + ')'
@@ -24,7 +26,7 @@ import CommentGroup from 'CommentGroup'
 // - Create Post component class
 export default class Post extends Component {
 
-// Constructor
+  // Constructor
   constructor(props) {
     super(props)
     this.state = {
@@ -38,17 +40,25 @@ export default class Post extends Component {
   // Handle read more event
   handleReadMore(evt, data) {
 
-    this.setState({text: Faker.lorem.paragraphs(),
-      readMoreState: !this.readMoreState
+    this.setState({
+      text: Faker.lorem.paragraphs(),
+      readMoreState: !this.readMoreState,
+      picturePostState: false
     });
   }
 
-// Render app DOM
+  // Render DOM
   render() {
     return (
 
       <Card fluid>
-        <Image src={require('../dist/images/22.jpg')}/>
+        {
+            this.state.picturePostState
+              ? <Image src={require('../dist/images/22.jpg')}/>
+              : <Embed id='O6Xo21L0ybE' placeholder='/assets/images/image-16by9.png' source='youtube'/>
+          }
+
+
         <Card.Content>
           <Card.Header>
 
@@ -56,40 +66,43 @@ export default class Post extends Component {
             {' '}<div className="post__meta">
               <span className="post__avatar-title">Nguyen Thuy{'  '}</span>
 
-                <Icon name="world"/>
-
+              <Icon name="world"/>
 
             </div>
 
           </Card.Header>
-          <Card.Meta> <span className='post__date'> March 30 at 9:58pm  </span></Card.Meta>
+          <Card.Meta>
+            <span className='post__date'>
+              March 30 at 9:58pm
+            </span>
+          </Card.Meta>
           <Card.Description>
-            {this.state.text} <Icon name='ellipsis horizontal' color='teal' size='big' onClick={this.handleReadMore}/><Label pointing='left'>Read More</Label>
+            {this.state.text}
+            <Icon name='ellipsis horizontal' color='teal' size='big' onClick={this.handleReadMore}/>
+            <Label pointing='left'>Read More</Label>
           </Card.Description>
         </Card.Content>
         <Card.Content extra className="attached">
-          <Menu secondary >
-            <Button
-               color='red'
-               icon='heart'
-               labelPosition='right'
-               label={{ basic: true, color: 'red', pointing: 'left', content: '248' }}
-             />
+          <Menu secondary>
+            <Button color='red' icon='heart' labelPosition='right' label={{
+              basic: true,
+              color: 'red',
+              pointing: 'left',
+              content: '248'
+            }}/>
 
             <Menu.Menu position="right">
-              <Button
-
-       color='grey'
-       icon='comment'
-       labelPosition='right'
-       label={{ basic: true, color: 'grey', pointing: 'left', content: '24' }}
-     />
-
+              <Button color='grey' icon='comment' labelPosition='right' label={{
+                basic: true,
+                color: 'grey',
+                pointing: 'left',
+                content: '24'
+              }}/>
 
             </Menu.Menu>
           </Menu>
         </Card.Content>
-        <Divider fitted />
+        <Divider fitted/>
         <CommentGroup className="container basic segment"/>
       </Card>
 

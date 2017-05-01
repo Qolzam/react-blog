@@ -4,7 +4,7 @@ import { Button, Comment, Form } from 'semantic-ui-react'
 
 // - Import app components
 
-// - Create Blog component class
+// - Create PostComment component class
 export default class PostComment extends Component {
   render() {
     return (

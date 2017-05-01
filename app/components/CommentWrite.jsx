@@ -10,7 +10,7 @@ const buttonStyle = {
   marginTop: '5px'
 };
 
-// - Create Blog component class
+// - Create CommentWrite component class
 export default class CommentWrite extends Component {
   constructor(props) {
     super(props);
@@ -31,7 +31,8 @@ export default class CommentWrite extends Component {
   handleAddComment = (evt) => {
     this.props.close();
   }
-
+  
+// Render DOM
   render() {
     return (
       <div>

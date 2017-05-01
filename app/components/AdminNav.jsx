@@ -1,12 +1,15 @@
+// - Import react components
 import React, { Component } from 'react';
 import { Dropdown, Icon, Input, Menu } from 'semantic-ui-react';
 import {NavLink} from 'react-router-dom';
 
+// Create AdminNav component class
 export default class AdminNav extends Component {
   state = {}
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
+  // Render DOM
   render() {
     const { activeItem } = this.state
 

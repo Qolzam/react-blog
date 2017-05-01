@@ -1,7 +1,11 @@
+// - Import react components
 import React, {Component} from 'react'
 import {Button, Image, List} from 'semantic-ui-react'
 
+// - Create ManageUsers component class
 export default class ManageUsers extends Component {
+
+  // Render DOM
   render() {
     return (
       <List divided verticalAlign='middle'>

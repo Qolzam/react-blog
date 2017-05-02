@@ -1,11 +1,11 @@
 import * as redux from 'redux';
 import {imageGalleryReducer} from 'imageGalleryReducer';
-import {postWritePageReducer} from 'postWritePageReducer';
+import {postReducer} from 'postReducer';
 
 export var configure = (initialState = {}) => {
   var reducer = redux.combineReducers({
     imageGallery: imageGalleryReducer,
-    postWritePage: postWritePageReducer
+    post: postReducer
   });
 
   var store = redux.createStore(reducer, initialState, redux.compose(

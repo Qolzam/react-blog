@@ -25,7 +25,8 @@ import PostWritePage from 'PostWritePage'
 import ImageGallery from 'ImageGallery'
 
 // - Import actions
-import * as imageGalleryAction from 'imageGalleryAction'
+import * as imageGalleryActions from 'imageGalleryActions'
+import * as postAction from 'postAction'
 
 
 // - Create PostWrite component class
@@ -41,7 +42,7 @@ export class PostWrite extends Component {
 
   // Handle write post event
   handleWriteClick = (evt) => {
-    this.props.dispatch(imageGalleryAction.openImageGallery(true))
+    this.props.dispatch(imageGalleryActions.postWriteOpen(true))
   }
   // Render app DOM
   render() {
@@ -64,6 +65,7 @@ export class PostWrite extends Component {
 export default connect(
   (state) => {
     return{
-      postImageOpen: state.imageGallery.status
+      postImageOpen: state.imageGallery.status,
+      postWriteOpen: state.postWritePage.status
     }
 })(PostWrite)

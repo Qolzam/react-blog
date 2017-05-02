@@ -3,7 +3,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import {Route, BrowserRouter, Switch} from 'react-router-dom';
-import * as imageGalleryAction from 'imageGalleryAction';
 var store = require('configureStore').configure();
 
 store.subscribe(() => {

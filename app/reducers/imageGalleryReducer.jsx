@@ -8,7 +8,7 @@ var defaultState = {
 }
 
 // - Image gallery reducer
-export var imageGalleryReducer = (state = {}, action ) => {
+export var imageGalleryReducer = (state = defaultState, action ) => {
   switch (action.type) {
     case types.OPEN_IMAGE_GALLERY:
       return {

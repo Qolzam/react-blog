@@ -42,3 +42,32 @@ min-height: 100px;
 .global__hidden {
   display: none;
 }
+
+.global__scroll-CH::-webkit-scrollbar {
+  width: 5px;
+}
+
+.global__scroll-CH::-webkit-scrollbar-track {
+  background: #ddd;
+}
+
+.global__scroll-CH::-webkit-scrollbar-thumb {
+  background: #666;
+}
+.global__scroll-IE{
+  scrollbar-base-color: #C0C0C0;
+
+   scrollbar-base-color: #C0C0C0;
+
+   scrollbar-dlight-color: #C0C0C0;
+
+   scrollbar-highlight-color: #C0C0C0;
+
+   scrollbar-track-color: #EBEBEB;
+
+   scrollbar-arrow-color: black;
+
+   scrollbar-shadow-color: #C0C0C0;
+
+   scrollbar-dark-shadow-color: #C0C0C0;
+}

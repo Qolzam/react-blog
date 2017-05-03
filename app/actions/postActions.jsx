@@ -8,10 +8,3 @@ export const openPostWritePage = (writeStatus) => {
     writeStatus
   }
 }
-
-export const onHoldPostWrite = (onHoldWriteStatus) {
-  return{
-    type: types.ON_HOLD_POST_WRITE,
-    onHoldWriteStatus
-  }
-}

@@ -42,65 +42,23 @@ export class ImageGallery extends Component {
         open={this.props.imageGalleryState}
         onClose={this.close}
         size='small'
+        className='imageGallery_parent'
+        style={{height:'95%'}}
       >
-        <Modal.Content>
+      <Label size='small' as='a' floating onClick={this.close}> X</Label>
+        <Modal.Content style={{height:'100%'}}>
           <Modal.Header>
-            <Label size='small' as='a' floating onClick={this.close}> X</Label>
+
           </Modal.Header>
-          <Grid doubling columns={4}>
+          <Grid columns={2}
+            className="global__scroll-CH"
+            style={{overflow:'auto',height:'100%'}}
+            >
             <Grid.Column style={{padding: '0'}}>
-              <Image src={require('../dist/images/22.jpg')} />
+              <Image  className='segment' src={require('../dist/images/22.jpg')} />
             </Grid.Column>
-            <Grid.Column>
-              <Image src={require('../dist/images/22.jpg')} />
-            </Grid.Column>
-            <Grid.Column>
-              <Image src={require('../dist/images/22.jpg')} />
-            </Grid.Column>
-            <Grid.Column>
-              <Image src={require('../dist/images/22.jpg')} />
-            </Grid.Column>
-            <Grid.Column>
-              <Image src={require('../dist/images/22.jpg')} />
-            </Grid.Column>
-            <Grid.Column>
-              <Image src={require('../dist/images/22.jpg')} />
-            </Grid.Column>
-            <Grid.Column>
-              <Image src={require('../dist/images/22.jpg')} />
-            </Grid.Column>
-            <Grid.Column>
-              <Image src={require('../dist/images/22.jpg')} />
-            </Grid.Column>
-            <Grid.Column>
-              <Image src={require('../dist/images/22.jpg')} />
-            </Grid.Column>
-            <Grid.Column>
-              <Image src={require('../dist/images/22.jpg')} />
-            </Grid.Column>
-            <Grid.Column>
-              <Image src={require('../dist/images/22.jpg')} />
-            </Grid.Column>
-            <Grid.Column>
-              <Image src={require('../dist/images/22.jpg')} />
-            </Grid.Column>
-            <Grid.Column>
-              <Image src={require('../dist/images/22.jpg')} />
-            </Grid.Column>
-            <Grid.Column>
-              <Image src={require('../dist/images/22.jpg')} />
-            </Grid.Column>
-            <Grid.Column>
-              <Image src={require('../dist/images/22.jpg')} />
-            </Grid.Column>
-            <Grid.Column>
-              <Image src={require('../dist/images/22.jpg')} />
-            </Grid.Column>
-            <Grid.Column>
-              <Image src={require('../dist/images/22.jpg')} />
-            </Grid.Column>
-            <Grid.Column>
-              <Image src={require('../dist/images/22.jpg')} />
+            <Grid.Column style={{padding: '0'}}>
+              <Image  className='segment' src={require('../dist/images/22.jpg')} />
             </Grid.Column>
 
           </Grid>

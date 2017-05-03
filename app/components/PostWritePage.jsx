@@ -1,20 +1,20 @@
 // - Impoer react components
 import React, {Component} from 'react'
 import {Button, Header, Icon, Modal, Card, Menu, Image, Label  } from 'semantic-ui-react'
-
+import {connect} from 'react-redux'
 // - Import app components
 import ImageGallery from 'ImageGallery'
+import * as imageGalleryActions from 'imageGalleryActions'
+import * as postActions from 'postActions'
 
 // - Create PostWritePage component class
-export default class PostWritePage extends Component {
+export class PostWritePage extends Component {
 
   // Constructor
   constructor(props){
     super(props);
 
     this.state = {
-      active: false,
-      imageState:false,
       videoState:false
     };
 
@@ -23,26 +23,20 @@ export default class PostWritePage extends Component {
     this.open = this.open.bind(this);
     this.handleImage = this.handleImage.bind(this);
     this.handleVideo = this.handleVideo.bind(this);
-    this.handleOnClose = this.handleOnClose.bind(this);
 
   }
 
   // Hide componet
-  close = () => this.setState({ active: false })
+  close = () => this.props.dispatch(postActions.openPostWritePage(false))
 
   // Show component
-  open = () => this.setState({ active: true })
+  open = () => this.props.dispatch(postActions.openPostWritePage(true))
 
-  // Handle event on close component
-  handleOnClose = (evt) => {
-
-  }
 
   // Handle click to add image on post
   handleImage= ()=> {
-    this.setState({
-      imageState: true
-    });
+    this.props.dispatch(imageGalleryActions.openImageGallery(true))
+    this.props.dispatch()
 
   }
 
@@ -56,15 +50,13 @@ export default class PostWritePage extends Component {
 
   // When component will receive next props
   componentWillReceiveProps= (nextProps) => {
-    this.setState({
-      active: nextProps.open
-    });
+
   }
 
   // Render DOM
   render() {
     return (
-        <Modal basic size='small' dimmer={'inverted'} open={this.state.active} onClose={this.handleOnClose}>
+        <Modal basic size='small' dimmer={'inverted'} open={this.props.postWriteState} onClose={this.close}>
 
         <Modal.Content>
           <Modal.Header>
@@ -102,3 +94,10 @@ export default class PostWritePage extends Component {
     );
   }
 }
+
+export default connect(
+  (state) => {
+      return{
+        postWriteState: state.post.writeStatus
+      }
+})(PostWritePage)

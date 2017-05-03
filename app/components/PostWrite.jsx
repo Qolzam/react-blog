@@ -37,11 +37,11 @@ export class PostWrite extends Component {
     super(props)
 
     // Binding functions to `this`
-    this.handleWriteClick = this.handleWriteClick.bind(this);
+    this.handlePostWrite = this.handlePostWrite.bind(this);
   }
 
   // Handle write post event
-  handleWriteClick = (evt) => {
+  handlePostWrite = (evt) => {
     this.props.dispatch(postActions.openPostWritePage(true))
   }
   // Render app DOM
@@ -51,21 +51,22 @@ export class PostWrite extends Component {
       <Container fluid textAlign='center' className='segment'>
         <div className="post__avatar" style={avatarStyle}>  </div>
           <span className='global__color-lightGrey'>What's new with you?</span>
-          <Icon link onClick={this.handleWriteClick} name='write' color='grey' size='large' circular style={{
+          <Icon link onClick={this.handlePostWrite} name='write' color='grey' size='large' circular style={{
         marginLeft: '5px'
       }}/>
-    <PostWritePage open={this.props.postWriteOpen}/>
-    <ImageGallery open={this.props.postImageOpen} />
+    <PostWritePage/>
+    <ImageGallery/>
       </Container>
 
     );
   }
 }
 
+// - Connect component to redux store
 export default connect(
   (state) => {
     return{
-      postImageOpen: state.imageGallery.status,
-      postWriteOpen: state.post.status
+      postImageState: state.imageGallery.status,
+      postWriteState: state.post.writeStatus
     }
 })(PostWrite)

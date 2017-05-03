@@ -3,7 +3,8 @@ import * as types from 'actionTypes'
 
 // - Default state for reducer
 var defaultState = {
-    status: false
+    writeStatus: false,
+    onHoldWriteStatus:false
 
 }
 
@@ -13,7 +14,13 @@ export var postReducer = (state = defaultState, action ) => {
     case types.OPEN_POST_WRITE_PAGE:
       return {
         ...state,
-        status: action.status
+        writeStatus: action.writeStatus
+      }
+      case types.ON_HOLD_POST_WRITE:
+      return {
+        ...state,
+        onHoldWriteStatus: action.onHoldWriteStatus,
+        writeStatus: !action.onHoldWriteStatus
       }
 
       break;

@@ -1,25 +1,25 @@
 // - Impoer react components
 import React, { Component } from 'react'
 import { Button, Grid, Image, Icon, Modal, Label } from 'semantic-ui-react'
+import {connect} from 'react-redux'
+
+// - Import app components
+import * as imageGalleryActions from 'imageGalleryActions'
+import * as postActions from 'postActions'
 
 // - Create ImageGallery component class
-export default class ImageGallery extends Component {
+export class ImageGallery extends Component {
 
   // Constructor
   constructor(props){
     super(props);
-
-    this.state = {
-      active: false
-    };
 
     // Binding function to `this`
     this.close = this.close.bind(this);
   }
   // Hide component
   close = () => {
-    this.setState({ active: false });
-    this.state.openCallBack();
+    this.props.dispatch(imageGalleryActions.openImageGallery(false))
 
   }
 
@@ -39,7 +39,7 @@ export default class ImageGallery extends Component {
     return (
       <Modal
         dimmer={false}
-        open={this.state.active}
+        open={this.props.imageGalleryState}
         onClose={this.close}
         size='small'
       >
@@ -109,3 +109,12 @@ export default class ImageGallery extends Component {
     )
   }
 }
+
+// - Connect component to redux state
+export default connect(
+  (state) => {
+    return{
+      imageGalleryState: state.imageGallery.status
+  }
+  }
+)(ImageGallery)

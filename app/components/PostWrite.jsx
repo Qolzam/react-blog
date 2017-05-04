@@ -23,6 +23,7 @@ const avatarStyle = {
 // - Import app components
 import PostWritePage from 'PostWritePage'
 import ImageGallery from 'ImageGallery'
+import ImageUploader from 'ImageUploader'
 
 // - Import actions
 import * as imageGalleryActions from 'imageGalleryActions'
@@ -54,6 +55,7 @@ export class PostWrite extends Component {
           <Icon link onClick={this.handlePostWrite} name='write' color='grey' size='large' circular style={{
         marginLeft: '5px'
       }}/>
+    <ImageUploader border='0'/>
     <PostWritePage/>
     <ImageGallery/>
       </Container>

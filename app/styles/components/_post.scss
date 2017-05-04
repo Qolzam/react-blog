@@ -1,7 +1,13 @@
 .post__avatar-title{
   color: $teal;
-  font-size: 16px;
+  font-size: 14px;
 }
+
+.post__public-status{
+  color: $grey;
+  font-size: 14px;
+}
+
 .post__meta
 {
   position: relative;

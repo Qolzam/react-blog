@@ -1,0 +1,114 @@
+.imageGallery__image {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  cursor: pointer;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  padding: 0 0 4px 4px;
+  -webkit-transition: left 0.1s,top 0.1s,width 0.1s,height 0.1s;
+  transition: left 0.1s,top 0.1s,width 0.1s,height 0.1s;
+  z-index: 1;
+}
+
+.imageGallery__container {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+  overflow-y: scroll;
+  -webkit-user-select: none;
+  contain: layout style;
+  background: white;
+}
+
+.imageGallery__upload {
+  bottom: 0;
+  left: 1px;
+  padding-top: 45%;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  background: #f5f5f5;
+  margin-bottom: 4px;
+  color: black;
+  border: none;
+  font-size: 20px;
+}
+
+.imageGallery {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  box-orient: vertical;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+
+
+.imageCover {
+  transition: 0.5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+.coverContent {
+  background-color: #4CAF50;
+  color: white;
+  font-size: 16px;
+  padding: 16px 32px;
+}
+
+.imageGallery__frame {
+  margin: 0 0 0 -4px;
+  list-style-type: none;
+  padding: 4px 0 0;
+
+  li {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    float: left;
+    padding: 16.66%;
+    position: relative;
+    width: 33.33%;
+    outline: none;
+
+    &:hover img {
+      opacity: 0.3;
+    }
+
+    &:hover .imageCover {
+      opacity: 1;
+    }
+
+    img {
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      cursor: pointer;
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      padding: 0 0 4px 4px;
+      -webkit-transition: left 0.1s,top 0.1s,width 0.1s,height 0.1s;
+      transition: left 0.1s,top 0.1s,width 0.1s,height 0.1s;
+      z-index: 1;
+      opacity: 1;
+      display: block;
+      transition: 0.5s ease;
+      backface-visibility: hidden;
+    }
+  }
+}

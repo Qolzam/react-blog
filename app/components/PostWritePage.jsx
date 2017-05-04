@@ -1,11 +1,17 @@
 // - Impoer react components
 import React, {Component} from 'react'
-import {Button, Header, Icon, Modal, Card, Menu, Image, Label  } from 'semantic-ui-react'
+import {Button, Header, Icon, Modal, Card, Menu, Image, Label, Divider  } from 'semantic-ui-react'
 import {connect} from 'react-redux'
 // - Import app components
 import ImageGallery from 'ImageGallery'
 import * as imageGalleryActions from 'imageGalleryActions'
 import * as postActions from 'postActions'
+
+// Define variables
+const avatarImage = require('../dist/images/15.jpg');
+const avatarStyle = {
+  backgroundImage: 'url(' + avatarImage + ')'
+};
 
 // - Create PostWritePage component class
 export class PostWritePage extends Component {
@@ -49,7 +55,7 @@ export class PostWritePage extends Component {
 
   // When component will receive next props
   componentWillReceiveProps= (nextProps) => {
-  
+
   }
 
   // Render DOM
@@ -58,14 +64,21 @@ export class PostWritePage extends Component {
         <Modal basic size='small' dimmer={'inverted'}
            open={(this.props.postWriteStatus)} onClose={this.close}>
 
-        <Modal.Content>
-          <Modal.Header>
-          </Modal.Header>
-          <Modal.Description>
+           
             <Card centered fluid>
                <Image src={require('../dist/images/22.jpg')} />
-               <Label size='small' as='a' floating onClick={this.close}> X</Label>
                <Card.Content>
+                 <Card.Header>
+                   <div className="post__avatar" style={avatarStyle}></div>
+                   {' '}<div className="post__meta">
+                     <span className="post__avatar-title">Nguyen Thuy{' '}</span>
+                     <span className="post__public-status"> > Public </span>
+
+                     <Icon name="world"/>
+
+                   </div>
+                 </Card.Header>
+                 <Divider hidden/>
                  <Card.Description>
                    <textarea autoFocus='true' placeholder="What's new with you?"></textarea>
                    </Card.Description>
@@ -79,11 +92,12 @@ export class PostWritePage extends Component {
                            <Icon name='video' />
                          </Menu.Item>
                   </Menu>
-                   <Icon circular color='teal' link name='chevron right' style={{float: 'right'}} size='large' />
+                  <Button floated='right' color='blue' basic>POST</Button>
+                  <Button floated='right' basic onClick={this.close}>CANCEL</Button>
+
                </Card.Content>
            </Card>
-          </Modal.Description>
-        </Modal.Content>
+
       </Modal>
     );
   }

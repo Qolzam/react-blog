@@ -66,7 +66,7 @@ export default class Post extends Component {
             <div className="post__avatar" style={avatarStyle}></div>
             {' '}<div className="post__meta">
               <span className="post__avatar-title">Nguyen Thuy{'  '}</span>
-
+              <span className="post__public-status"> > Public </span>
               <Icon name="world"/>
 
             </div>

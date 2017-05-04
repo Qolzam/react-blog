@@ -40,8 +40,10 @@
   z-index:2;
 }
 
-.coverContent {
-  background-color: #4CAF50;
+.coverUploaderContent {
+  li{
+        padding-bottom: 5px;
+  }
   color: white;
   font-size: 16px;
   padding: 16px 32px;

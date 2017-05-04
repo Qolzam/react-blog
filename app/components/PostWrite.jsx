@@ -51,13 +51,17 @@ export class PostWrite extends Component {
     return (
       <Container fluid textAlign='center' className='segment'>
         <div className="post__avatar" style={avatarStyle}>  </div>
+        <div onClick={this.handlePostWrite} style={{cursor:'pointer'}}>
           <span className='global__color-lightGrey'>What's new with you?</span>
-          <Icon link onClick={this.handlePostWrite} name='write' color='grey' size='large' circular style={{
+          <Icon link  name='write' color='grey' size='large' circular style={{
         marginLeft: '5px'
       }}/>
+      </div>
     <ImageUploader border='0'/>
-    <PostWritePage/>
     <ImageGallery/>
+    <PostWritePage/>
+
+
       </Container>
 
     );

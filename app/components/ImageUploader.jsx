@@ -34,9 +34,12 @@ export class ImageUploader extends Component {
     this.onClickSave = this.onClickSave.bind(this);
     this.close = this.close.bind(this);
     this.handleUpload = this.handleUpload.bind(this);
-    this.handleEditor = this.handleEditor.bind(this);
+    this.handleOpenEditor = this.handleOpenEditor.bind(this);
+    this.handleCloseEditor = this.handleCloseEditor.bind(this);
+    this.handleUploadServer = this.handleUploadServer.bind(this);
   }
 
+  // Close image uploader
   close = () => {
     this.setState({
       image: null,
@@ -45,12 +48,13 @@ export class ImageUploader extends Component {
     this.props.dispatch(imageUploaderActions.openImageUploader(false))
   }
 
+
   // Upload photo to server
   onClickSave() {
     // This returns a HTMLCanvasElement, it can be made into a data URL or a blob,
     // drawn on another canvas, or added to the DOM.
     const canvas = this.editor.getImage()
-    this.setState({previewImage: canvas.toDataURL()})
+
 
     //    $.ajax({
     //  type: "POST",
@@ -64,7 +68,8 @@ export class ImageUploader extends Component {
 
     // If you want the image resized to the canvas size (also a HTMLCanvasElement)
     const canvasScaled = this.editor.getImageScaledToCanvas()
-
+    this.setState({image: canvas.toDataURL()})
+    this.handleCloseEditor();
   }
 
   onChange(evt) {
@@ -87,22 +92,36 @@ export class ImageUploader extends Component {
   handleChangeRotate = (e) => this.setState({rotate: e.target.value})
 
   // Open image editor
-  handleEditor = (evt) => {
+  handleOpenEditor = (evt) => {
     this.props.dispatch(imageUploaderActions.openImageEditor(true))
   }
+  // Close image editor
+  handleCloseEditor = (evt) => {
+    this.props.dispatch(imageUploaderActions.openImageEditor(false))
+    this.setState({
+      zoom: 1,
+      rotate: 0
+    })
+  }
+
+  // Handle upload image to server
+  handleUploadServer = (evt) => {
+
+  }
+
 
   // Render DOM
   render() {
 
     // Image editor DOM
     const imageEditor = (
-      <Segment color={this.props.boxTopColor || "green"}>
+      <Segment.Group color={this.props.boxTopColor || "green"}>
 
         <AvatarEditor ref={this.setEditorRef}
            image={this.state.image}
            width={parseInt(this.props.width) || 200}
            height={parseInt(this.props.height) || 200}
-           border={parseInt(this.props.border) || 50}
+           border={parseInt(this.props.border) || 20}
            color={[255, 255, 255, 0.6]}
           rotate={parseInt(this.state.rotate)}scale={parseFloat(this.state.zoom)}
           />
@@ -113,28 +132,33 @@ export class ImageUploader extends Component {
         <Segment>
           <Icon name="refresh" circular color={this.props.iconColor || "teal"} inverted/><input type='range' min={0} max={360} value={this.state.rotate} onChange={this.handleChangeRotate}/>
         </Segment>
-      </Segment>
+        <Segment>
+              <Button circular icon='save' as="div" color="green" onClick={this.onClickSave}/>
+              <Button circular icon='cancel' as='div' onClick={this.handleCloseEditor}/>
+
+        </Segment>
+      </Segment.Group>
 
     )
 
     // Image preview cover DOM
     const cover = (
       <div className="imageUploaderCover">
-        <ul style={{listStyleType: 'none'}}>
+        <ul  className="coverUploaderContent"  style={{listStyleType: 'none'}}>
           <li>
-            <Button fluid as='div' onClick={this.handleEditor} className="coverContent" color="green">EDIT</Button>
+            <Button circular icon='paint brush' as='div' onClick={this.handleOpenEditor} color="teal"/>
 
           </li>
           <li>
-            <Button fluid as='div' color='blue' onClick={this.handleUpload}>CHOOSE PHOTO</Button>
+            <Button circular icon='photo' as='div' color='blue' onClick={this.handleUpload}/>
 
           </li>
           <li>
-            <Button fluid className="coverContent" inverted as="div" color="green" onClick={this.onClickSave}><Icon name="cloud upload"/>UPLOAD</Button>
+            <Button circular icon='upload' as="div" color="green" onClick={this.handleUploadServer}/>
 
           </li>
           <li>
-            <Button fluid as='div' inverted onClick={this.close}>CANEL</Button>
+            <Button circular icon='cancel' as='div' onClick={this.close}/>
 
           </li>
         </ul>

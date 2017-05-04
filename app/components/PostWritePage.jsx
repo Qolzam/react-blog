@@ -64,7 +64,7 @@ export class PostWritePage extends Component {
         <Modal basic size='small' dimmer={'inverted'}
            open={(this.props.postWriteStatus)} onClose={this.close}>
 
-           
+
             <Card centered fluid>
                <Image src={require('../dist/images/22.jpg')} />
                <Card.Content>
@@ -84,7 +84,7 @@ export class PostWritePage extends Component {
                    </Card.Description>
                </Card.Content>
                <Card.Content extra>
-                 <Menu icon compact>
+                 <Menu icon compact borderless>
                          <Menu.Item link name='camera' onClick={this.handleImage} >
                            <Icon name='camera' />
                          </Menu.Item>

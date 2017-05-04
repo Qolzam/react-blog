@@ -11,7 +11,8 @@ import {
   Button,
   Label,
   Embed,
-  Rail
+  Header,
+  Popup
 } from 'semantic-ui-react'
 import Faker from 'faker'
 
@@ -32,7 +33,8 @@ export default class Post extends Component {
     super(props)
     this.state = {
       text: Faker.lorem.sentence(),
-      readMoreState: false
+      readMoreState: false,
+      image: require('../dist/images/22.jpg')
     }
 
     // Binding functions to this
@@ -41,11 +43,25 @@ export default class Post extends Component {
   // Handle read more event
   handleReadMore(evt, data) {
 
-    this.setState({
-      text: Faker.lorem.paragraphs(),
-      readMoreState: !this.readMoreState
+    if(this.readMoreState)
+    {
+      this.setState({
+        text: Faker.lorem.sentence(),
+        readMoreState: false
 
-    });
+        });
+    }
+    else{
+      this.setState({
+        text: Faker.lorem.paragraphs(),
+        readMoreState: true
+
+        });
+    }
+  }
+
+  componentDidMount(){
+  console.log(this.refs.testImg);
   }
 
   // Render DOM
@@ -55,7 +71,7 @@ export default class Post extends Component {
       <Card fluid>
         {
             this.props.pictureState
-              ? <Image src={require('../dist/images/22.jpg')}/>
+              ? <Image src={this.state.image}/>
               : <Embed id='O6Xo21L0ybE' placeholder='/assets/images/image-16by9.png' source='youtube'/>
           }
 
@@ -71,6 +87,20 @@ export default class Post extends Component {
 
             </div>
 
+       <Popup
+    trigger={<Icon  className="right floated " name='ellipsis vertical' style={{cursor: 'pointer'}} color='teal' size='large' />}
+    flowing
+    hoverable
+    size='tiny'
+    position='left center'
+  >
+
+
+      <Button circular icon='edit' as='div'  color="teal"/>
+      <Button circular icon='cancel' as='div' />
+
+  </Popup>
+
           </Card.Header>
           <Card.Meta>
             <span className='post__date'>
@@ -79,8 +109,14 @@ export default class Post extends Component {
           </Card.Meta>
           <Card.Description>
             {this.state.text}
-            <Icon name='ellipsis horizontal' color='teal' size='big' onClick={this.handleReadMore}/>
-            <Label pointing='left'>Read More</Label>
+
+              <Popup
+           trigger={<Icon name='ellipsis horizontal' style={{cursor: 'pointer'}} color='teal' size='big' onClick={this.handleReadMore}/>}
+           content='Read more...'
+           position='right center'
+           size='tiny'
+
+         />
           </Card.Description>
         </Card.Content>
         <Card.Content extra className="attached">

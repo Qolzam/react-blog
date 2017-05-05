@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 // - Import app components
 import ImageGallery from 'ImageGallery'
 import * as imageGalleryActions from 'imageGalleryActions'
-import * as postActions from 'postActions'
+import * as postWritingActions from 'postWritingActions'
 
 // Define variables
 const avatarImage = require('../dist/images/15.jpg');
@@ -33,10 +33,10 @@ export class PostWritePage extends Component {
   }
 
   // Hide componet
-  close = () => this.props.dispatch(postActions.openPostWritePage(false))
+  close = () => this.props.dispatch(postWritingActions.openPostWritePage(false))
 
   // Show component
-  open = () => this.props.dispatch(postActions.openPostWritePage(true))
+  open = () => this.props.dispatch(postWritingActions.openPostWritePage(true))
 
 
   // Handle click to add image on post
@@ -106,7 +106,7 @@ export class PostWritePage extends Component {
 export default connect(
   (state) => {
       return {
-        postWriteStatus: state.post.writeStatus,
+        postWriteStatus: state.postWriting.writeStatus,
         imageGalleryStaus: state.imageGallery.status
       }
 })(PostWritePage)

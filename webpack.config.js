@@ -1,6 +1,8 @@
 var webpack = require('webpack');
 var path = require('path');
 
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+
 module.exports = {
   entry: [
     'react-image-gallery/styles/scss/image-gallery.scss',
@@ -10,12 +12,14 @@ module.exports = {
   externals: {
     jquery: 'jQuery'
   },
-  plugins: [
-    new webpack.ProvidePlugin({
-      '$': 'jquery',
-      'jQuery': 'jquery'
+  plugins: (process.env.NODE_ENV === 'production') ? [
+    new webpack.optimize.UglifyJsPlugin({
+      minimize: true,
+      compressor: {
+        warnings: false
+      }
     })
-  ],
+  ] : [],
   output: {
     path: path.resolve(__dirname, './public'),
     filename: 'bundle.js',
@@ -83,5 +87,5 @@ module.exports = {
 
     ]
   },
-  devtool: 'cheap-module-eval-source-map'
+  devtool: process.env.NODE_ENV === 'production' ? undefined : 'cheap-module-eval-source-map'
 };

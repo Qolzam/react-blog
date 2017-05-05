@@ -1,6 +1,7 @@
 // - Import react components
 import React, {Component} from 'react'
-import {Card, Feed} from 'semantic-ui-react'
+import {Card, Item, Divider} from 'semantic-ui-react'
+import Faker from 'faker'
 
 // - Create PopularPosts component class
 export default class PopularPosts extends Component {
@@ -15,47 +16,38 @@ export default class PopularPosts extends Component {
           </Card.Header>
         </Card.Content>
         <Card.Content>
-          <Feed>
-            <Feed.Event>
-              <Feed.Label image='/assets/images/avatar/small/jenny.jpg'/>
-              <Feed.Content>
-                <Feed.Date content='1 day ago'/>
-                <Feed.Summary>
-                  You added
-                  <a>Jenny Hess</a>
-                  to your
-                  <a>coworker</a>
-                  group.
-                </Feed.Summary>
-              </Feed.Content>
-            </Feed.Event>
+          <Item.Group>
+            <Item>
+              <Item.Image size='tiny' src={Faker.image.nature()} />
 
-            <Feed.Event>
-              <Feed.Label image='/assets/images/avatar/small/molly.png'/>
-              <Feed.Content>
-                <Feed.Date content='3 days ago'/>
-                <Feed.Summary>
-                  You added
-                  <a>Molly Malone</a>
-                  as a friend.
-                </Feed.Summary>
-              </Feed.Content>
-            </Feed.Event>
+              <Item.Content>
+                <Item.Header>Nguyen Thuy</Item.Header>
+                <Item.Meta content='1 month ago' />
+                <Item.Description>{Faker.lorem.sentence()}</Item.Description>
+              </Item.Content>
+            </Item>
 
-            <Feed.Event>
-              <Feed.Label image='/assets/images/avatar/small/elliot.jpg'/>
-              <Feed.Content>
-                <Feed.Date content='4 days ago'/>
-                <Feed.Summary>
-                  You added
-                  <a>Elliot Baker</a>
-                  to your
-                  <a>musicians</a>
-                  group.
-                </Feed.Summary>
-              </Feed.Content>
-            </Feed.Event>
-          </Feed>
+    <Item>
+      <Item.Image size='tiny' src={Faker.image.nature()} />
+
+      <Item.Content>
+        <Item.Header>Nguyen Thuy</Item.Header>
+        <Item.Meta content='2 days ago' />
+        <Item.Description>{Faker.lorem.sentence()}</Item.Description>
+      </Item.Content>
+    </Item>
+
+    <Item>
+      <Item.Image size='tiny' src={Faker.image.nature()} />
+
+      <Item.Content>
+        <Item.Header>Nguyen Thuy</Item.Header>
+        <Item.Meta content='6 days ago' />
+        <Item.Description>{Faker.lorem.sentence()}</Item.Description>
+      </Item.Content>
+    </Item>
+
+  </Item.Group>
         </Card.Content>
       </Card>
     )

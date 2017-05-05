@@ -70,6 +70,12 @@
   padding: 16px 32px;
 }
 
+.imageGallery__image-node{
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 .imageGallery__frame {
   margin: 0 0 0 -4px;
   list-style-type: none;
@@ -83,6 +89,8 @@
     position: relative;
     width: 33.33%;
     outline: none;
+    box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2), 0 4px 20px 0 rgba(0,0,0,0.19);
+
 
     &:hover img {
       opacity: 0.3;

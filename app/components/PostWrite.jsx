@@ -27,7 +27,7 @@ import ImageUploader from 'ImageUploader'
 
 // - Import actions
 import * as imageGalleryActions from 'imageGalleryActions'
-import * as postActions from 'postActions'
+import * as postWritingActions from 'postWritingActions'
 
 
 // - Create PostWrite component class
@@ -43,7 +43,7 @@ export class PostWrite extends Component {
 
   // Handle write post event
   handlePostWrite = (evt) => {
-    this.props.dispatch(postActions.openPostWritePage(true))
+    this.props.dispatch(postWritingActions.openPostWritePage(true))
   }
   // Render app DOM
   render() {
@@ -73,6 +73,6 @@ export default connect(
   (state) => {
     return{
       postImageState: state.imageGallery.status,
-      postWriteState: state.post.writeStatus
+      postWriteState: state.postWriting.writeStatus
     }
 })(PostWrite)

@@ -21,11 +21,22 @@ export default class Blog extends Component {
       <Grid stackable divided padded columns={2}>
         <Grid.Row>
           <Grid.Column computer={12} mobile={16} tablet={11}>
-            <PostWrite/>
+              <PostWrite/>
+             <Grid doubling columns={2}>
+
+            <Grid.Column>
             <Post pictureState={true}/>
+            </Grid.Column>
+            <Grid.Column>
             <Post pictureState={false}/>
+            </Grid.Column>
+            <Grid.Column>
             <Post pictureState={true}/>
+            </Grid.Column>
+            <Grid.Column>
             <Post pictureState={true}/>
+            </Grid.Column>
+            </Grid>
           </Grid.Column>
           <Grid.Column computer={4} mobile={16} tablet={5}>
             <Summary/>

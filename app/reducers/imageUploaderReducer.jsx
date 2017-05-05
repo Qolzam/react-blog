@@ -32,7 +32,6 @@ export var imageUploaderReducer =  (state = defaultState, action) => {
         ...state,
         editStatus: action.editStatus
       }
-        break;
       default:
         return state;
     }

@@ -14,7 +14,7 @@ import {connect} from 'react-redux'
 
 // - Import actions
 import * as imageGalleryActions from 'imageGalleryActions'
-import * as postActions from 'postActions'
+import * as postWritingActions from 'postWritingActions'
 import * as imageUploaderActions from 'imageUploaderActions'
 
 // - Import app components
@@ -22,6 +22,8 @@ import * as imageUploaderActions from 'imageUploaderActions'
 
 // - Create ImageGallery component class
 export class ImageGallery extends Component {
+
+
 
   // Constructor
   constructor(props) {
@@ -72,143 +74,95 @@ export class ImageGallery extends Component {
                   </div>
                 </div>
               </li>
-              <li>
-                <img className="image2" src={require('../dist/images/22.jpg')}/>
+              <li className="imageGallery__image-node" style={{backgroundImage: 'url(' + require('../dist/images/22.jpg') + ')'}}>
+
                   <div className="imageCover">
                     <div className="coverContent">
                       <Button circular color='green' icon='add'/>
                     </div>
                   </div>
               </li>
-              <li>
-                <img className="image2" src={require('../dist/images/22.jpg')}/>
+              <li className="imageGallery__image-node" style={{backgroundImage: 'url(' + require('../dist/images/22.jpg') + ')'}}>
+
                   <div className="imageCover">
                     <div className="coverContent">
                       <Button circular color='green' icon='add'/>
                     </div>
                   </div>
               </li>
-              <li>
-                <img className="image2" src={require('../dist/images/22.jpg')}/>
+              <li className="imageGallery__image-node" style={{backgroundImage: 'url(' + require('../dist/images/22.jpg') + ')'}}>
+
                   <div className="imageCover">
                     <div className="coverContent">
                       <Button circular color='green' icon='add'/>
                     </div>
                   </div>
               </li>
-              <li>
-                <img className="image2" src={require('../dist/images/22.jpg')}/>
+              <li className="imageGallery__image-node" style={{backgroundImage: 'url(' + require('../dist/images/22.jpg') + ')'}}>
+
                   <div className="imageCover">
                     <div className="coverContent">
                       <Button circular color='green' icon='add'/>
                     </div>
                   </div>
               </li>
-              <li>
-                <img className="image2" src={require('../dist/images/22.jpg')}/>
+              <li className="imageGallery__image-node" style={{backgroundImage: 'url(' + require('../dist/images/5.jpg') + ')'}}>
+
                   <div className="imageCover">
                     <div className="coverContent">
                       <Button circular color='green' icon='add'/>
                     </div>
                   </div>
               </li>
-              <li>
-                <img className="image2" src={require('../dist/images/22.jpg')}/>
+              <li className="imageGallery__image-node" style={{backgroundImage: 'url(' + require('../dist/images/22.jpg') + ')'}}>
+
                   <div className="imageCover">
                     <div className="coverContent">
                       <Button circular color='green' icon='add'/>
                     </div>
                   </div>
               </li>
-              <li>
-                <img className="image2" src={require('../dist/images/22.jpg')}/>
+              <li className="imageGallery__image-node" style={{backgroundImage: 'url(' + require('../dist/images/1.jpg') + ')'}}>
+
                   <div className="imageCover">
                     <div className="coverContent">
                       <Button circular color='green' icon='add'/>
                     </div>
                   </div>
               </li>
-              <li>
-                <img className="image2" src={require('../dist/images/22.jpg')}/>
+              <li className="imageGallery__image-node" style={{backgroundImage: 'url(' + require('../dist/images/6.jpeg') + ')'}}>
+
                   <div className="imageCover">
                     <div className="coverContent">
                       <Button circular color='green' icon='add'/>
                     </div>
                   </div>
               </li>
-              <li>
-                <img className="image2" src={require('../dist/images/22.jpg')}/>
+              <li className="imageGallery__image-node" style={{backgroundImage: 'url(' + require('../dist/images/22.jpg') + ')'}}>
+
                   <div className="imageCover">
                     <div className="coverContent">
                       <Button circular color='green' icon='add'/>
                     </div>
                   </div>
               </li>
-              <li>
-                <img className="image2" src={require('../dist/images/22.jpg')}/>
+              <li className="imageGallery__image-node" style={{backgroundImage: 'url(' + require('../dist/images/22.jpg') + ')'}}>
+
                   <div className="imageCover">
                     <div className="coverContent">
                       <Button circular color='green' icon='add'/>
                     </div>
                   </div>
               </li>
-              <li>
-                <img className="image2" src={require('../dist/images/22.jpg')}/>
+              <li className="imageGallery__image-node" style={{backgroundImage: 'url(' + require('../dist/images/22.jpg') + ')'}}>
+
                   <div className="imageCover">
                     <div className="coverContent">
                       <Button circular color='green' icon='add'/>
                     </div>
                   </div>
               </li>
-              <li>
-                <img className="image2" src={require('../dist/images/22.jpg')}/>
-                  <div className="imageCover">
-                    <div className="coverContent">
-                      <Button circular color='green' icon='add'/>
-                    </div>
-                  </div>
-              </li>
-              <li>
-                <img className="image2" src={require('../dist/images/22.jpg')}/>
-                  <div className="imageCover">
-                    <div className="coverContent">
-                      <Button circular color='green' icon='add'/>
-                    </div>
-                  </div>
-              </li>
-              <li>
-                <img className="image2" src={require('../dist/images/22.jpg')}/>
-                  <div className="imageCover">
-                    <div className="coverContent">
-                      <Button circular color='green' icon='add'/>
-                    </div>
-                  </div>
-              </li>
-              <li>
-                <img className="image2" src={require('../dist/images/22.jpg')}/>
-                  <div className="imageCover">
-                    <div className="coverContent">
-                      <Button circular color='green' icon='add'/>
-                    </div>
-                  </div>
-              </li>
-              <li>
-                <img className="image2" src={require('../dist/images/22.jpg')}/>
-                  <div className="imageCover">
-                    <div className="coverContent">
-                      <Button circular color='green' icon='add'/>
-                    </div>
-                  </div>
-              </li>
-              <li>
-                <img className="image2" src={require('../dist/images/22.jpg')}/>
-                  <div className="imageCover">
-                    <div className="coverContent">
-                      <Button circular color='green' icon='add'/>
-                    </div>
-                  </div>
-              </li>
-              
+
             </ul>
           </div>
 

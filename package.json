@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "Simple react app",
   "main": "index.js",
-  "engines": {
-    "node": "7.3.0"
-  },
   "scripts": {
     "test": "NODE_ENV=test karma start",
     "build": "webpack",
@@ -62,5 +59,8 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^2.0.3",
     "mocha": "^3.2.0"
+  },
+  "engines": {
+    "node": "7.3.0"
   }
 }

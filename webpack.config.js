@@ -1,7 +1,16 @@
 var webpack = require('webpack');
 var path = require('path');
+var envFile = require('node-env-file');
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+
+console.log(process.env.NODE_ENV);
+
+try {
+  envFile(path.join(__dirname, 'config/' + process.env.NODE_ENV + '.env'));
+} catch (e) {
+
+}
 
 module.exports = {
   entry: [
@@ -18,28 +27,60 @@ module.exports = {
       compressor: {
         warnings: false
       }
+    }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+        API_KEY: JSON.stringify(process.env.API_KEY),
+        AUTH_DOMAIN: JSON.stringify(process.env.AUTH_DOMAIN),
+        DATABASE_URL: JSON.stringify(process.env.DATABASE_URL),
+        STORAGE_BUCKET: JSON.stringify(process.env.STORAGE_BUCKET),
+        PROJECT_ID: JSON.stringify(process.env.PROJECT_ID),
+        MESSAGING_SENDER_ID: JSON.stringify(process.env.MESSAGING_SENDER_ID),
+        GITHUB_ACCESS_TOKEN: JSON.stringify(process.env.GITHUB_ACCESS_TOKEN)
+      }
     })
-  ] : [],
+  ] : [
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+        API_KEY: JSON.stringify(process.env.API_KEY),
+        AUTH_DOMAIN: JSON.stringify(process.env.AUTH_DOMAIN),
+        DATABASE_URL: JSON.stringify(process.env.DATABASE_URL),
+        STORAGE_BUCKET: JSON.stringify(process.env.STORAGE_BUCKET),
+        PROJECT_ID: JSON.stringify(process.env.PROJECT_ID),
+        MESSAGING_SENDER_ID: JSON.stringify(process.env.MESSAGING_SENDER_ID),
+      }
+    })],
   output: {
     path: path.resolve(__dirname, './public'),
     filename: 'bundle.js',
 
   },
   resolve: {
+
     modules: [
-      'node_modules',
-      './app/components',
-      './app/api',
-      './app/constants',
-      './app/actions',
-      './app/reducers',
-      './app/store'
+      __dirname,
+      path.resolve(__dirname, 'node_modules'),
+      path.resolve(__dirname, './app/components'),
+      path.resolve(__dirname, './app/api'),
+      path.resolve(__dirname, './app/constants'),
+      path.resolve(__dirname, './app/actions'),
+      path.resolve(__dirname, './app/reducers')
+
+
+
 
     ],
     alias: {
+      app: 'app',
+      applicationStyles: 'app/styles/app.scss',
+      actions: 'app/actions/actions.jsx',
+      actionTypes: 'app/constants/actionTypes.jsx',
+      configureStore: 'app/store/configureStore.jsx'
 
     },
-    extensions: ['.scss', '.js', '.jsx']
+    extensions: [' ','.scss', '.js', '.jsx']
   },
   module: {
     rules: [{
@@ -48,6 +89,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
+            plugins: ['transform-decorators-legacy' ],
             presets: ['react', 'latest', 'stage-0']
           }
         }

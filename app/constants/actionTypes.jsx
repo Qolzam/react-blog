@@ -21,4 +21,10 @@ export const ADD_POST_VOTE = 'ADD_POST_VOTE';
 export const ADD_COMMENT_VOTE = 'ADD_COMMENT_VOTE';
 
 /* users action */
-export const ADD_USERS = 'ADD_USERS'                                                                                                                                      
+export const ADD_USERS = 'ADD_USERS'
+
+
+/* authorize actions */
+export const LOGIN = 'LOGIN'
+export const LOGOUT = 'LOGOUT'
+export const SIGNUP = 'SIGNUP'

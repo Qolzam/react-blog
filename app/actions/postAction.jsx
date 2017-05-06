@@ -1,3 +1,9 @@
+// - Import firebase component
+import firebase, {firebaseRef} from 'app/firebase/'
+
+// - Import utility components
+import moment from 'moment'
+
 // - Import action types
 import * as types from 'actionTypes'
 
@@ -11,6 +17,12 @@ export const addImagePost = (post) => {
     post
   }
 
+}
+
+export var dbAddImagePost = () => {
+  return (dispatch, getState) => {
+    
+  }
 }
 
 export const addVideoPost = (post) => {

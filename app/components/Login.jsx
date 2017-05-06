@@ -1,5 +1,6 @@
-// - Import react components
-import React, {Component} from 'react';
+// - Import external components
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
 import {
   Button,
   Checkbox,
@@ -8,19 +9,36 @@ import {
   Message,
   Segment,
   Header,
-  Grid
-} from 'semantic-ui-react';
-import {NavLink} from 'react-router-dom';
+  Grid,
+  Input,
+  Divider
+} from 'semantic-ui-react'
+import {NavLink} from 'react-router-dom'
+
+// - Import actions
+import * as authorizeActions from 'authorizeActions'
+
 
 // - Create Login component class
-export default class Login extends Component {
+export class Login extends Component {
 
   // Constructor
     constructor(props){
-      super(props);
+      super(props)
+      this.handleUsername = i => {this.username = i }
+      this.handlePassword = i => {this.password = i }
 
+      // Binding functions to `this`
+      this.handleForm = this.handleForm.bind(this)
     }
 
+  // Handle form data on submit
+  handleForm = (evt) => {
+    evt.preventDefault()
+
+    this.props.dispatch(authorizeActions.dbLogin(this.username.value,this.password.value))
+
+  }
   // Render DOM
   render() {
     return (
@@ -28,11 +46,12 @@ export default class Login extends Component {
       <Grid centered columns={1} padded>
 
         <Grid.Row>
-
           <Grid.Column computer={6} tablet={10} mobile={16}>
-            <Form className='attached medium segment yellow'>
-              <Form.Input label='Email' placeholder='Email' type='email'/>
-              <Form.Input label='Password' type='password'/>
+            <Form className='attached medium segment yellow' onSubmit={this.handleForm}>
+              <input ref={this.handleUsername} placeholder='Email' type='email'/>
+              <Divider hidden/>
+              <input ref={this.handlePassword} placeholder='Password' type='password'/>
+              <Divider hidden/>
               <Button color='blue'>Sign in</Button>
             </Form>
 
@@ -45,3 +64,5 @@ export default class Login extends Component {
     )
   }
 }
+
+export default connect()(Login)

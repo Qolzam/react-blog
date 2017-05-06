@@ -1,6 +1,6 @@
 # React Blog Application
 The React Social Blog `(RSB)` Application is a diary app blog based on [Semantic ui React](https://react.semantic-ui.com) for UI, [Redux](http://redux.js.org/)
-with [react-redux](https://github.com/reactjs/react-redux) for managing states and [React](https://facebook.github.io/react/docs/hello-world.html) for managing DOM .It's an open source project for my portfolio.
+with [react-redux](https://github.com/reactjs/react-redux) for managing states and [React](https://facebook.github.io/react/docs/hello-world.html) for managing DOM .It's an open source project as a portfolio.
 
 ##ON DEVELOPING
 > Now I'm developing this project with `semantic-ui-react`. It hasn't released the final version so
@@ -15,7 +15,9 @@ there are some bugs that I have to face with.
 # Installing
  1. Installing all nodejs modules:
   `npm install`
- 2. Running server:
+ 2. Rub webpack to build bundle file
+  `webpack`
+ 3. Running server:
   `node server.js`
 
 

@@ -9,6 +9,10 @@ import Navigation from 'Navigation'
 import Blog from 'Blog'
 import SlideShow from 'SlideShow'
 
+
+
+
+
 // - Create Home component class
 export default class Home extends Component {
 

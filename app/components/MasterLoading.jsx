@@ -1,8 +1,8 @@
-// - Import react components
+// - Import exrernal components
 import React, {Component} from 'react';
 import {Header, Icon, Dimmer, Loader} from 'semantic-ui-react';
 
-// - Import components
+// - Import app components
 
 // - Create MasterLoading component class
 export default class MasterLoading extends Component {
@@ -34,11 +34,12 @@ export default class MasterLoading extends Component {
           <i className="suitcase teal icon"></i>
         </i>
         <Header as='h2'>
-          Green's Diary
+            Green's Diary
           <Header.Subheader>
             Loading...
           </Header.Subheader>
         </Header>
+
       </Dimmer>
     );
   }

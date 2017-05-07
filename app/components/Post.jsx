@@ -61,7 +61,7 @@ export default class Post extends Component {
   }
 
   componentDidMount(){
-  console.log(this.refs.testImg);
+
   }
 
   // Render DOM

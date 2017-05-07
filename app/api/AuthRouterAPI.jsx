@@ -4,12 +4,12 @@ import {Route, Redirect} from 'react-router-dom'
 
 
 
-export var PrivateRoute = ({component: Component, authed, ...rest}) => {
-  console.log(authed);
+export var PrivateRoute = ({component: Component, pashm, ...rest}) => {
+  console.log('pashm on prRo : ',pashm);
   return (
     <Route
       {...rest}
-      render={(props) => authed === true
+      render={(props) => pashm === true
         ? <Component {...props} />
         : <Redirect to={{pathname: '/login', state: {from: props.location}}} />}
     />

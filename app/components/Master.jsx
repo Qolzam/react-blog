@@ -29,32 +29,62 @@ export class Master extends Component {
 constructor(props){
   super(props);
   this.state = {
-    loading: true
+    loading: true,
+    authed:false
   };
+  this.handleLoading = this.handleLoading.bind(this)
 
 }
-
+handleLoading = (status) => {
+  this.setState({
+    loading: status,
+    authed:false
+  })
+}
 componentDidMount = ()=> {
 
-  this.setState({
-    loading: false
-  })
+var {dispatch} = this.props
+
+  this.removeListener = firebaseAuth().onAuthStateChanged((user) => {
+
+        if (user) {
+          dispatch(authorizeActions.login(user.uid));
+          console.log("On auth changed : ", user)
+          this.setState({
+            loading: false,
+            authed: true
+          })
+        } else {
+          dispatch(authorizeActions.logout())
+            console.log("On auth changed !#: ", user)
+            this.setState({
+              loading: false,
+              authed: false
+            })
+        }
+      })
 
 }
 componentWillUnmount () {
   this.removeListener()
 }
 // Render app DOM component
+
   render() {
+
     return (
       <div id="master">
-              <MasterLoading activeLoading={this.state.loading}/>
-             <BlogHeader/>
 
+    <MasterLoading activeLoading={this.state.loading} handleLoading={this.handleLoading}/>
+     <BlogHeader/>
+        {
+          console.log(this.props.authed)
+
+        }
       <Switch>
         <Route path="/signup" component={Signup}/>
         <Route path="/login" component={Login}/>
-        <PrivateRoute authed={this.props.authed} path="/admin" component={Admin}/>
+        <PrivateRoute pashm={this.props.authed} path="/admin" component={Admin}/>
         <Route path="/" component={Home}/>
       </Switch>
       </div>

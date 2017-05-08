@@ -13,7 +13,7 @@ import {
   Input,
   Divider
 } from 'semantic-ui-react'
-import {NavLink} from 'react-router-dom'
+import {NavLink, withRouter} from 'react-router-dom'
 
 // - Import actions
 import *  as authorizeActions from 'authorizeActions'
@@ -88,4 +88,4 @@ export class Signup extends Component {
   }
 }
 
-export default connect()(Signup)
+export default withRouter(connect()(Signup))

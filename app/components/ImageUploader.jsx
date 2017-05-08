@@ -1,5 +1,6 @@
 // - Import react components
 import React, {Component} from 'react'
+import {withRouter} from 'react-router-dom'
 import {
   Button,
   Grid,
@@ -207,6 +208,6 @@ export class ImageUploader extends Component {
 
 }
 
-export default connect((state) => {
+export default withRouter(connect((state) => {
   return {uploadImageStatus: state.imageUploader.status, editStatus: state.imageUploader.editStatus}
-})(ImageUploader);
+})(ImageUploader))

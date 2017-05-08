@@ -2,6 +2,8 @@
 import React, {Component} from 'react'
 import {Button, Header, Icon, Modal, Card, Menu, Image, Label, Divider  } from 'semantic-ui-react'
 import {connect} from 'react-redux'
+import {withRouter} from 'react-router-dom'
+
 // - Import app components
 import ImageGallery from 'ImageGallery'
 import * as imageGalleryActions from 'imageGalleryActions'
@@ -103,10 +105,10 @@ export class PostWritePage extends Component {
   }
 }
 
-export default connect(
+export default withRouter(connect(
   (state) => {
       return {
         postWriteStatus: state.postWriting.writeStatus,
         imageGalleryStaus: state.imageGallery.status
       }
-})(PostWritePage)
+})(PostWritePage))

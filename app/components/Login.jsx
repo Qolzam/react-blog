@@ -13,7 +13,7 @@ import {
   Input,
   Divider
 } from 'semantic-ui-react'
-import {NavLink} from 'react-router-dom'
+import {NavLink, withRouter} from 'react-router-dom'
 
 // - Import actions
 import * as authorizeActions from 'authorizeActions'
@@ -30,6 +30,12 @@ export class Login extends Component {
 
       // Binding functions to `this`
       this.handleForm = this.handleForm.bind(this)
+    }
+
+    shouldComponentUpdate= (nextProps, nextState) => {
+      console.log('Login next props :',nextProps)
+      console.log('Login next state :',nextState)
+      return nextState !== this.state
     }
 
   // Handle form data on submit
@@ -65,4 +71,4 @@ export class Login extends Component {
   }
 }
 
-export default connect()(Login)
+export default withRouter(connect()(Login))

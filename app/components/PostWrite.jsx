@@ -1,6 +1,7 @@
 // - Import react components
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import {withRouter} from 'react-router-dom'
 import {
   Card,
   Icon,
@@ -69,10 +70,10 @@ export class PostWrite extends Component {
 }
 
 // - Connect component to redux store
-export default connect(
+export default withRouter(connect(
   (state) => {
     return{
       postImageState: state.imageGallery.status,
       postWriteState: state.postWriting.writeStatus
     }
-})(PostWrite)
+})(PostWrite))

@@ -13,7 +13,7 @@ import {
   Divider,
   Image
 } from 'semantic-ui-react'
-import {NavLink} from 'react-router-dom'
+import {NavLink, withRouter} from 'react-router-dom'
 
 // - Import app components
 import ImageUp from 'ImageUploader'
@@ -71,9 +71,9 @@ constructor(props){
     )
   }
 }
-export default connect(
+export default withRouter(connect(
   (state) => {
     return{
       postImageState: state.imageGallery.status
     }
-})(Profile)
+})(Profile))

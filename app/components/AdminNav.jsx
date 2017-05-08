@@ -1,13 +1,36 @@
 // - Import react components
 import React, { Component } from 'react';
-import { Dropdown, Icon, Input, Menu } from 'semantic-ui-react';
-import {NavLink} from 'react-router-dom';
+import { Dropdown, Icon, Input, Menu, Button } from 'semantic-ui-react';
+import {NavLink, withRouter} from 'react-router-dom';
+import {connect} from 'react-redux'
+import {push} from 'react-router-redux'
+
+
+// - Import API
+import * as AuthAPI from 'AuthAPI'
 
 // Create AdminNav component class
-export default class AdminNav extends Component {
+export class AdminNav extends Component {
   state = {}
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+
+
+  // Constructor
+  constructor(props){
+    super(props)
+
+    // Binding function to `this`
+    this.handleLogout = this.handleLogout.bind(this)
+  }
+
+
+  // Handle logout process
+  handleLogout = () => {
+
+  this.props.dispatch(push('/'))
+
+  }
 
   // Render DOM
   render() {
@@ -29,7 +52,17 @@ export default class AdminNav extends Component {
         <Menu.Item as="div" name='profile' active={activeItem === 'profile'} onClick={this.handleItemClick}>
           <NavLink to="/admin/profile">Profile</NavLink>
         </Menu.Item>
+        <Menu.Item as="div" name='logout' active={activeItem === 'logout'} onClick={this.handleItemClick}>
+          <Button onClick={this.handleLogout}>Logout</Button>
+        </Menu.Item>
+        <div>{this.props.router.location.pathname}</div>
       </Menu>
     )
   }
 }
+
+export default withRouter(connect((state)=>{
+  return{
+    router: state.router
+  }
+})(AdminNav))

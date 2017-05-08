@@ -1,15 +1,9 @@
 // - Import react components
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {Route, Switch, NavLink} from 'react-router-dom'
+import {Route, Switch, NavLink, withRouter} from 'react-router-dom'
 import {firebaseAuth, firebaseRef} from 'app/firebase/'
-
-
-// - Import API
-import {PrivateRoute, PublicRoute} from 'AuthRouterAPI'
-
-// - Import actions
-import {authorizeActions} from 'authorizeActions'
+import {push} from 'react-router-redux'
 
 // - Import components
 import Home from 'Home'
@@ -21,10 +15,18 @@ import MasterLoading from 'MasterLoading'
 import * as types from 'actionTypes'
 
 
+// - Import API
+import {PrivateRoute, PublicRoute} from 'AuthRouterAPI'
+
+
+// - Import actions
+import * as authorizeActions from 'authorizeActions'
+
 
 // - Create Master component class
 export class Master extends Component {
 
+static isPrivate = true
 // Constructor
 constructor(props){
   super(props);
@@ -41,6 +43,12 @@ handleLoading = (status) => {
     authed:false
   })
 }
+
+shouldComponentUpdate= (nextProps, nextState) => {
+  console.log('Master next props :',nextProps)
+  console.log('Master next state :',nextState)
+  return nextState !== this.state
+}
 componentDidMount = ()=> {
 
 var {dispatch} = this.props
@@ -51,15 +59,14 @@ var {dispatch} = this.props
           dispatch(authorizeActions.login(user.uid));
           console.log("On auth changed : ", user)
           this.setState({
-            loading: false,
-            authed: true
+            loading: false
           })
         } else {
-          dispatch(authorizeActions.logout())
+
+          {/*dispatch(authorizeActions._logout())*/}
             console.log("On auth changed !#: ", user)
             this.setState({
-              loading: false,
-              authed: false
+              loading: false
             })
         }
       })
@@ -77,25 +84,23 @@ componentWillUnmount () {
 
     <MasterLoading activeLoading={this.state.loading} handleLoading={this.handleLoading}/>
      <BlogHeader/>
-        {
-          console.log(this.props.authed)
 
-        }
       <Switch>
         <Route path="/signup" component={Signup}/>
         <Route path="/login" component={Login}/>
-        <PrivateRoute pashm={this.props.authed} path="/admin" component={Admin}/>
+        <PrivateRoute path="/admin" component={Admin}/>
         <Route path="/" component={Home}/>
+
       </Switch>
       </div>
     )
   }
 }
 
-export default connect((state)=>{
+export default withRouter(connect((state)=>{
   return{
     uid: state.authorize.uid,
     authed: state.authorize.authed
   }
 
-})(Master)
+})(Master))

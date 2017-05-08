@@ -1,5 +1,6 @@
 // - Impoer react components
 import React, {Component} from 'react'
+import {withRouter} from 'react-router-dom'
 import {
   Button,
   Grid,
@@ -174,6 +175,6 @@ export class ImageGallery extends Component {
 }
 
 // - Connect component to redux state
-export default connect((state) => {
+export default withRouter(connect((state) => {
   return {imageGalleryStatus: state.imageGallery.status}
-})(ImageGallery)
+})(ImageGallery))

@@ -26,12 +26,12 @@ export var dbLogin = (email,password) => {
       console.log('Auth worked!', result)
       dispatch(login(result.uid))
     },
-    (error) => {console.log(erorr) } )
+    (error) => {console.log(error) } )
   }
 }
 
 // Logout user
-export var logout = () =>{
+export var _logout = () =>{
   return{
     type: types.LOGOUT,
     authed: false
@@ -42,7 +42,7 @@ export var dbLogout = () =>{
   return (dispatch,getState) => {
     return firebaseAuth().signOut().then((result)=>{
       console.log(result)
-      dispatch(logout())
+      dispatch(_logout())
     }, (error) =>{
         console.log(error)
 

@@ -18,13 +18,14 @@ export var login = (uid) => {
 }
 
 
-export var dbLogin = (email,password) => {
+export var dbLogin = (email,password, callBack) => {
   return (dispatch, getState) => {
     console.log('email: ', email, 'password: ', password);
     return firebaseAuth().signInWithEmailAndPassword(email, password)
     .then((result)=> {
       console.log('Auth worked!', result)
       dispatch(login(result.uid))
+      callBack()
     },
     (error) => {console.log(error) } )
   }

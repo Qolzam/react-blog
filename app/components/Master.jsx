@@ -44,11 +44,7 @@ handleLoading = (status) => {
   })
 }
 
-shouldComponentUpdate= (nextProps, nextState) => {
-  console.log('Master next props :',nextProps)
-  console.log('Master next state :',nextState)
-  return nextState !== this.state
-}
+
 componentDidMount = ()=> {
 
 var {dispatch} = this.props

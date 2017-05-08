@@ -18,11 +18,11 @@ export var PrivateRoute = ({component: Component, ...rest}) => {
   )
 }
 
-export var PublicRoute = ({component: Component, authed, ...rest}) => {
+export var PublicRoute = ({component: Component,...rest}) => {
   return (
     <Route
       {...rest}
-      render={(props) => authed === false
+      render={(props) => !(AuthRouterAPI.isAuthorized())
         ? <Component {...props} />
         : <Redirect to='/' />}
     />

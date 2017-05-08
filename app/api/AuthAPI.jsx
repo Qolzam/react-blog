@@ -5,7 +5,7 @@ import {firebaseAuth, firebaseRef} from 'app/firebase/'
 export var isAuthorized = () => {
 
   var user = firebaseAuth().currentUser;
-  return true ? true : false
+  return user ? true : false
 }
 
 // - Logout user

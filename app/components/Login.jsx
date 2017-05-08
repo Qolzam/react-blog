@@ -14,6 +14,7 @@ import {
   Divider
 } from 'semantic-ui-react'
 import {NavLink, withRouter} from 'react-router-dom'
+import {push} from 'react-router-redux'
 
 // - Import actions
 import * as authorizeActions from 'authorizeActions'
@@ -40,9 +41,13 @@ export class Login extends Component {
 
   // Handle form data on submit
   handleForm = (evt) => {
+    var {dispatch} = this.props
     evt.preventDefault()
 
-    this.props.dispatch(authorizeActions.dbLogin(this.username.value,this.password.value))
+    dispatch(authorizeActions.dbLogin(this.username.value,this.password.value, () => {
+      dispatch(push('/'))
+
+    }))
 
   }
   // Render DOM

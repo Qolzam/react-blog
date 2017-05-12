@@ -2,6 +2,7 @@
 import {firebaseRef, firebaseAuth} from 'app/firebase/'
 import moment from 'moment'
 
+
 // - Import action types
 import * as types from 'actionTypes'
 
@@ -12,6 +13,7 @@ import * as types from 'actionTypes'
 export var login = (uid) => {
   return {
     type: 'LOGIN',
+    authed: true,
     uid
   }
 
@@ -32,18 +34,20 @@ export var dbLogin = (email,password, callBack) => {
 }
 
 // Logout user
-export var _logout = () =>{
+export var logout = () =>{
   return{
     type: types.LOGOUT,
-    authed: false
+    authed: false,
+    uid: 0
   }
 }
 
-export var dbLogout = () =>{
+export var dbLogout = (callBack) =>{
   return (dispatch,getState) => {
     return firebaseAuth().signOut().then((result)=>{
-      console.log(result)
-      dispatch(_logout())
+
+      dispatch(logout())
+      callBack()
     }, (error) =>{
         console.log(error)
 

@@ -2,9 +2,10 @@
 import React, {Component} from 'react'
 import {Card, Item, Divider} from 'semantic-ui-react'
 import Faker from 'faker'
+import {connect} from 'react-redux'
 
 // - Create PopularPosts component class
-export default class PopularPosts extends Component {
+export class PopularPosts extends Component {
 
   // Render DOM
   render() {
@@ -21,7 +22,7 @@ export default class PopularPosts extends Component {
               <Item.Image size='tiny' src={Faker.image.nature()} />
 
               <Item.Content>
-                <Item.Header>Nguyen Thuy</Item.Header>
+                <Item.Header>{this.props.name}</Item.Header>
                 <Item.Meta content='1 month ago' />
                 <Item.Description>{Faker.lorem.sentence()}</Item.Description>
               </Item.Content>
@@ -31,7 +32,7 @@ export default class PopularPosts extends Component {
       <Item.Image size='tiny' src={Faker.image.nature()} />
 
       <Item.Content>
-        <Item.Header>Nguyen Thuy</Item.Header>
+        <Item.Header>{this.props.name}</Item.Header>
         <Item.Meta content='2 days ago' />
         <Item.Description>{Faker.lorem.sentence()}</Item.Description>
       </Item.Content>
@@ -41,7 +42,7 @@ export default class PopularPosts extends Component {
       <Item.Image size='tiny' src={Faker.image.nature()} />
 
       <Item.Content>
-        <Item.Header>Nguyen Thuy</Item.Header>
+        <Item.Header>{this.props.name}</Item.Header>
         <Item.Meta content='6 days ago' />
         <Item.Description>{Faker.lorem.sentence()}</Item.Description>
       </Item.Content>
@@ -53,3 +54,9 @@ export default class PopularPosts extends Component {
     )
   }
 }
+
+export default connect((state)=>{
+  return{
+    name: state.user.info.name
+  }
+})(PopularPosts)

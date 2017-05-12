@@ -8,3 +8,5 @@ export const openPostWritePage = (writeStatus) => {
     writeStatus
   }
 }
+
+// - Set image on writing post page

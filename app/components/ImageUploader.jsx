@@ -1,21 +1,26 @@
 // - Import react components
 import React, {Component} from 'react'
-import {withRouter} from 'react-router-dom'
 import {
   Button,
   Grid,
   Icon,
   Segment,
   Modal,
-  Image
+  Image,
+  Popup
 } from 'semantic-ui-react'
 import {connect} from 'react-redux'
 import AvatarEditor from 'react-avatar-editor'
 import Faker from 'faker'
+import uuid from 'uuid'
 
 // - Import actions
 import * as imageUploaderActions from 'imageUploaderActions'
+import * as fileActions from 'fileActions'
+import * as globalActions from 'globalActions'
 
+// - Import app API
+import * as FileAPI from 'FileAPI'
 
 // - Create Image uploader component class
 export class ImageUploader extends Component {
@@ -28,13 +33,19 @@ export class ImageUploader extends Component {
       previewImage: null,
       zoom: 1,
       rotate: 0,
-      fileTagId: Faker.random.word()
+      fileTagId: Faker.random.word(),
+      fileName: '',
+      folderName: 'images',
+      fileExtension: ''
     };
+
+
+    // Binding functions to `this`
     this.onChange = this.onChange.bind(this);
     this.editor = this.setEditorRef.bind(this);
     this.onClickSave = this.onClickSave.bind(this);
     this.close = this.close.bind(this);
-    this.handleUpload = this.handleUpload.bind(this);
+    this.handleUploadClick = this.handleUploadClick.bind(this);
     this.handleOpenEditor = this.handleOpenEditor.bind(this);
     this.handleCloseEditor = this.handleCloseEditor.bind(this);
     this.handleUploadServer = this.handleUploadServer.bind(this);
@@ -42,20 +53,15 @@ export class ImageUploader extends Component {
 
   // Close image uploader
   close = () => {
-    this.setState({
-      image: null,
-      previewImage: null
-    });
+    this.setState({image: null, previewImage: null});
     this.props.dispatch(imageUploaderActions.openImageUploader(false))
   }
-
 
   // Upload photo to server
   onClickSave() {
     // This returns a HTMLCanvasElement, it can be made into a data URL or a blob,
     // drawn on another canvas, or added to the DOM.
     const canvas = this.editor.getImage()
-
 
     //    $.ajax({
     //  type: "POST",
@@ -75,12 +81,14 @@ export class ImageUploader extends Component {
 
   onChange(evt) {
     this.setState({
-      image: window.URL.createObjectURL(evt.target.files[0])
+      image: window.URL.createObjectURL(evt.target.files[0]),
+      fileName: evt.target.files[0].name,
+      fileExtension: FileAPI.getExtension(evt.target.files[0].name)
     })
   }
 
   // Handle upload click
-  handleUpload = (evt) => {
+  handleUploadClick = (evt) => {
     this.refs.fileUpload.click()
   }
 
@@ -99,17 +107,28 @@ export class ImageUploader extends Component {
   // Close image editor
   handleCloseEditor = (evt) => {
     this.props.dispatch(imageUploaderActions.openImageEditor(false))
-    this.setState({
-      zoom: 1,
-      rotate: 0
-    })
+    this.setState({zoom: 1, rotate: 0})
   }
 
   // Handle upload image to server
   handleUploadServer = (evt) => {
 
+    var dispatch = this.props.dispatch
+    if (this.state.image) {
+      var fileName = (`${uuid()}.${this.state.fileExtension}`)
+      var blobFile = FileAPI.dataURItoBlob(this.state.image)
+      FileAPI.uploadFile(blobFile, this.state.folderName,fileName,
+       percent => dispatch(globalActions.progressChange(percent,true)),
+      (error) => dispatch(fileActions.uploadError(error)),
+      (result) => {
+        console.log(result);
+        dispatch(fileActions.dbFileSave(fileName,'images'))
+        dispatch(globalActions.progressChange(100,false))
+        this.close()
+      }
+          )
+    }
   }
-
 
   // Render DOM
   render() {
@@ -118,14 +137,7 @@ export class ImageUploader extends Component {
     const imageEditor = (
       <Segment.Group color={this.props.boxTopColor || "green"}>
 
-        <AvatarEditor ref={this.setEditorRef}
-           image={this.state.image}
-           width={parseInt(this.props.width) || 200}
-           height={parseInt(this.props.height) || 200}
-           border={parseInt(this.props.border) || 20}
-           color={[255, 255, 255, 0.6]}
-          rotate={parseInt(this.state.rotate)}scale={parseFloat(this.state.zoom)}
-          />
+        <AvatarEditor scale={parseFloat(this.state.zoom)} ref={this.setEditorRef} image={this.state.image} width={parseInt(this.props.width) || 200} height={parseInt(this.props.height) || 200} border={parseInt(this.props.border) || 20} color={[255, 255, 255, 0.6]} rotate={parseInt(this.state.rotate)}/>
 
         <Segment>
           <Icon name="zoom" circular color={this.props.iconColor || "teal"} inverted/><input type='range' min={1} max={10} step={0.15} value={this.state.zoom} onChange={this.handleChangeZoom}/>
@@ -134,8 +146,22 @@ export class ImageUploader extends Component {
           <Icon name="refresh" circular color={this.props.iconColor || "teal"} inverted/><input type='range' min={0} max={360} value={this.state.rotate} onChange={this.handleChangeRotate}/>
         </Segment>
         <Segment>
-              <Button circular icon='save' as="div" color="green" onClick={this.onClickSave}/>
-              <Button circular icon='cancel' as='div' onClick={this.handleCloseEditor}/>
+
+            <Popup
+            trigger={<Button circular icon='save' as="div" color="green" onClick={this.onClickSave}/>}
+            content='SAVE'
+            position='left center'
+            size='tiny'
+
+            />
+            <Popup
+            trigger={<Button circular icon='cancel' as='div' onClick={this.handleCloseEditor}/>}
+            content='CANCEL'
+            position='right center'
+            size='tiny'
+
+            />
+
 
         </Segment>
       </Segment.Group>
@@ -145,21 +171,48 @@ export class ImageUploader extends Component {
     // Image preview cover DOM
     const cover = (
       <div className="imageUploaderCover">
-        <ul  className="coverUploaderContent"  style={{listStyleType: 'none'}}>
+        <ul className="coverUploaderContent" style={{
+          listStyleType: 'none'
+        }}>
           <li>
-            <Button circular icon='paint brush' as='div' onClick={this.handleOpenEditor} color="teal"/>
 
+              <Popup
+              trigger={<Button circular icon='paint brush' as='div' onClick={this.handleOpenEditor} color="teal"/>}
+              content='EDIT'
+              position='right center'
+              size='tiny'
+
+              />
           </li>
           <li>
-            <Button circular icon='photo' as='div' color='blue' onClick={this.handleUpload}/>
 
+              <Popup
+              trigger={<Button circular icon='photo' as='div' color='blue' onClick={this.handleUploadClick}/>}
+              content='CHOOSE'
+              position='right center'
+              size='tiny'
+
+              />
           </li>
           <li>
-            <Button circular icon='upload' as="div" color="green" onClick={this.handleUploadServer}/>
 
+              <Popup
+           trigger={<Button circular icon='upload' as="div" color="green" onClick={this.handleUploadServer}/>}
+           content='UPLOAD'
+           position='right center'
+           size='tiny'
+
+         />
           </li>
           <li>
-            <Button circular icon='cancel' as='div' onClick={this.close}/>
+            <Popup
+         trigger={<Button circular icon='cancel' as='div' onClick={this.close}/>}
+         content='CLOSE'
+         position='right center'
+         size='tiny'
+
+       />
+
 
           </li>
         </ul>
@@ -169,7 +222,7 @@ export class ImageUploader extends Component {
     // - Upload Panel
     const uploadPanel = (
       <div>
-        <Button as='div' color='blue' onClick={this.handleUpload}>CHOOSE PHOTO</Button>
+        <Button as='div' color='blue' onClick={this.handleUploadClick}>CHOOSE PHOTO</Button>
         <Button as='div' onClick={this.close}>CANEL</Button>
 
       </div>
@@ -208,6 +261,6 @@ export class ImageUploader extends Component {
 
 }
 
-export default withRouter(connect((state) => {
-  return {uploadImageStatus: state.imageUploader.status, editStatus: state.imageUploader.editStatus}
-})(ImageUploader))
+export default connect((state) => {
+  return {uploadImageStatus: state.imageUploader.status, editStatus: state.imageUploader.editStatus, uploadComplete: state.file.result, uploadError: state.file.error}
+})(ImageUploader)

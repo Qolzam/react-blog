@@ -8,6 +8,9 @@ import {push} from 'react-router-redux'
 // - Import API
 import * as AuthAPI from 'AuthAPI'
 
+// - Import actions
+import * as authorizeActions from 'authorizeActions'
+
 // - Feilds
 const color = 'teal';
 const colorKey = 'blue';
@@ -32,7 +35,9 @@ export class Navigation extends Component {
 
  // Handle logout process
  handleLogout = () => {
-   this.props.dispatch(push('/login'))
+  var {dispatch} = this.props
+  dispatch(authorizeActions.dblogout(() => dispatch(push('/'))))
+
  }
 
   // Render DOM
@@ -42,13 +47,15 @@ export class Navigation extends Component {
     return (
       <Menu color={color} stackable fluid>
         <Menu.Item as="div" icon="home" name='home' active={activeItem === 'home'} onClick={this.handleItemClick}/>
-        <Menu.Item as="div" name='account' active={activeItem === 'account'} onClick={this.handleItemClick}>
-          <NavLink as="div" to="/admin/account">Account</NavLink>
+{ AuthAPI.isAdmin() ?
+      <Menu.Item as="div" name='account' active={activeItem === 'account'} onClick={this.handleItemClick}>
+           <NavLink to="/admin/account">Account</NavLink>
         </Menu.Item>
-        <Menu.Item name='logout'  active={activeItem === 'Logout'} onClick={this.handleItemClick}>
-        { AuthAPI.isAuthorized() ? <Button primary onClick={this.handleLogout}>Logout</Button> : <NavLink to="/login"/> }
+        : '' }
+        <Menu.Item name='logout' as='div' active={activeItem === 'Logout'} onClick={this.handleItemClick}>
+        { AuthAPI.isAuthorized() ? <Button as="div" primary onClick={this.handleLogout}>LOGOUT</Button> : <NavLink className="ui blue button" to="/login">LOGIN</NavLink> }
         </Menu.Item>
-        <Menu.Menu position='right' >
+        <Menu.Menu position='right'>
           <Menu.Item>
             <Search/>
           </Menu.Item>

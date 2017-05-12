@@ -33,11 +33,6 @@ export class Login extends Component {
       this.handleForm = this.handleForm.bind(this)
     }
 
-    shouldComponentUpdate= (nextProps, nextState) => {
-      console.log('Login next props :',nextProps)
-      console.log('Login next state :',nextState)
-      return nextState !== this.state
-    }
 
   // Handle form data on submit
   handleForm = (evt) => {

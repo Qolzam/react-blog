@@ -15,6 +15,12 @@ try {
 
 }
 
-export var firebaseAuth = firebase.auth;
-export var firebaseRef = firebase.database().ref();
+// - Storage reference
+export var storageRef = firebase.storage().ref()
+
+// - Database authorize
+export var firebaseAuth = firebase.auth
+export var firebaseRef = firebase.database().ref()
+
+// - Firebase default
 export default firebase;

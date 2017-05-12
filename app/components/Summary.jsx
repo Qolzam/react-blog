@@ -1,27 +1,29 @@
 // - Import react components
 import React, {Component} from 'react'
 import {Card, Icon, Image} from 'semantic-ui-react'
+import Faker from 'faker'
+import {connect} from 'react-redux'
 
 // - Create Summary component class
-export default class Summary extends Component {
+export class Summary extends Component {
 
   // Render DOM
   render() {
     return (
 
       <Card fluid>
-        <Image src={require('../dist/images/15.jpg')}/>
+        <Image src={Faker.image.image()}/>
         <Card.Content>
           <Card.Header>
-            Nguyen Thuy
+           {this.props.name}
           </Card.Header>
           <Card.Meta>
             <span className='date'>
-              Born in 1988
+           Born in {Faker.date.month()}
             </span>
           </Card.Meta>
           <Card.Description>
-            Thuy is a lovely girl following her happiness.
+          {Faker.lorem.sentence()}
           </Card.Description>
         </Card.Content>
         <Card.Content extra>
@@ -35,3 +37,9 @@ export default class Summary extends Component {
     )
   }
 }
+
+export default connect((state)=>{
+  return{
+    name: state.user.info.name
+  }
+})(Summary)

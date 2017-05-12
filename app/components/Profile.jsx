@@ -14,6 +14,7 @@ import {
   Image
 } from 'semantic-ui-react'
 import {NavLink, withRouter} from 'react-router-dom'
+import Faker from 'faker'
 
 // - Import app components
 import ImageUp from 'ImageUploader'
@@ -55,7 +56,7 @@ constructor(props){
 
           <div style={{textAlign:'center'}}>
           <div className="profile__avatar">
-          <img src={require('../dist/images/15.jpg')} style={{width: '100%'}}/>
+          <img src={this.props.avatar} style={{width: '100%'}}/>
           <div className="avatar-container">
             <Button as='div' onClick={this.handleChooseAvatar}>CHOOSE AVATAR</Button>
           </div>
@@ -74,6 +75,7 @@ constructor(props){
 export default withRouter(connect(
   (state) => {
     return{
-      postImageState: state.imageGallery.status
+      postImageState: state.imageGallery.status,
+      avatar: state.global.avatar
     }
 })(Profile))

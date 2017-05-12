@@ -5,9 +5,8 @@ import {NavLink, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux'
 import {push} from 'react-router-redux'
 
-
-// - Import API
-import * as AuthAPI from 'AuthAPI'
+// - Import actions
+import * as authorizeActions from 'authorizeActions'
 
 // Create AdminNav component class
 export class AdminNav extends Component {
@@ -27,8 +26,9 @@ export class AdminNav extends Component {
 
   // Handle logout process
   handleLogout = () => {
+    var {dispatch} = this.props
+    dispatch(authorizeActions.dbLogout(() => dispatch(push('/'))))
 
-  this.props.dispatch(push('/'))
 
   }
 
@@ -55,7 +55,6 @@ export class AdminNav extends Component {
         <Menu.Item as="div" name='logout' active={activeItem === 'logout'} onClick={this.handleItemClick}>
           <Button onClick={this.handleLogout}>Logout</Button>
         </Menu.Item>
-        <div>{this.props.router.location.pathname}</div>
       </Menu>
     )
   }

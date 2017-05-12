@@ -3,20 +3,31 @@ import * as types from 'actionTypes'
 
 // - Default state for reducer
 var defaultState = {
-    status: false
-
+    status: false,
+    images: []
 }
 
 // - Image gallery reducer
 export var imageGalleryReducer = (state = defaultState, action ) => {
+
   switch (action.type) {
     case types.OPEN_IMAGE_GALLERY:
       return {
         ...state,
         status: action.status
       }
-
-      break;
+    case types.ADD_IMAGE_GALLERY:
+      return{
+        ...state,
+        images: [...state.images, action.image]
+      }
+    case types.ADD_IMAGE_LIST_GALLERY:
+      {
+        return{
+          ...state,
+          images: [...action.images]
+        }
+      }
     default:
       return state;
   }

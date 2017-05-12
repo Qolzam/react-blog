@@ -19,7 +19,7 @@ import * as postWritingActions from 'postWritingActions'
 import * as imageUploaderActions from 'imageUploaderActions'
 
 // - Import app components
-
+import Limg from 'Limg'
 
 // - Create ImageGallery component class
 export class ImageGallery extends Component {
@@ -33,10 +33,24 @@ export class ImageGallery extends Component {
     // Binding function to `this`
     this.close = this.close.bind(this);
     this.handleImageUploader = this.handleImageUploader.bind(this);
+    this.imageList = this.imageList.bind(this)
   }
   // Hide component
   close = () => {
     this.props.dispatch(imageGalleryActions.openImageGallery(false))
+    if(this.props.postWritingStatus)
+    {
+      document.body.classList.add('scrolling', 'dimmable', 'dimmed');
+
+    }
+
+  }
+
+  // Produce a list of image in image gallery
+  imageList = () => {
+
+    var {images} = this.props
+   return  images.map((image,index) => <Limg key={index} src={image.name}/>)
 
   }
 
@@ -75,94 +89,7 @@ export class ImageGallery extends Component {
                   </div>
                 </div>
               </li>
-              <li className="imageGallery__image-node" style={{backgroundImage: 'url(' + require('../dist/images/22.jpg') + ')'}}>
-
-                  <div className="imageCover">
-                    <div className="coverContent">
-                      <Button circular color='green' icon='add'/>
-                    </div>
-                  </div>
-              </li>
-              <li className="imageGallery__image-node" style={{backgroundImage: 'url(' + require('../dist/images/22.jpg') + ')'}}>
-
-                  <div className="imageCover">
-                    <div className="coverContent">
-                      <Button circular color='green' icon='add'/>
-                    </div>
-                  </div>
-              </li>
-              <li className="imageGallery__image-node" style={{backgroundImage: 'url(' + require('../dist/images/22.jpg') + ')'}}>
-
-                  <div className="imageCover">
-                    <div className="coverContent">
-                      <Button circular color='green' icon='add'/>
-                    </div>
-                  </div>
-              </li>
-              <li className="imageGallery__image-node" style={{backgroundImage: 'url(' + require('../dist/images/22.jpg') + ')'}}>
-
-                  <div className="imageCover">
-                    <div className="coverContent">
-                      <Button circular color='green' icon='add'/>
-                    </div>
-                  </div>
-              </li>
-              <li className="imageGallery__image-node" style={{backgroundImage: 'url(' + require('../dist/images/5.jpg') + ')'}}>
-
-                  <div className="imageCover">
-                    <div className="coverContent">
-                      <Button circular color='green' icon='add'/>
-                    </div>
-                  </div>
-              </li>
-              <li className="imageGallery__image-node" style={{backgroundImage: 'url(' + require('../dist/images/22.jpg') + ')'}}>
-
-                  <div className="imageCover">
-                    <div className="coverContent">
-                      <Button circular color='green' icon='add'/>
-                    </div>
-                  </div>
-              </li>
-              <li className="imageGallery__image-node" style={{backgroundImage: 'url(' + require('../dist/images/1.jpg') + ')'}}>
-
-                  <div className="imageCover">
-                    <div className="coverContent">
-                      <Button circular color='green' icon='add'/>
-                    </div>
-                  </div>
-              </li>
-              <li className="imageGallery__image-node" style={{backgroundImage: 'url(' + require('../dist/images/6.jpeg') + ')'}}>
-
-                  <div className="imageCover">
-                    <div className="coverContent">
-                      <Button circular color='green' icon='add'/>
-                    </div>
-                  </div>
-              </li>
-              <li className="imageGallery__image-node" style={{backgroundImage: 'url(' + require('../dist/images/22.jpg') + ')'}}>
-
-                  <div className="imageCover">
-                    <div className="coverContent">
-                      <Button circular color='green' icon='add'/>
-                    </div>
-                  </div>
-              </li>
-              <li className="imageGallery__image-node" style={{backgroundImage: 'url(' + require('../dist/images/22.jpg') + ')'}}>
-
-                  <div className="imageCover">
-                    <div className="coverContent">
-                      <Button circular color='green' icon='add'/>
-                    </div>
-                  </div>
-              </li>
-              <li className="imageGallery__image-node" style={{backgroundImage: 'url(' + require('../dist/images/22.jpg') + ')'}}>
-
-                  <div className="imageCover">
-                    <div className="coverContent">
-                      <Button circular color='green' icon='add'/>
-                    </div>
-                  </div>
-              </li>
+              {this.imageList()}
 
             </ul>
           </div>
@@ -176,5 +103,8 @@ export class ImageGallery extends Component {
 
 // - Connect component to redux state
 export default withRouter(connect((state) => {
-  return {imageGalleryStatus: state.imageGallery.status}
+  return {imageGalleryStatus: state.imageGallery.status,
+           postWritingStatus: state.postWriting.writeStatus,
+           images: state.imageGallery.images
+        }
 })(ImageGallery))

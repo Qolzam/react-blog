@@ -10,6 +10,9 @@ import PopularPosts from 'PopularPosts'
 import Tags from 'Tags'
 import PostWrite from 'PostWrite'
 
+// - Import API
+import * as AuthAPI from 'AuthAPI'
+
 
 
 // - Create Blog component class
@@ -21,7 +24,8 @@ export default class Blog extends Component {
       <Grid stackable divided padded columns={2}>
         <Grid.Row>
           <Grid.Column computer={12} mobile={16} tablet={11}>
-              <PostWrite/>
+            {AuthAPI.isAdmin() ? <PostWrite/> : '' }
+
              <Grid doubling columns={2}>
 
             <Grid.Column>

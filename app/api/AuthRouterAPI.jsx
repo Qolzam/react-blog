@@ -7,7 +7,7 @@ import * as AuthAPI from 'AuthAPI'
 
 
 export var PrivateRoute = ({component: Component, ...rest}) => {
-
+  console.log('is auth ; ', AuthAPI.isAuthorized());
   return (
     <Route
       {...rest}

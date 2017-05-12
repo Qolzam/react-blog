@@ -1,12 +1,64 @@
-// Import image gallery action types
+// - Import firebase service
+import {firebaseRef,firebaseAuth} from 'app/firebase/'
+
+
+// - Import image gallery action types
 import * as types from 'actionTypes'
 
+// - Import app API
+import * as FileAPI from 'FileAPI'
 
-// - Image gallery actions
+/* ---- */
 
+// - To set image gallery open/close
 export const openImageGallery = (status) => {
   return{
     type: types.OPEN_IMAGE_GALLERY,
     status
   }
+}
+
+// - Add image list to image gallery
+export const addImageList = (images) =>{
+  return{
+    type: types.ADD_IMAGE_LIST_GALLERY,
+    images
+  }
+}
+
+// - Add image to image gallery
+export const addImage = (image) =>{
+  return{
+    type: types.ADD_IMAGE_GALLERY,
+    image
+  }
+}
+
+// - Download image for image gallery
+export const downloadForImageGallery = () => {
+  return (dispatch, getState) => {
+    var uid = getState().authorize.uid
+    console.log('user id : ',uid);
+    if(uid)
+    {
+      var imagesRef = firebaseRef.child(`users/${uid}/files/images`);
+
+      return imagesRef.once('value').then((snapshot) => {
+        var images = snapshot.val() || {};
+        var parsedImages = [];
+        console.log('image gallery ; ', images.count);
+        Object.keys(images).forEach((imageId) => {
+          parsedImages.push({
+            id: imageId,
+            ...images[imageId]
+          });
+        });
+        console.log('ParsedImages : ', parsedImages);
+        dispatch(addImageList(parsedImages));
+      });
+
+
+    }
+  }
+
 }

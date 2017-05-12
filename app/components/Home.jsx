@@ -21,10 +21,6 @@ export default class Home extends Component {
     return (
       <div id="home">
         <Segment>
-          <SlideShow/>
-          <Divider horizontal>
-            Green's Diary
-          </Divider>
           <Navigation/>
         </Segment>
         <Segment width={7}>

@@ -8,6 +8,8 @@ export const ADD_POST = 'ADD_POST';
 
 /* image gallery actions */
 export const OPEN_IMAGE_GALLERY = 'OPEN_IMAGE_GALLERY';
+export const ADD_IMAGE_GALLERY = 'ADD_IMAGE_GALLERY'
+export const ADD_IMAGE_LIST_GALLERY = 'ADD_IMAGES_LIST_GALLERY'
 
 /* image uploader actions */
 export const OPEN_IMAGE_UPLOADER ='OPEN_IMAGE_UPLOADER';
@@ -28,3 +30,16 @@ export const ADD_USERS = 'ADD_USERS'
 export const LOGIN = 'LOGIN'
 export const LOGOUT = 'LOGOUT'
 export const SIGNUP = 'SIGNUP'
+
+/* file actions */
+export const UPLOAD_FILE = 'UPLOAD_FILE'
+export const UPLOAD_FILE_ERROR = 'UPLOAD_FILE_ERROR'
+export const UPLOAD_FILE_COMPLETE = 'UPLOAD_FILE_COMPLETE'
+export const DOWNLOAD_FILE = 'DOWNLOAD_FILE'
+
+/* user actions */
+export const USER_INFO = 'USER_INFO'
+
+/* global actions */
+export const PROGRESS_CHANGE = 'PROGRESS_CHANGE'
+export const AVATAR = 'AVATAR'

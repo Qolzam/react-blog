@@ -1,7 +1,7 @@
 // - Impport react components
 import React, {Component} from 'react';
 import ImageGallery from 'react-image-gallery';
-
+import Faker from 'faker'
 // - Create SlideShow component class
 export default class SlideShow extends Component {
 
@@ -14,25 +14,25 @@ export default class SlideShow extends Component {
 
     const images = [
       {
-        original: require('../dist/images/1.jpg')
+        original: Faker.image.image()
       },
       {
-        original: require('../dist/images/2.jpg')
+        original: Faker.image.image()
       },
       {
-        original: require('../dist/images/3.jpg')
+        original: Faker.image.image()
       },
       {
-        original: require('../dist/images/4.jpeg')
+        original: Faker.image.image()
       },
       {
-        original: require('../dist/images/5.jpg')
+        original: Faker.image.image()
       },
       {
-        original: require('../dist/images/6.jpeg')
+        original: Faker.image.image()
       },
       {
-        original: require('../dist/images/7.jpeg')
+        original: Faker.image.image()
       }
     ]
 

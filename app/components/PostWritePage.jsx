@@ -3,17 +3,18 @@ import React, {Component} from 'react'
 import {Button, Header, Icon, Modal, Card, Menu, Image, Label, Divider  } from 'semantic-ui-react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
+import Faker from 'faker'
 
 // - Import app components
 import ImageGallery from 'ImageGallery'
 import * as imageGalleryActions from 'imageGalleryActions'
 import * as postWritingActions from 'postWritingActions'
+import * as postActions from 'postActions'
 
-// Define variables
-const avatarImage = require('../dist/images/15.jpg');
-const avatarStyle = {
-  backgroundImage: 'url(' + avatarImage + ')'
-};
+// - Import API
+import * as PostAPI from 'PostAPI'
+
+
 
 // - Create PostWritePage component class
 export class PostWritePage extends Component {
@@ -23,7 +24,9 @@ export class PostWritePage extends Component {
     super(props);
 
     this.state = {
-      videoState:false
+      videoState:false,
+      body:'',
+
     };
 
     // Binding function to `this`
@@ -31,6 +34,8 @@ export class PostWritePage extends Component {
     this.open = this.open.bind(this);
     this.handleImage = this.handleImage.bind(this);
     this.handleVideo = this.handleVideo.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this)
+    this.handleForm = this.handleForm.bind(this);
 
   }
 
@@ -54,6 +59,28 @@ export class PostWritePage extends Component {
     });
   }
 
+  // Handle data on input change
+  handleInputChange = (evt) => {
+    const target = evt.target
+    const value = target.value
+    const name = target.name
+    this.setState({
+      [name]: value
+    })
+
+  }
+
+  // Handle form data
+  handleForm = (evt) => {
+    evt.preventDefault()
+    var {dispatch} = this.props
+    var tags = PostAPI.getContentTags(this.state.body)
+    dispatch(postActions.dbAddPost({
+      body : this.state.body,
+      tags : tags
+    }))
+
+  }
 
   // When component will receive next props
   componentWillReceiveProps= (nextProps) => {
@@ -62,18 +89,25 @@ export class PostWritePage extends Component {
 
   // Render DOM
   render() {
+
+    // Define variables
+    const avatarImage = this.props.avatar
+    const avatarStyle = {
+      backgroundImage: 'url(' + avatarImage + ')'
+    };
+
     return (
         <Modal basic size='small' dimmer={'inverted'}
            open={(this.props.postWriteStatus)} onClose={this.close}>
 
-
+           <form onSubmit={this.handleForm}>
             <Card centered fluid>
-               <Image src={require('../dist/images/22.jpg')} />
+               <Image src={Faker.image.image()} />
                <Card.Content>
                  <Card.Header>
                    <div className="post__avatar" style={avatarStyle}></div>
                    {' '}<div className="post__meta">
-                     <span className="post__avatar-title">Nguyen Thuy{' '}</span>
+                     <span className="post__avatar-title">{this.props.name}{' '}</span>
                      <span className="post__public-status"> > Public </span>
 
                      <Icon name="world"/>
@@ -82,7 +116,7 @@ export class PostWritePage extends Component {
                  </Card.Header>
                  <Divider hidden/>
                  <Card.Description>
-                   <textarea autoFocus='true' placeholder="What's new with you?"></textarea>
+                   <textarea name='body' value={this.state.body} onChange={this.handleInputChange} autoFocus='true' placeholder="What's new with you?"></textarea>
                    </Card.Description>
                </Card.Content>
                <Card.Content extra>
@@ -99,7 +133,7 @@ export class PostWritePage extends Component {
 
                </Card.Content>
            </Card>
-
+        </form>
       </Modal>
     );
   }
@@ -109,6 +143,8 @@ export default withRouter(connect(
   (state) => {
       return {
         postWriteStatus: state.postWriting.writeStatus,
-        imageGalleryStaus: state.imageGallery.status
+        imageGalleryStaus: state.imageGallery.status,
+        avatar: state.global.avatar,
+        name: state.user.info.name
       }
 })(PostWritePage))

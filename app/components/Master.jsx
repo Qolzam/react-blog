@@ -4,6 +4,8 @@ import {connect} from 'react-redux'
 import {Route, Switch, NavLink, withRouter} from 'react-router-dom'
 import {firebaseAuth, firebaseRef} from 'app/firebase/'
 import {push} from 'react-router-redux'
+import { Progress} from 'semantic-ui-react'
+
 
 // - Import components
 import Home from 'Home'
@@ -12,6 +14,7 @@ import Login from 'Login'
 import Admin from 'Admin'
 import BlogHeader from 'BlogHeader'
 import MasterLoading from 'MasterLoading'
+import Fimg from 'Fimg'
 import * as types from 'actionTypes'
 
 
@@ -21,6 +24,7 @@ import {PrivateRoute, PublicRoute} from 'AuthRouterAPI'
 
 // - Import actions
 import * as authorizeActions from 'authorizeActions'
+import * as imageGalleryActions from 'imageGalleryActions'
 
 
 // - Create Master component class
@@ -45,7 +49,7 @@ handleLoading = (status) => {
 }
 
 
-componentDidMount = ()=> {
+componentDidMount = () => {
 
 var {dispatch} = this.props
 
@@ -53,22 +57,20 @@ var {dispatch} = this.props
 
         if (user) {
           dispatch(authorizeActions.login(user.uid));
-          console.log("On auth changed : ", user)
           this.setState({
             loading: false
           })
+          dispatch(imageGalleryActions.downloadForImageGallery())
         } else {
-
-          {/*dispatch(authorizeActions._logout())*/}
-            console.log("On auth changed !#: ", user)
-            this.setState({
-              loading: false
-            })
+          dispatch(authorizeActions.logout())
+          this.setState({
+            loading: false
+          })
         }
       })
 
 }
-componentWillUnmount () {
+componentWillUnmount = () => {
   this.removeListener()
 }
 // Render app DOM component
@@ -77,7 +79,10 @@ componentWillUnmount () {
 
     return (
       <div id="master">
-
+        <div className='master__progress' style={{
+            display: (this.props.global.visible ? 'block' : 'none' )}}>
+ <Progress percent={this.props.global.percent} color='teal' size='tiny' active />
+ </div>
     <MasterLoading activeLoading={this.state.loading} handleLoading={this.handleLoading}/>
      <BlogHeader/>
 
@@ -96,7 +101,8 @@ componentWillUnmount () {
 export default withRouter(connect((state)=>{
   return{
     uid: state.authorize.uid,
-    authed: state.authorize.authed
+    authed: state.authorize.authed,
+    global: state.global
   }
 
 })(Master))

@@ -1,21 +1,26 @@
-// Import general components refrence
+// Import external components refrence
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {Provider} from 'react-redux'
-import {configure, history} from 'configureStore'
+import store, {history} from 'configureStore'
 import { ConnectedRouter} from 'react-router-redux'
+import Faker from 'faker'
 
 // - Import app components
 import Master from 'Master'
 
 // - Impport actions
 import * as authorizeActions from 'authorizeActions'
+import * as globalActions from 'globalActions'
+import * as userActions from 'userActions'
 
-var store = configure()
+// Set default data
+store.dispatch(globalActions.setAvatar(Faker.image.avatar()))
+store.dispatch(userActions.userInfo({name: Faker.name.findName()}))
+
 
 store.subscribe(() => {
   var state = store.getState();
-
 
 });
 

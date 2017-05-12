@@ -1,5 +1,6 @@
 // - Import react components
 import React, {Component} from 'react'
+import {connect} from 'react-redux'
 import {
   Card,
   Icon,
@@ -16,17 +17,12 @@ import {
 } from 'semantic-ui-react'
 import Faker from 'faker'
 
-// Define variables
-const avatarImage = require('../dist/images/15.jpg');
-const avatarStyle = {
-  backgroundImage: 'url(' + avatarImage + ')'
-};
 
 // - Import app components
 import CommentGroup from 'CommentGroup'
 
 // - Create Post component class
-export default class Post extends Component {
+export class Post extends Component {
 
   // Constructor
   constructor(props) {
@@ -34,7 +30,7 @@ export default class Post extends Component {
     this.state = {
       text: Faker.lorem.sentence(),
       readMoreState: false,
-      image: require('../dist/images/22.jpg')
+      image: Faker.image.image()
     }
 
     // Binding functions to this
@@ -66,13 +62,20 @@ export default class Post extends Component {
 
   // Render DOM
   render() {
+
+    // Define variables
+    const avatarImage = this.props.avatar
+    const avatarStyle = {
+      backgroundImage: 'url(' + avatarImage + ')'
+    };
+
     return (
 
       <Card fluid>
         {
             this.props.pictureState
               ? <Image src={this.state.image}/>
-              : <Embed id='O6Xo21L0ybE' placeholder='/assets/images/image-16by9.png' source='youtube'/>
+              : <Embed id='O6Xo21L0ybE' placeholder='' source='youtube'/>
           }
 
 
@@ -81,7 +84,7 @@ export default class Post extends Component {
 
             <div className="post__avatar" style={avatarStyle}></div>
             {' '}<div className="post__meta">
-              <span className="post__avatar-title">Nguyen Thuy{'  '}</span>
+              <span className="post__avatar-title">{this.props.name}{'  '}</span>
               <span className="post__public-status"> > Public </span>
               <Icon name="world"/>
 
@@ -146,3 +149,10 @@ export default class Post extends Component {
     )
   }
 }
+
+export default connect((state) => {
+  return{
+    avatar: state.global.avatar,
+    name: state.user.info.name
+  }
+})(Post)

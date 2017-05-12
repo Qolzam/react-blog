@@ -1,3 +1,11 @@
 #master {
   padding-top: 10px;
 }
+
+.master__progress{
+  position: fixed;
+ top: 0;
+ left: 0;
+ z-index: 1001;
+ width: 100%;
+}

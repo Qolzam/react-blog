@@ -25,11 +25,16 @@ there are some bugs that I have to face with.
     - Create two files in `>react-blog\config` set their name `development.env` and `test.env` => `>react-blog\config\development.env` and `>react-blog\config\test.env`
     - Inside the files, you should write some keys of firebase configuration (each file is depend on the environment you work in `NODE_ENV`. If you set `NODE_ENV=development` your project will use from `development.env` to config firebase but if you set it `NODE_ENV=test` it will use `test.env` in test environment):
     >API_KEY=<API_KEY>
-    AUTH_DOMAIN=<PROJECT_ID>.firebaseapp.com
-    DATABASE_URL=https://<DATABASE_NAME>.firebaseio.com
-    PROJECT_ID=<PROJECT_ID>
-    STORAGE_BUCKET=<BUCKET>.appspot.com
-    MESSAGING_SENDER_ID=<SENDER_ID>
+
+    >AUTH_DOMAIN=<PROJECT_ID>.firebaseapp.com
+
+    >DATABASE_URL=https://<DATABASE_NAME>.firebaseio.com
+
+    >PROJECT_ID=<PROJECT_ID>
+
+    >STORAGE_BUCKET=<BUCKET>.appspot.com
+
+    >MESSAGING_SENDER_ID=<SENDER_ID>
 
 
 

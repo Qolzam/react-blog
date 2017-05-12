@@ -7,7 +7,7 @@ import * as FileAPI from 'FileAPI'
 
 
 // - Create Fimg component class
-export default class Home extends Component {
+export default class Fimg extends Component {
 
 // Constructor
 constructor(props){
@@ -21,7 +21,7 @@ constructor(props){
   // Binding functions to `this`
   this.setImageURL = this.setImageURL.bind(this)
 
-FileAPI.downloadFile('images',this.props.src,this.setImageURL)
+FileAPI.downloadFile('images',this.props.srcF,this.setImageURL)
 }
 
 // Set image url via server
@@ -29,6 +29,7 @@ setImageURL = (url) => {
 this.setState({
   url: url
 })
+console.log('URRRLLLLL : ',url);
 }
 
 
@@ -37,7 +38,7 @@ this.setState({
   render() {
 
     return(
-      <img {...this.props} src={this.state.url}/>
+      <img src={this.state.url}/>
     )
   }
 }

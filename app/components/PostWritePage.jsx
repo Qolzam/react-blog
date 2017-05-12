@@ -7,6 +7,9 @@ import Faker from 'faker'
 
 // - Import app components
 import ImageGallery from 'ImageGallery'
+import Fimg from 'Fimg'
+
+// - Import actions
 import * as imageGalleryActions from 'imageGalleryActions'
 import * as postWritingActions from 'postWritingActions'
 import * as postActions from 'postActions'
@@ -15,6 +18,7 @@ import * as postActions from 'postActions'
 import * as PostAPI from 'PostAPI'
 
 
+/* ------------------------------ */
 
 // - Create PostWritePage component class
 export class PostWritePage extends Component {
@@ -102,7 +106,7 @@ export class PostWritePage extends Component {
 
            <form onSubmit={this.handleForm}>
             <Card centered fluid>
-               <Image src={Faker.image.image()} />
+               <Fimg srcF={this.props.selectImage} />
                <Card.Content>
                  <Card.Header>
                    <div className="post__avatar" style={avatarStyle}></div>
@@ -144,6 +148,7 @@ export default withRouter(connect(
       return {
         postWriteStatus: state.postWriting.writeStatus,
         imageGalleryStaus: state.imageGallery.status,
+        selectImage: state.imageGallery.selectImage,
         avatar: state.global.avatar,
         name: state.user.info.name
       }

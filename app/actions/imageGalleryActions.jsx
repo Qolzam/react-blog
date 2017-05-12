@@ -34,6 +34,15 @@ export const addImage = (image) =>{
   }
 }
 
+// - Select image
+export const imageSelect = (image) => {
+  return {
+    type: types.IMAGE_SELECT_GALLERY,
+    image
+  }
+
+}
+
 // - Download image for image gallery
 export const downloadForImageGallery = () => {
   return (dispatch, getState) => {

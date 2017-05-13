@@ -38,7 +38,7 @@ this.setState({
 
 // Handle on image select
 handleClick = () => {
-  this.props.dispatch(imageGalleryActions.imageSelect(this.props.src))
+  this.props.dispatch(imageGalleryActions.imageSelect(this.props.src,this.state.url))
   this.props.callBack()
 }
 

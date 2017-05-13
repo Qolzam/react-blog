@@ -5,7 +5,8 @@ import * as types from 'actionTypes'
 var defaultState = {
     status: false,
     images: [],
-    selectImage: ''
+    selectImage: '',
+    selectURL: ''
 }
 
 // - Image gallery reducer
@@ -32,7 +33,8 @@ export var imageGalleryReducer = (state = defaultState, action ) => {
     case types.IMAGE_SELECT_GALLERY:
     return{
       ...state,
-      selectImage: action.image
+      selectImage: action.image,
+      selectURL: action.URL
     }
     default:
       return state;

@@ -35,10 +35,11 @@ export const addImage = (image) =>{
 }
 
 // - Select image
-export const imageSelect = (image) => {
+export const imageSelect = (image,URL) => {
   return {
     type: types.IMAGE_SELECT_GALLERY,
-    image
+    image,
+    URL
   }
 
 }
@@ -65,7 +66,6 @@ export const downloadForImageGallery = () => {
         console.log('ParsedImages : ', parsedImages);
         dispatch(addImageList(parsedImages));
       });
-
 
     }
   }

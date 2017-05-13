@@ -31,6 +31,7 @@ export class PostWritePage extends Component {
       videoState:false,
       body:'',
 
+
     };
 
     // Binding function to `this`
@@ -81,7 +82,8 @@ export class PostWritePage extends Component {
     var tags = PostAPI.getContentTags(this.state.body)
     dispatch(postActions.dbAddPost({
       body : this.state.body,
-      tags : tags
+      tags : tags,
+      image:  this.props.selectURL
     }))
 
   }
@@ -106,7 +108,7 @@ export class PostWritePage extends Component {
 
            <form onSubmit={this.handleForm}>
             <Card centered fluid>
-               <Fimg srcF={this.props.selectImage} />
+               <img src={this.props.selectURL} />
                <Card.Content>
                  <Card.Header>
                    <div className="post__avatar" style={avatarStyle}></div>
@@ -150,6 +152,8 @@ export default withRouter(connect(
         imageGalleryStaus: state.imageGallery.status,
         selectImage: state.imageGallery.selectImage,
         avatar: state.global.avatar,
-        name: state.user.info.name
+        name: state.user.info.name,
+        selectURL: state.imageGallery.selectURL,
+        selectImage: state.imageGallery.selectImage
       }
 })(PostWritePage))

@@ -38,7 +38,7 @@ console.log('URRRLLLLL : ',url);
   render() {
 
     return(
-      <img src={this.state.url}/>
+      <img {...this.props} src={this.state.url}/>
     )
   }
 }

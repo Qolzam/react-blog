@@ -58,8 +58,8 @@ export const addVideoPost = (post) => {
             lastEditDate: '',
             tags: newPost.tags || [],
             commentCounter: 0,
-            imageId:'state.post.imageId',
-            videoId:0,
+            image:newPost.image,
+            video:'',
             deleted:false
           }
 

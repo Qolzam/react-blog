@@ -1,6 +1,7 @@
 // - Import react components
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import moment from 'moment'
 import {
   Card,
   Icon,
@@ -28,7 +29,7 @@ export class Post extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      text: Faker.lorem.sentence(),
+      text: this.props.body,
       readMoreState: false,
       image: Faker.image.image()
     }
@@ -64,7 +65,7 @@ export class Post extends Component {
   render() {
 
     // Define variables
-    const avatarImage = this.props.avatar
+    const avatarImage = this.props.ownerAvatar
     const avatarStyle = {
       backgroundImage: 'url(' + avatarImage + ')'
     };
@@ -74,7 +75,7 @@ export class Post extends Component {
       <Card fluid>
         {
             this.props.pictureState
-              ? <Image src={this.state.image}/>
+              ? <Image src={this.props.image}/>
               : <Embed id='O6Xo21L0ybE' placeholder='' source='youtube'/>
           }
 
@@ -84,7 +85,7 @@ export class Post extends Component {
 
             <div className="post__avatar" style={avatarStyle}></div>
             {' '}<div className="post__meta">
-              <span className="post__avatar-title">{this.props.name}{'  '}</span>
+              <span className="post__avatar-title">{this.props.ownerDisplayName}{'  '}</span>
               <span className="post__public-status"> > Public </span>
               <Icon name="world"/>
 
@@ -107,7 +108,7 @@ export class Post extends Component {
           </Card.Header>
           <Card.Meta>
             <span className='post__date'>
-              March 30 at 9:58pm
+            {moment.unix(this.props.creationDate).format('MMM Do YYYY @ h:mm a')}
             </span>
           </Card.Meta>
           <Card.Description>
@@ -152,7 +153,6 @@ export class Post extends Component {
 
 export default connect((state) => {
   return{
-    avatar: state.global.avatar,
-    name: state.user.info.name
+    avatar: state.global.avatar
   }
 })(Post)

@@ -5,6 +5,8 @@ var moment = require('moment');
 // - Import action types
 import * as types from 'actionTypes'
 
+/* ---------------- */
+
 
 // - Default State
 var defaultState = []
@@ -36,6 +38,11 @@ export var postReducer = (state = defaultState, action) => {
             ...action.post
         }
     ];
+    case types.ADD_LIST_POST:
+    return[
+      ...state,
+      ...action.posts
+    ]
 
     default:
     return state;

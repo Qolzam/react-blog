@@ -34,9 +34,16 @@ export const tagsPostWritePage = (tags) => {
 }
 
 // - Set post type on writing post page {image:1, video:2, normal:0}
-export const typePostWritePage = (type) => {
+export const typePostWritePage = (typePost) => {
   return{
     type: types.TYPE_POST_WRITE,
-    type
+    typePost
   }
+}
+
+export const clearePostWritePage = () => {
+  return{
+    type: types.CLEAN_POST_WRITE_PAGE
+  }
+
 }

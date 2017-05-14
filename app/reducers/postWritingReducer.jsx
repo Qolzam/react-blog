@@ -37,8 +37,10 @@ export var postWritingReducer = (state = defaultState, action) => {
     case types.TYPE_POST_WRITE:
       return {
         ...state,
-        type: action.type
+        type: action.typePost
       }
+    case types.CLEAN_POST_WRITE_PAGE:
+    return defaultState
     default:
       return state;
   }

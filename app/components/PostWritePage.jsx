@@ -45,7 +45,16 @@ export class PostWritePage extends Component {
   }
 
   // Hide componet
-  close = () => this.props.dispatch(postWritingActions.openPostWritePage(false))
+  close = () => {
+    var dispatch = this.props.dispatch
+    dispatch(imageGalleryActions.clearSelectData())
+    dispatch(postWritingActions.clearePostWritePage())
+    this.setState({
+      body: ''
+    })
+    dispatch(postWritingActions.openPostWritePage(false))
+
+  }
 
   // Show component
   open = () => this.props.dispatch(postWritingActions.openPostWritePage(true))
@@ -79,12 +88,26 @@ export class PostWritePage extends Component {
   handleForm = (evt) => {
     evt.preventDefault()
     var {dispatch} = this.props
+    var imageURL = this.props.selectURL
     var tags = PostAPI.getContentTags(this.state.body)
+    if (imageURL) {
+      dispatch(postActions.dbAddImagePost({
+        body : this.state.body,
+        tags : tags,
+        image:  imageURL,
+        avatar: this.props.avatar,
+        name: this.props.name
+      }, this.close))
+    }
+    else {
     dispatch(postActions.dbAddPost({
       body : this.state.body,
       tags : tags,
-      image:  this.props.selectURL
-    }))
+      avatar: this.props.avatar,
+      name: this.props.name
+    },this.close))
+  }
+
 
   }
 
@@ -102,13 +125,18 @@ export class PostWritePage extends Component {
       backgroundImage: 'url(' + avatarImage + ')'
     };
 
+    const postImage = this.props.selectURL
+    const postImageStyle = {
+      backgroundImage: 'url(' + postImage + ')'
+    };
     return (
         <Modal basic size='small' dimmer={'inverted'}
            open={(this.props.postWriteStatus)} onClose={this.close}>
 
            <form onSubmit={this.handleForm}>
             <Card centered fluid>
-               <img src={this.props.selectURL} />
+              <div className={this.props.selectURL ? 'postWrite__image' : ''} style={postImageStyle}></div>
+
                <Card.Content>
                  <Card.Header>
                    <div className="post__avatar" style={avatarStyle}></div>

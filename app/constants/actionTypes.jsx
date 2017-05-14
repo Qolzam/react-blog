@@ -4,17 +4,20 @@ export const IMAGE_POST_WRITE = 'IMAGE_POST_WRITE'
 export const TEXT_POST_WRITE = 'TEXT_POST_WRITE'
 export const TAGS_POST_WRITE = 'TAGS_POST_WRITE'
 export const TYPE_POST_WRITE = 'TYPE_POST_WRITE'
+export const CLEAN_POST_WRITE_PAGE = 'CLEAN_POST_WRITE_PAGE'
 
 /* post actions */
 export const ADD_IMAGE_POST = 'ADD_IMAGE_POST';
 export const ADD_VIDEO_POST = 'ADD_VIDEO_POST';
-export const ADD_POST = 'ADD_POST';
+export const ADD_POST = 'ADD_POST'
+export const ADD_LIST_POST = 'ADD_LIST_POST'
 
 /* image gallery actions */
 export const OPEN_IMAGE_GALLERY = 'OPEN_IMAGE_GALLERY';
 export const ADD_IMAGE_GALLERY = 'ADD_IMAGE_GALLERY'
 export const ADD_IMAGE_LIST_GALLERY = 'ADD_IMAGES_LIST_GALLERY'
 export const IMAGE_SELECT_GALLERY = 'IMAGE_SELECT_GALLERY'
+export const CLEARS_SELECT_IMAGE_GALLERY = 'CLEARS_SELECT_IMAGE_GALLERY'
 
 /* image uploader actions */
 export const OPEN_IMAGE_UPLOADER ='OPEN_IMAGE_UPLOADER';

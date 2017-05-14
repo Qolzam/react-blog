@@ -25,6 +25,10 @@ import {PrivateRoute, PublicRoute} from 'AuthRouterAPI'
 // - Import actions
 import * as authorizeActions from 'authorizeActions'
 import * as imageGalleryActions from 'imageGalleryActions'
+import * as postActions from 'postActions'
+
+
+/* ------------------------------------ */
 
 
 // - Create Master component class
@@ -61,6 +65,7 @@ var {dispatch} = this.props
             loading: false
           })
           dispatch(imageGalleryActions.downloadForImageGallery())
+          dispatch(postActions.dbGetPosts())
         } else {
           dispatch(authorizeActions.logout())
           this.setState({

@@ -46,23 +46,20 @@ export class PostWritePage extends Component {
 
   // Hide componet
   close = () => {
-    var dispatch = this.props.dispatch
-    dispatch(imageGalleryActions.clearSelectData())
-    dispatch(postWritingActions.clearePostWritePage())
+
     this.setState({
       body: ''
     })
-    dispatch(postWritingActions.openPostWritePage(false))
-
+    this.props.closeWriting()
   }
 
   // Show component
   open = () => this.props.dispatch(postWritingActions.openPostWritePage(true))
 
 
-  // Handle click to add image on post
+  // Handle click to open image gallery to add image on post
   handleImage= ()=> {
-    this.props.dispatch(imageGalleryActions.openImageGallery(true))
+    this.props.openImageGallery()
 
   }
 
@@ -91,21 +88,21 @@ export class PostWritePage extends Component {
     var imageURL = this.props.selectURL
     var tags = PostAPI.getContentTags(this.state.body)
     if (imageURL) {
-      dispatch(postActions.dbAddImagePost({
+    this.props.addPost({
         body : this.state.body,
         tags : tags,
         image:  imageURL,
         avatar: this.props.avatar,
         name: this.props.name
-      }, this.close))
+      }, this.close)
     }
     else {
-    dispatch(postActions.dbAddPost({
+    this.props.addPost({
       body : this.state.body,
       tags : tags,
       avatar: this.props.avatar,
       name: this.props.name
-    },this.close))
+    },this.close)
   }
 
 
@@ -173,15 +170,39 @@ export class PostWritePage extends Component {
   }
 }
 
+// - Map dispatch to the props
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    closeWriting: () => {
+      dispatch(imageGalleryActions.clearSelectData())
+      dispatch(postWritingActions.clearePostWritePage())
+      dispatch(postWritingActions.openPostWritePage(false))
+
+    },
+    openImageGallery: () =>{
+      dispatch(imageGalleryActions.openImageGallery(true))
+    },
+    addPost: (post,callBack) => {
+      console.log(post);
+        dispatch(postActions.dbAddImagePost(post, callBack))
+    }
+  }
+}
+
+// - Map state to props
+const mapStateToProps = (state) => {
+    return {
+      postWriteStatus: state.postWriting.writeStatus,
+      imageGalleryStaus: state.imageGallery.status,
+      selectImage: state.imageGallery.selectImage,
+      avatar: state.global.avatar,
+      name: state.user.info.name,
+      selectURL: state.imageGallery.selectURL,
+      selectImage: state.imageGallery.selectImage
+    }
+}
+
+
+// - Connect component to redux
 export default withRouter(connect(
-  (state) => {
-      return {
-        postWriteStatus: state.postWriting.writeStatus,
-        imageGalleryStaus: state.imageGallery.status,
-        selectImage: state.imageGallery.selectImage,
-        avatar: state.global.avatar,
-        name: state.user.info.name,
-        selectURL: state.imageGallery.selectURL,
-        selectImage: state.imageGallery.selectImage
-      }
-})(PostWritePage))
+  mapStateToProps ,mapDispatchToProps)(PostWritePage))

@@ -42,6 +42,8 @@ export var imageGalleryReducer = (state = defaultState, action ) => {
       selectImage: '',
       selectURL: ''
     }
+    case types.CLEAT_ALL_DATA_IMAGE_GALLERY:
+    return defaultState
     default:
       return state;
   }

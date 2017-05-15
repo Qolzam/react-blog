@@ -36,6 +36,13 @@ export const clearSelectData = () => {
 
 }
 
+// - Clear all data in image gallery store
+export const clearAllData = () => {
+  return{
+    type: types.CLEAT_ALL_DATA_IMAGE_GALLERY
+  }
+}
+
 // - Download image for image gallery
 export const downloadForImageGallery = () => {
   return (dispatch, getState) => {

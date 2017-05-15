@@ -14,10 +14,14 @@ import * as postWritingActions from 'postWritingActions'
 
 
 
+// - Clea all data in post store
+export const clearAllData = () => {
+  return{
+    type: types.CLEAR_ALL_DATA_POST
+  }
+}
 
-
-// - Post actions
-
+// - Add a post with image
 export const addImagePost = (post) => {
   return{
     type: types.ADD_IMAGE_POST,
@@ -26,6 +30,7 @@ export const addImagePost = (post) => {
 
 }
 
+// - Add a normal post
 export var dbAddPost = (newPost,callBack) => {
   return(dispatch,getState) => {
 

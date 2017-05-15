@@ -1,7 +1,7 @@
 // - Import image gallery action types
 import * as types from 'actionTypes'
 
- 
+
 // - Progress change
 export const progressChange = (percent, visible) => {
   return {

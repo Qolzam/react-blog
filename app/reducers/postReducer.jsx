@@ -15,6 +15,9 @@ var defaultState = []
 
 export var postReducer = (state = defaultState, action) => {
   switch (action.type) {
+    case types.CLEAR_ALL_DATA_POST:
+    return defaultState
+
     case types.ADD_IMAGE_POST:
     return[
       ...state,
@@ -43,7 +46,7 @@ export var postReducer = (state = defaultState, action) => {
       ...state,
       ...action.posts
     ]
-
+    
     default:
     return state;
 

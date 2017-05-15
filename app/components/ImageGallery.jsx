@@ -37,7 +37,7 @@ export class ImageGallery extends Component {
   }
   // Hide component
   close = () => {
-    this.props.dispatch(imageGalleryActions.openImageGallery(false))
+    this.props.closeImageGallery()
     if(this.props.postWritingStatus)
     {
       document.body.classList.add('scrolling', 'dimmable', 'dimmed');
@@ -61,7 +61,7 @@ export class ImageGallery extends Component {
 
   // Handle Image uploader
   handleImageUploader = (evt) => {
-    this.props.dispatch(imageUploaderActions.openImageUploader(true));
+    this.props.openImageUploader()
   }
 
   // Render DOM
@@ -101,10 +101,30 @@ export class ImageGallery extends Component {
   }
 }
 
-// - Connect component to redux state
-export default withRouter(connect((state) => {
-  return {imageGalleryStatus: state.imageGallery.status,
+// - Map dispatch to props
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return{
+    closeImageGallery: () => {
+      dispatch(imageGalleryActions.openImageGallery(false))
+    },
+    openImageGallery: () => {
+      dispatch(imageGalleryActions.openImageGallery(true))
+    },
+    openImageUploader: () => {
+      dispatch(imageUploaderActions.openImageUploader(true));
+    }
+
+  }
+}
+
+// - Map state to props
+const mapStateToProps = (state) => {
+  return {
+           imageGalleryStatus: state.imageGallery.status,
            postWritingStatus: state.postWriting.writeStatus,
            images: state.imageGallery.images
-        }
-})(ImageGallery))
+         }
+}
+
+// - Connect component to redux store
+export default withRouter(connect(mapStateToProps,mapDispatchToProps)(ImageGallery))

@@ -40,7 +40,8 @@ constructor(props){
   super(props);
   this.state = {
     loading: true,
-    authed:false
+    authed:false,
+    dataLoaded:false
   };
   this.handleLoading = this.handleLoading.bind(this)
 
@@ -60,17 +61,24 @@ var {dispatch} = this.props
   this.removeListener = firebaseAuth().onAuthStateChanged((user) => {
 
         if (user) {
-          dispatch(authorizeActions.login(user.uid));
+        this.props.login(user)
           this.setState({
             loading: false
           })
-          dispatch(imageGalleryActions.downloadForImageGallery())
-          dispatch(postActions.dbGetPosts())
+          if (!this.state.dataLoaded) {
+              this.props.loadData()
+            this.setState({
+              dataLoded: true
+            })
+          }
         } else {
-          dispatch(authorizeActions.logout())
+         this.props.logout()
           this.setState({
             loading: false
           })
+          if(this.state.dataLoaded){
+            this.props.clearData()
+          }
         }
       })
 
@@ -103,11 +111,38 @@ componentWillUnmount = () => {
   }
 }
 
-export default withRouter(connect((state)=>{
+// - Map dispatch to props
+const mapDispatchToProps = (dispatch,ownProps) => {
+  console.log('start');
+  return{
+    loadData: () => {
+      dispatch(imageGalleryActions.downloadForImageGallery())
+      dispatch(postActions.dbGetPosts())
+    },
+    clearData: () => {
+      dispatch(imageGalleryActions.deleteAllData())
+      dispatch(postActions.deleteAllData())
+    },
+    login: (user) => {
+        dispatch(authorizeActions.login(user.uid))
+    },
+    logout: () => {
+        dispatch(authorizeActions.logout())
+    }
+
+
+  }
+    console.log('end');
+}
+
+// - Map state to props
+const mapStateToProps = (state)=>{
   return{
     uid: state.authorize.uid,
     authed: state.authorize.authed,
     global: state.global
   }
 
-})(Master))
+}
+// - Connect commponent to redux store
+export default withRouter(connect(mapStateToProps,mapDispatchToProps)(Master))

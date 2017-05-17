@@ -7,22 +7,16 @@ import * as types from 'actionTypes'
 // - Import app API
 import * as FileAPI from 'FileAPI'
 
-/* ------------------------------------- */
+/* _____________ UI Actions _____________ */
+
 
 // - To set image gallery open/close
 export const openImageGallery = (status) => {
   return {type: types.OPEN_IMAGE_GALLERY, status}
 }
 
-// - Add image list to image gallery
-export const addImageList = (images) => {
-  return {type: types.ADD_IMAGE_LIST_GALLERY, images}
-}
 
-// - Add image to image gallery
-export const addImage = (image) => {
-  return {type: types.ADD_IMAGE_GALLERY, image}
-}
+
 
 // - Select image
 export const imageSelect = (image, URL) => {
@@ -49,7 +43,7 @@ export const downloadForImageGallery = () => {
     var uid = getState().authorize.uid
     console.log('user id : ', uid);
     if (uid) {
-      var imagesRef = firebaseRef.child(`users/${uid}/files/images`);
+      var imagesRef = firebaseRef.child(`user-files/${uid}/files/images`);
 
       return imagesRef.once('value').then((snapshot) => {
         var images = snapshot.val() || {};
@@ -67,4 +61,21 @@ export const downloadForImageGallery = () => {
     }
   }
 
+}
+
+/* _____________ CRUD Database_____________ */
+
+// - Add image in database
+
+
+/* _____________ CRUD State _____________ */
+
+// - Add image list to image gallery
+export const addImageList = (images) => {
+  return {type: types.ADD_IMAGE_LIST_GALLERY, images}
+}
+
+// - Add image to image gallery
+export const addImage = (image) => {
+  return {type: types.ADD_IMAGE_GALLERY, image}
 }

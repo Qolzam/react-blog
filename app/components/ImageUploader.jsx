@@ -36,7 +36,9 @@ export class ImageUploader extends Component {
       fileTagId: Faker.random.word(),
       fileName: '',
       folderName: 'images',
-      fileExtension: ''
+      fileExtension: '',
+      file:'',
+      isEdited:false
     };
 
 
@@ -49,6 +51,12 @@ export class ImageUploader extends Component {
     this.handleOpenEditor = this.handleOpenEditor.bind(this);
     this.handleCloseEditor = this.handleCloseEditor.bind(this);
     this.handleUploadServer = this.handleUploadServer.bind(this);
+    this.handleOnloadImage = this.handleOnloadImage.bind(this);
+  }
+
+  // Handle on load event on image
+  handleOnloadImage = (evt) => {
+
   }
 
   // Close image uploader
@@ -75,13 +83,15 @@ export class ImageUploader extends Component {
 
     // If you want the image resized to the canvas size (also a HTMLCanvasElement)
     const canvasScaled = this.editor.getImageScaledToCanvas()
-    this.setState({image: canvas.toDataURL()})
+    this.setState({image: canvas.toDataURL(),isEdited:true})
     this.handleCloseEditor();
   }
 
   onChange(evt) {
+
     this.setState({
       image: window.URL.createObjectURL(evt.target.files[0]),
+      file: evt.target.files[0],
       fileName: evt.target.files[0].name,
       fileExtension: FileAPI.getExtension(evt.target.files[0].name)
     })
@@ -97,18 +107,25 @@ export class ImageUploader extends Component {
   setEditorRef = (editor) => {
     this.editor = editor
   }
+
+
   handleChangeZoom = (e) => this.setState({zoom: e.target.value})
   handleChangeRotate = (e) => this.setState({rotate: e.target.value})
+
 
   // Open image editor
   handleOpenEditor = (evt) => {
     this.props.dispatch(imageUploaderActions.openImageEditor(true))
   }
+
+
   // Close image editor
   handleCloseEditor = (evt) => {
     this.props.dispatch(imageUploaderActions.openImageEditor(false))
     this.setState({zoom: 1, rotate: 0})
   }
+
+
 
   // Handle upload image to server
   handleUploadServer = (evt) => {
@@ -116,8 +133,8 @@ export class ImageUploader extends Component {
     var dispatch = this.props.dispatch
     if (this.state.image) {
       var fileName = (`${uuid()}.${this.state.fileExtension}`)
-      var blobFile = FileAPI.dataURItoBlob(this.state.image)
-      FileAPI.uploadFile(blobFile, this.state.folderName,fileName,
+      var uploadFile = this.state.isEdited ? FileAPI.dataURItoBlob(this.state.image) : this.state.file
+      FileAPI.uploadFile( uploadFile, this.state.folderName,fileName,
        percent => dispatch(globalActions.progressChange(percent,true)),
       (error) => dispatch(fileActions.uploadError(error)),
       (result) => {
@@ -129,6 +146,10 @@ export class ImageUploader extends Component {
           )
     }
   }
+
+
+
+
 
   // Render DOM
   render() {
@@ -231,7 +252,7 @@ export class ImageUploader extends Component {
     // Image preview DOM
     const imagePreview = (
       <Segment className="imageUploader__preview" color={this.props.boxTopColor || "green"}>
-        <Image size="large" src={this.state.image}/> {this.state.image
+        <Image ref={this.handleImage} size="large" onLoad={this.handleOnloadImage} src={this.state.image}/> {this.state.image
           ? cover
           : uploadPanel}
       </Segment>

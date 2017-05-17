@@ -61,22 +61,27 @@ var {dispatch} = this.props
   this.removeListener = firebaseAuth().onAuthStateChanged((user) => {
 
         if (user) {
+          console.log('User is logged in #');
         this.props.login(user)
           this.setState({
             loading: false
           })
           if (!this.state.dataLoaded) {
+            console.log('Data load state #',this.state.dataLoaded);
               this.props.loadData()
             this.setState({
               dataLoded: true
             })
           }
         } else {
+          console.log('User is logged out #');
          this.props.logout()
           this.setState({
             loading: false
           })
           if(this.state.dataLoaded){
+            console.log('Data load state #',this.state.dataLoaded);
+            
             this.props.clearData()
           }
         }

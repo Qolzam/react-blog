@@ -43,7 +43,7 @@ export const dbFileSave = (fileName,fileType) =>
          }
 
 
-    var fileRef = firebaseRef.child(`users/${uid}/files/${fileType}`).push(file)
+    var fileRef = firebaseRef.child(`user-files/${uid}/files/${fileType}`).push(file)
     return fileRef.then(()=>{
       dispatch(uploadFile({
         ...file,
@@ -52,6 +52,26 @@ export const dbFileSave = (fileName,fileType) =>
     })
 
   }
+}
+
+// - Delete a file from db
+export const dbFileDelete = (fileKey,fileType) => {
+  return (dispatch,getState) => {
+
+      // Get current user id
+      var uid = getState().authorize.uid
+
+      // Write the new post's data simultaneously in the posts list and the user's post list.
+        var updates = {};
+        updates[`user-files/${uid}/files/${fileType}/${fileKey}`] = null;
+
+      return firebase.database().ref().update(updates).then((result) => {
+        console.log('file removed');
+      },(error) => {
+        console.log(error);
+      });
+  }
+
 }
 
 

@@ -7,6 +7,35 @@ export const getExtension = (fileName) => {
   return re.exec(fileName)[1];
 }
 
+// Converts image to canvas; returns new canvas element
+export const convertImageToCanvas = (image) => {
+	var canvas = document.createElement("canvas");
+	canvas.width = image.width;
+	canvas.height = image.height;
+	canvas.getContext("2d").drawImage(image, 0, 0);
+
+	return canvas;
+}
+
+// - Delete file from storage
+export const deleteFile = (folderName,fileName,callBackSuccess,callBackError) => {
+
+  // Create a reference to the file to delete
+  var desertRef = storageRef.child(`${folderName}/${filename}`);
+
+  // Delete the file
+  desertRef.delete().then(function() {
+    // File deleted successfully
+    callBackSuccess()
+    console.log('File has been deleted successfully');
+  }).catch(function(error) {
+    // Uh-oh, an error occurred!
+    callBackError(error)
+    console.log(error);
+  });
+
+}
+
 // - Conver data URI to blob
 export const dataURItoBlob = (dataURI) => {
   // convert base64/URLEncoded data component to raw binary data held in a string

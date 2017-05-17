@@ -8,6 +8,7 @@ import * as FileAPI from 'FileAPI'
 
 // - Import actions
 import * as imageGalleryActions from 'imageGalleryActions'
+import * as fileActions from 'fileActions'
 
 // - Create Limg component class
 export class Limg extends Component {
@@ -23,7 +24,8 @@ constructor(props){
 
   // Binding functions to `this`
   this.setImageURL = this.setImageURL.bind(this)
-  this.handleClick = this.handleClick.bind(this)
+  this.handleClickAdd = this.handleClickAdd.bind(this)
+  this.handleClickDelete = this.handleClickDelete.bind(this)
 
 FileAPI.downloadFile('images',this.props.src,this.setImageURL)
 }
@@ -37,11 +39,18 @@ this.setState({
 }
 
 // Handle on image select
-handleClick = () => {
-  this.props.dispatch(imageGalleryActions.imageSelect(this.props.src,this.state.url))
+handleClickAdd = (evt,index) => {
+
+  this.props.select(this.props.src,this.state.url)
   this.props.callBack()
 }
 
+// Handle click to delete an image
+handleClickDelete = (evt,index) => {
+
+  console.log(this.props.images[0].id);
+
+}
 
 // Render DOM
   render() {
@@ -50,7 +59,9 @@ handleClick = () => {
       <li className="imageGallery__image-node" style={{backgroundImage: 'url(' + this.state.url + ')'}}>
           <div className="imageCover">
             <div className="coverContent">
-              <Button circular color='green' onClick={this.handleClick} icon='add'/>
+              <Button circular color='green' onClick={(evt) => {this.handleClickAdd(evt,this.props.id)}} icon='add'/>
+              <p></p>
+              <Button circular color='red' onClick={(evt) => {this.handleClickDelete(evt,this.props.id)}} icon='trash'/>
             </div>
           </div>
       </li>
@@ -58,4 +69,25 @@ handleClick = () => {
   }
 }
 
-export default connect()(Limg)
+// - Map dispatch to props
+const mapDispatchToProps = (dispatch,ownProps) => {
+  return{
+    delete: (id) => {
+      dispach(fileActions.dbFileDelete(id,'images'))
+      
+    },
+    select: (name,URL) => {
+      dispatch(imageGalleryActions.imageSelect(name,URL))
+    }
+  }
+}
+
+// - Map state to props
+const mapStateToProps = (state) => {
+  return{
+    images: state.imageGallery.images
+  }
+}
+
+// - Connect app to the redux store
+export default connect(mapStateToProps,mapDispatchToProps)(Limg)

@@ -54,7 +54,7 @@ export var dbAddPost = (newPost,callBack) => {
          }
 
 
-    var postRef = firebaseRef.child(`users/${uid}/posts`).push(post)
+    var postRef = firebaseRef.child(`user-posts/${uid}/posts`).push(post)
     return postRef.then(()=>{
       dispatch(addPost({
         ...post,
@@ -104,7 +104,7 @@ export const addVideoPost = (post) => {
           }
 
 
-     var postRef = firebaseRef.child(`users/${uid}/posts`).push(post)
+     var postRef = firebaseRef.child(`user-posts/${uid}/posts`).push(post)
      return postRef.then(()=>{
        dispatch(addPost({
          ...post,
@@ -134,7 +134,7 @@ export const addPosts = (posts) => {
    return (dispatch, getState) => {
      var uid = getState().authorize.uid
      if (uid) {
-       var postsRef = firebaseRef.child(`users/${uid}/posts`);
+       var postsRef = firebaseRef.child(`user-posts/${uid}/posts`);
 
        return postsRef.once('value').then((snapshot) => {
          var posts = snapshot.val() || {};

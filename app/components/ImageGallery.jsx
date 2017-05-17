@@ -38,19 +38,13 @@ export class ImageGallery extends Component {
   // Hide component
   close = () => {
     this.props.closeImageGallery()
-    if(this.props.postWritingStatus)
-    {
-      document.body.classList.add('scrolling', 'dimmable', 'dimmed');
-
-    }
-
   }
 
   // Produce a list of image in image gallery
   imageList = () => {
 
     var {images} = this.props
-   return  images.map((image,index) => <Limg key={index} callBack={this.close}  src={image.name}/>)
+   return  images.map((image,index) => <Limg key={index} callBack={this.close} id={index} src={image.name}/>)
 
   }
 

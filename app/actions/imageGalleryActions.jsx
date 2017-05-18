@@ -44,7 +44,7 @@ export const downloadForImageGallery = () => {
     var uid = getState().authorize.uid
     console.log('user id : ', uid);
     if (uid) {
-      var imagesRef = firebaseRef.child(`user-files/${uid}/files/images`);
+      var imagesRef = firebaseRef.child(`userFiles/${uid}/files/images`);
 
       return imagesRef.once('value').then((snapshot) => {
         var images = snapshot.val() || {};
@@ -81,8 +81,7 @@ export const dbImageSave = (imageName) =>
            deleted:false
          }
 
-
-    var imageRef = firebaseRef.child(`user-files/${uid}/files/images`).push(image)
+    var imageRef = firebaseRef.child(`userFiles/${uid}/files/images`).push(image)
     return imageRef.then(()=>{
       dispatch(addImage({
         ...image,
@@ -102,7 +101,7 @@ export const dbDeleteImage = (id) => {
 
       // Write the new data simultaneously in the list
         var updates = {};
-        updates[`user-files/${uid}/files/images/${id}`] = null;
+        updates[`userFiles/${uid}/files/images/${id}`] = null;
 
       return firebaseRef.update(updates).then((result) => {
         dispatch(deleteImage(id))

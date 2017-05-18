@@ -26,6 +26,7 @@ import {PrivateRoute, PublicRoute} from 'AuthRouterAPI'
 import * as authorizeActions from 'authorizeActions'
 import * as imageGalleryActions from 'imageGalleryActions'
 import * as postActions from 'postActions'
+import * as commentActions from 'commentActions'
 
 
 /* ------------------------------------ */
@@ -54,7 +55,7 @@ handleLoading = (status) => {
 }
 
 
-componentDidMount = () => {
+componentWillMount = () => {
 
 var {dispatch} = this.props
 
@@ -81,7 +82,7 @@ var {dispatch} = this.props
           })
           if(this.state.dataLoaded){
             console.log('Data load state #',this.state.dataLoaded);
-            
+
             this.props.clearData()
           }
         }
@@ -89,7 +90,7 @@ var {dispatch} = this.props
 
 }
 componentWillUnmount = () => {
-  this.removeListener()
+
 }
 // Render app DOM component
 
@@ -121,8 +122,10 @@ const mapDispatchToProps = (dispatch,ownProps) => {
   console.log('start');
   return{
     loadData: () => {
+      dispatch(commentActions.dbGetComments())
       dispatch(imageGalleryActions.downloadForImageGallery())
       dispatch(postActions.dbGetPosts())
+
     },
     clearData: () => {
       dispatch(imageGalleryActions.deleteAllData())

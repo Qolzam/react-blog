@@ -16,7 +16,7 @@ import {
   Header,
   Popup
 } from 'semantic-ui-react'
-import Faker from 'faker'
+
 
 
 // - Import app components
@@ -30,8 +30,7 @@ export class Post extends Component {
     super(props)
     this.state = {
       text: this.props.body,
-      readMoreState: false,
-      image: Faker.image.image()
+      readMoreState: false
     }
 
     // Binding functions to this
@@ -43,14 +42,12 @@ export class Post extends Component {
     if(this.readMoreState)
     {
       this.setState({
-        text: Faker.lorem.sentence(),
         readMoreState: false
 
         });
     }
     else{
       this.setState({
-        text: Faker.lorem.paragraphs(),
         readMoreState: true
 
         });
@@ -144,7 +141,7 @@ export class Post extends Component {
           </Menu>
         </Card.Content>
         <Divider fitted/>
-        <CommentGroup className="container basic segment"/>
+        <CommentGroup className="container basic segment" postId={this.props.id}/>
       </Card>
 
     )

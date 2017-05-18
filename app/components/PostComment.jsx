@@ -1,6 +1,7 @@
 // - Import react components
 import React, {Component} from 'react'
 import { Button, Comment, Form } from 'semantic-ui-react'
+import moment from 'moment'
 
 // - Import app components
 
@@ -13,7 +14,7 @@ export default class PostComment extends Component {
         <Comment.Content>
           <Comment.Author>{this.props.author}</Comment.Author>
           <Comment.Metadata>
-            <div>{this.props.date}</div>
+            <div>{moment.unix(this.props.creationDate).format('MMM Do YYYY @ h:mm a')}</div>
           </Comment.Metadata>
           <Comment.Text>{this.props.text}</Comment.Text>
           <Comment.Actions>

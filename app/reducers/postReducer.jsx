@@ -46,7 +46,7 @@ export var postReducer = (state = defaultState, action) => {
       ...state,
       ...action.posts
     ]
-    
+
     default:
     return state;
 

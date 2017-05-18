@@ -50,6 +50,7 @@ export class Blog extends Component {
                     commentCounter = { post.commentCounter}
                     creationDate = {post.creationDate}
                     key={post.id}
+                    id={post.id}
                     image = {post.image}
                     lastEditDate = {post.lastEditDate}
                     ownerDisplayName = {post.ownerDisplayName}

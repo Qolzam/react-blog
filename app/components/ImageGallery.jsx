@@ -44,7 +44,7 @@ export class ImageGallery extends Component {
   imageList = () => {
 
     var {images} = this.props
-   return  images.map((image,index) => <Limg key={index} callBack={this.close} id={index} src={image.name}/>)
+   return  images.map((image,index) => <Limg key={image.id} callBack={this.close} id={image.id} src={image.name}/>)
 
   }
 
@@ -56,6 +56,10 @@ export class ImageGallery extends Component {
   // Handle Image uploader
   handleImageUploader = (evt) => {
     this.props.openImageUploader()
+  }
+
+  componentWillUnmount(){
+    console.log('Image gallery unmount')
   }
 
   // Render DOM

@@ -18,6 +18,7 @@ import uuid from 'uuid'
 import * as imageUploaderActions from 'imageUploaderActions'
 import * as fileActions from 'fileActions'
 import * as globalActions from 'globalActions'
+import * as imageGalleryActions from 'imageGalleryActions'
 
 // - Import app API
 import * as FileAPI from 'FileAPI'
@@ -61,7 +62,17 @@ export class ImageUploader extends Component {
 
   // Close image uploader
   close = () => {
-    this.setState({image: null, previewImage: null});
+    this.setState({
+          image: null,
+          previewImage: null,
+          zoom: 1,
+          rotate: 0,
+          fileTagId: Faker.random.word(),
+          fileName: '',
+          folderName: 'images',
+          fileExtension: '',
+          file:'',
+          isEdited:false});
     this.props.dispatch(imageUploaderActions.openImageUploader(false))
   }
 
@@ -124,7 +135,9 @@ export class ImageUploader extends Component {
     this.props.dispatch(imageUploaderActions.openImageEditor(false))
     this.setState({zoom: 1, rotate: 0})
   }
+  componentWillUnmount(){
 
+  }
 
 
   // Handle upload image to server
@@ -139,7 +152,7 @@ export class ImageUploader extends Component {
       (error) => dispatch(fileActions.uploadError(error)),
       (result) => {
         console.log(result);
-        dispatch(fileActions.dbFileSave(fileName,'images'))
+        dispatch(imageGalleryActions.dbImageSave(fileName,'images'))
         dispatch(globalActions.progressChange(100,false))
         this.close()
       }

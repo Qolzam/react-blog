@@ -54,7 +54,8 @@
     "style-loader": "^0.16.1",
     "url-loader": "^0.5.8",
     "uuid": "^3.0.1",
-    "webpack": "^2.4.1"
+    "webpack": "^2.4.1",
+    "redux-logger": "^3.0.1"
   },
   "devDependencies": {
     "karma": "^1.6.0",
@@ -63,7 +64,6 @@
     "karma-mocha-reporter": "^2.2.3",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^2.0.3",
-    "mocha": "^3.2.0",
-    "redux-logger": "^3.0.1"
+    "mocha": "^3.2.0"
   }
 }

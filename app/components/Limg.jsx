@@ -46,12 +46,13 @@ handleClickAdd = (evt,index) => {
 }
 
 // Handle click to delete an image
-handleClickDelete = (evt,index) => {
-
-  console.log(this.props.images[0].id);
-
+handleClickDelete = (evt,id) => {
+  console.log('Image clicked for delete by id : ',id);
+  this.props.delete(id)
 }
-
+componentWillUnmount(){
+  console.log('Limg unmount')
+}
 // Render DOM
   render() {
 
@@ -73,8 +74,7 @@ handleClickDelete = (evt,index) => {
 const mapDispatchToProps = (dispatch,ownProps) => {
   return{
     delete: (id) => {
-      dispach(fileActions.dbFileDelete(id,'images'))
-      
+      dispatch(imageGalleryActions.dbDeleteImage(id))
     },
     select: (name,URL) => {
       dispatch(imageGalleryActions.imageSelect(name,URL))

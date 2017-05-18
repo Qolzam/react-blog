@@ -1,4 +1,5 @@
-// - Import firebase service
+// - Import react componetns
+import moment from 'moment'
 import {firebaseRef, firebaseAuth} from 'app/firebase/'
 
 // - Import image gallery action types
@@ -65,7 +66,53 @@ export const downloadForImageGallery = () => {
 
 /* _____________ CRUD Database_____________ */
 
-// - Add image in database
+// -  Save image in DB
+export const dbImageSave = (imageName) =>
+{
+  return (dispatch,getState) => {
+
+    var uid = getState().authorize.uid
+    var image = {
+           creationDate: moment().unix(),
+           deletationDate: '',
+           name: imageName,
+           ownerUserId: uid,
+           lastEditDate: '',
+           deleted:false
+         }
+
+
+    var imageRef = firebaseRef.child(`user-files/${uid}/files/images`).push(image)
+    return imageRef.then(()=>{
+      dispatch(addImage({
+        ...image,
+        id: imageRef.key
+      }))
+    })
+
+  }
+}
+
+// - Delete an image from db
+export const dbDeleteImage = (id) => {
+  return (dispatch,getState) => {
+
+      // Get current user id
+      var uid = getState().authorize.uid
+
+      // Write the new data simultaneously in the list
+        var updates = {};
+        updates[`user-files/${uid}/files/images/${id}`] = null;
+
+      return firebaseRef.update(updates).then((result) => {
+        dispatch(deleteImage(id))
+        console.log('image removed: ' , id);
+      },(error) => {
+        console.log(error);
+      });
+  }
+
+}
 
 
 /* _____________ CRUD State _____________ */
@@ -78,4 +125,10 @@ export const addImageList = (images) => {
 // - Add image to image gallery
 export const addImage = (image) => {
   return {type: types.ADD_IMAGE_GALLERY, image}
+}
+
+// - Delete an image
+export const deleteImage = (id) => {
+  return {type: types.DELETE_IMAGE, id}
+
 }

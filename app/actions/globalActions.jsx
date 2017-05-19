@@ -12,11 +12,16 @@ export const progressChange = (percent, visible) => {
 
 }
 
-// - Avatar
-export const setAvatar = (avatar) =>{
+// - Default data loaded status will be true
+export const defaultDataEnable = (status) => {
   return{
-    type: types.AVATAR,
-    avatar
+    type: types.DEFAULT_DATA_ENABLE
   }
+}
 
+// - Default data loaded status will be false
+export const defaultDataDisable = (status) => {
+  return{
+    type: types.DEFAULT_DATA_DISABLE
+  }
 }

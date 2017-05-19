@@ -28,6 +28,7 @@ import * as imageGalleryActions from 'imageGalleryActions'
 import * as postActions from 'postActions'
 import * as commentActions from 'commentActions'
 import * as userActions from 'userActions'
+import * as globalActions from 'globalActions'
 
 
 /* ------------------------------------ */
@@ -68,12 +69,10 @@ var {dispatch} = this.props
           this.setState({
             loading: false
           })
-          if (!this.state.dataLoaded) {
+          if (!this.props.global.defaultLoadDataStatus) {
             console.log('Data load state #',this.state.dataLoaded);
               this.props.loadData()
-            this.setState({
-              dataLoded: true
-            })
+              this.props.defaultDataEnable()
           }
         } else {
           console.log('User is logged out #');
@@ -81,9 +80,9 @@ var {dispatch} = this.props
           this.setState({
             loading: false
           })
-          if(this.state.dataLoaded){
+          if(this.props.global.defaultLoadDataStatus){
             console.log('Data load state #',this.state.dataLoaded);
-
+            this.props.defaultDataDisable()
             this.props.clearData()
           }
         }
@@ -138,8 +137,13 @@ const mapDispatchToProps = (dispatch,ownProps) => {
     },
     logout: () => {
         dispatch(authorizeActions.logout())
+    },
+    defaultDataDisable: () => {
+      dispatch(globalActions.defaultDataDisable())
+    },
+    defaultDataEnable: () => {
+      dispatch(globalActions.defaultDataEnable())
     }
-
 
   }
     console.log('end');

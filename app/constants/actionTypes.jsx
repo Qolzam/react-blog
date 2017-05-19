@@ -56,5 +56,6 @@ export const USER_INFO = 'USER_INFO'
 
 /* global actions */
 export const PROGRESS_CHANGE = 'PROGRESS_CHANGE'
-export const AVATAR = 'AVATAR'
+export const DEFAULT_DATA_DISABLE = 'DEFAULT_DATA_DISABLE'
+export const DEFAULT_DATA_ENABLE = 'DEFAULT_DATA_ENABLE'
 export const LOADING = 'LOADING'

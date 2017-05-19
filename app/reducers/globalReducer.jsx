@@ -6,9 +6,8 @@ import * as types from 'actionTypes'
 var defaultState = {
   percent: '',
   visible: false,
-  avatar: '',
   loadingStatus:true,
-  loadingForce: true
+  defaultLoadDataStatus:false
 }
 
 
@@ -18,19 +17,20 @@ export const globalReducer = (state = defaultState, action) => {
 switch (action.type) {
   case types.PROGRESS_CHANGE:
   return{
+    ...state,
     percent: action.percent,
     visible: action.visible
   }
-  case types.AVATAR:
+  case types.DEFAULT_DATA_DISABLE:
   return{
-    avatar: action.avatar
+    ...state,
+    defaultLoadDataStatus:false
   }
-  case types.LOADING:
+  case types.DEFAULT_DATA_ENABLE:
   return{
-    loadingStatus: action.status,
-    lodingForce: action.force
+    ...state,
+    defaultLoadDataStatus:true
   }
-    break;
   default:
   return state
 }

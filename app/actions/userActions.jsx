@@ -57,11 +57,10 @@ export const dbUpdateUserInfo = (info) => {
             // Get current user id
             var uid = getState().authorize.uid
 
-            // Write the new data simultaneously in the list
-              var updates = {};
-              updates[`users/${uid}/info`] = info;
-
-            return firebaseRef.update(updates).then((result) => {
+            return firebaseRef.child(`users/${uid}/info`).set({
+              ...getState().user,
+              ...info
+            }).then((result) => {
               dispatch(addUserInfo(info))
             },(error) => {
               console.log(error);

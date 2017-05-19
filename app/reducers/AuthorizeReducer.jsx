@@ -5,7 +5,8 @@ import * as types from 'actionTypes'
 // - Default state
 var defaultState = {
   uid: 0,
-  authed: false
+  authed: false,
+  updatePassword: false
 }
 
 
@@ -28,7 +29,11 @@ export var authorizeReducer = (state = defaultState, action) =>{
       return{
         uid: action.uid
       }
-      break;
+    case types.UPDATE_PASSWORD:
+    return{
+      ...state,
+      updatePassword: action.updatePassword
+    }
     default:
       return state
 

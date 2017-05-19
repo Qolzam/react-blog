@@ -44,6 +44,7 @@ export const ADD_USER_INFO = 'ADD_USER_INFO'
 export const LOGIN = 'LOGIN'
 export const LOGOUT = 'LOGOUT'
 export const SIGNUP = 'SIGNUP'
+export const UPDATE_PASSWORD = 'UPDATE_PASSWORD'
 
 /* file actions */
 export const UPLOAD_FILE = 'UPLOAD_FILE'

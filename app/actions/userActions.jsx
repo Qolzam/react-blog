@@ -50,6 +50,26 @@ export const dbGetUserInfo = () => {
   }
 }
 
+// - Updata user information
+export const dbUpdateUserInfo = (info) => {
+    return (dispatch,getState) => {
+
+            // Get current user id
+            var uid = getState().authorize.uid
+
+            // Write the new data simultaneously in the list
+              var updates = {};
+              updates[`users/${uid}/info`] = info;
+
+            return firebaseRef.update(updates).then((result) => {
+              dispatch(addUserInfo(info))
+            },(error) => {
+              console.log(error);
+            });
+    }
+
+}
+
 /* _____________ CRUD State _____________ */
 
 // - Set user avatar

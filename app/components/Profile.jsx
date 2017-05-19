@@ -33,34 +33,68 @@ export class Profile extends Component {
 constructor(props){
   super(props);
   this.state = {
-    imageSelect: {
-      url: this.props.avatar,
-      name: ''
-    }
+
+      url: props.avatar,
+      name: '',
+      contactInput: props.contact,
+      summaryInput: props.summary
+
   }
 
   // Binding funstions to this
   this.handleChooseAvatar = this.handleChooseAvatar.bind(this)
+  this.handleInputChange = this.handleInputChange.bind(this)
+  this.handleOnSubmitForm = this.handleOnSubmitForm.bind(this)
+  this.setSelectAvatar = this.setSelectAvatar.bind(this)
+
 }
+
+  // Set selected avatar
+  setSelectAvatar = (url) => {
+  this.setState({
+        url:url
+      })
+  }
+
+  // Handle save change
+  handleOnSubmitForm = (evt) => {
+    evt.preventDefault()
+    this.props.saveChange({
+      avatar: this.state.url,
+      contact: this.state.contactInput,
+      summary: this.state.summaryInput
+    })
+  }
 
   // Handle open image gallery
   handleChooseAvatar  = () => {
     this.props.openImageGallery()
   }
 
+  // Handle data on input change
+  handleInputChange = (evt) => {
+   const target = evt.target;
+   const value = target.type === 'checkbox' ? target.checked : target.value;
+   const name = target.name;
+   console.log('Name: ',name,' value: ', value);
+   this.setState({
+     [name]: value
+   });
+ }
+
   // Render DOM
   render() {
     return (
       <div id="profile">
-        <Form className='attached medium segment yellow'>
+        <Form className='attached medium segment yellow' onSubmit={this.handleOnSubmitForm}>
           <Divider horizontal>About</Divider>
-          <Form.TextArea label='Summary' placeholder='Tell us a summary about you...'/>
-          <Form.Input label='Contact' placeholder='Your contact'/>
+          <Form.TextArea label='Summary' name="summaryInput" defaultValue={this.state.summaryInput} onChange={this.handleInputChange} placeholder='Tell us a summary about you...'/>
+          <Form.Input label='Contact' name="contactInput" defaultValue={this.state.contactInput} onChange={this.handleInputChange} placeholder='Your contact'/>
           <Divider horizontal>Avater</Divider>
 
           <div style={{textAlign:'center'}}>
           <div className="profile__avatar">
-          <img src={this.props.avatar} style={{width: '100%'}}/>
+          <img src={this.state.url} style={{width: '100%'}}/>
           <div className="avatar-container">
             <Button as='div' onClick={this.handleChooseAvatar}>CHOOSE AVATAR</Button>
           </div>
@@ -71,7 +105,7 @@ constructor(props){
           <Button color='blue'>Save Changes</Button>
         </Form>
         <ImageUp border="20" iconColor="teal"/>
-        <ImageGallery select={this.props.saveAvatar}/>
+        <ImageGallery select={this.setSelectAvatar}/>
       </div>
     )
   }
@@ -80,9 +114,11 @@ constructor(props){
 // - Map dispatch to props
 const mapDispatchToProps = (dispatch,ownProps) => {
   return{
-    saveAvatar: (url) => {dispatch(userActions.dbSetAvatar(url))},
     openImageGallery: () => {
       dispatch(imageGalleryActions.openImageGallery(true))
+    },
+    saveChange: (info) => {
+      dispatch(userActions.dbUpdateUserInfo(info))
     }
   }
 }
@@ -91,7 +127,9 @@ const mapDispatchToProps = (dispatch,ownProps) => {
 const mapStateToProps = (state,ownProps) => {
   return{
     postImageState: state.imageGallery.status,
-    avatar: state.user.avatar
+    avatar: state.user.avatar,
+    summary: state.user.summary,
+    contact: state.user.contact || state.user.email
   }
 }
 

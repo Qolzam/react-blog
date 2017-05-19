@@ -183,7 +183,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       dispatch(imageGalleryActions.openImageGallery(true))
     },
     addPost: (post,callBack) => {
-      console.log(post);
         dispatch(postActions.dbAddImagePost(post, callBack))
     }
   }
@@ -195,8 +194,8 @@ const mapStateToProps = (state) => {
       postWriteStatus: state.postWriting.writeStatus,
       imageGalleryStaus: state.imageGallery.status,
       selectImage: state.imageGallery.selectImage,
-      avatar: state.global.avatar,
-      name: state.user.info.name,
+      avatar: state.user.avatar,
+      name: state.user.fullName,
       selectURL: state.imageGallery.selectURL,
       selectImage: state.imageGallery.selectImage
     }

@@ -3,7 +3,7 @@ import * as types from 'actionTypes'
 
 // - Default state for reducer
 var defaultState = {
-    info: {}
+    avatar:''
 }
 
 // - User reducer
@@ -12,9 +12,18 @@ export var userReducer = (state = defaultState, action ) => {
     case types.USER_INFO:
       return {
         ...state,
-        info: action.info
+        ...action.info
       }
-
+    case types.ADD_USER_AVATAR:
+    return{
+      ...state,
+      avatar:action.url
+    }
+    case types.ADD_USER_INFO:
+    return{
+      ...state,
+      ...action.info
+    }
 
     default:
       return state;

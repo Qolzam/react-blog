@@ -57,6 +57,6 @@ export class PopularPosts extends Component {
 
 export default connect((state)=>{
   return{
-    name: state.user.info.name
+    name: state.user.fullName
   }
 })(PopularPosts)

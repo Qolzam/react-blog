@@ -19,7 +19,7 @@ export const dbAddComment = (newComment,callBack) => {
             text: newComment.text,
             creationDate: moment().unix(),
             userDisplayName: getState().user.info.name,
-            userAvatar: getState().global.avatar,
+            userAvatar: getState().user.avatar,
             userId: uid
          }
 

@@ -44,7 +44,7 @@ export class ImageGallery extends Component {
   imageList = () => {
 
     var {images} = this.props
-   return  images.map((image,index) => <Limg key={image.id} callBack={this.close} id={image.id} src={image.name}/>)
+   return  images.map((image,index) => <Limg key={image.id} select={this.props.select} callBack={this.close} id={image.id} src={image.name}/>)
 
   }
 

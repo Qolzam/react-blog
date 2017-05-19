@@ -27,6 +27,7 @@ import * as authorizeActions from 'authorizeActions'
 import * as imageGalleryActions from 'imageGalleryActions'
 import * as postActions from 'postActions'
 import * as commentActions from 'commentActions'
+import * as userActions from 'userActions'
 
 
 /* ------------------------------------ */
@@ -125,6 +126,7 @@ const mapDispatchToProps = (dispatch,ownProps) => {
       dispatch(commentActions.dbGetComments())
       dispatch(imageGalleryActions.downloadForImageGallery())
       dispatch(postActions.dbGetPosts())
+      dispatch(userActions.dbGetUserInfo())
 
     },
     clearData: () => {

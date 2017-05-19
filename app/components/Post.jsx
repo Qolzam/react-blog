@@ -150,6 +150,6 @@ export class Post extends Component {
 
 export default connect((state) => {
   return{
-    avatar: state.global.avatar
+    avatar: state.user.avatar
   }
 })(Post)

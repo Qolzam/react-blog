@@ -41,7 +41,8 @@ this.setState({
 // Handle on image select
 handleClickAdd = (evt,index) => {
 
-  this.props.select(this.props.src,this.state.url)
+this.props.select(this.state.url)
+  this.props.selectForPost(this.props.src,this.state.url)
   this.props.callBack()
 }
 
@@ -76,7 +77,7 @@ const mapDispatchToProps = (dispatch,ownProps) => {
     delete: (id) => {
       dispatch(imageGalleryActions.dbDeleteImage(id))
     },
-    select: (name,URL) => {
+    selectForPost: (name,URL) => {
       dispatch(imageGalleryActions.imageSelect(name,URL))
     }
   }

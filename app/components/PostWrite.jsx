@@ -79,6 +79,6 @@ export default connect((state) => {
   return {
     postImageState: state.imageGallery.status,
     postWriteState: state.postWriting.writeStatus,
-    avatar: state.global.avatar
+    avatar: state.user.avatar
   }
 })(PostWrite)

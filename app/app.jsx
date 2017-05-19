@@ -15,8 +15,6 @@ import * as globalActions from 'globalActions'
 import * as userActions from 'userActions'
 
 // Set default data
-store.dispatch(globalActions.setAvatar(Faker.image.avatar()))
-store.dispatch(userActions.userInfo({name: Faker.name.findName()}))
 
 
 store.subscribe(() => {

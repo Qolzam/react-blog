@@ -36,6 +36,8 @@ export const ADD_COMMENT_VOTE = 'ADD_COMMENT_VOTE'
 
 /* users action */
 export const ADD_USERS = 'ADD_USERS'
+export const ADD_USER_AVATAR = 'ADD_USER_AVATAR'
+export const ADD_USER_INFO = 'ADD_USER_INFO'
 
 
 /* authorize actions */

@@ -22,6 +22,7 @@ import ImageGallery from 'ImageGallery'
 
 // - Import actions
 import * as imageGalleryActions from 'imageGalleryActions'
+import * as userActions from 'userActions'
 
 
 
@@ -32,7 +33,10 @@ export class Profile extends Component {
 constructor(props){
   super(props);
   this.state = {
-
+    imageSelect: {
+      url: this.props.avatar,
+      name: ''
+    }
   }
 
   // Binding funstions to this
@@ -41,7 +45,7 @@ constructor(props){
 
   // Handle open image gallery
   handleChooseAvatar  = () => {
-    this.props.dispatch(imageGalleryActions.openImageGallery(true))
+    this.props.openImageGallery()
   }
 
   // Render DOM
@@ -67,15 +71,29 @@ constructor(props){
           <Button color='blue'>Save Changes</Button>
         </Form>
         <ImageUp border="20" iconColor="teal"/>
-        <ImageGallery/>
+        <ImageGallery select={this.props.saveAvatar}/>
       </div>
     )
   }
 }
-export default withRouter(connect(
-  (state) => {
-    return{
-      postImageState: state.imageGallery.status,
-      avatar: state.global.avatar
+
+// - Map dispatch to props
+const mapDispatchToProps = (dispatch,ownProps) => {
+  return{
+    saveAvatar: (url) => {dispatch(userActions.dbSetAvatar(url))},
+    openImageGallery: () => {
+      dispatch(imageGalleryActions.openImageGallery(true))
     }
-})(Profile))
+  }
+}
+
+// - Map state to props
+const mapStateToProps = (state,ownProps) => {
+  return{
+    postImageState: state.imageGallery.status,
+    avatar: state.user.avatar
+  }
+}
+
+// - Connect commponent to redux store
+export default withRouter(connect(mapStateToProps,mapDispatchToProps)(Profile))

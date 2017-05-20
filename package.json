@@ -8,7 +8,6 @@
     "build": "webpack",
     "start": "npm run build && node server.js"
   },
-
   "author": "Amir Movahedi",
   "license": "MIT",
   "dependencies": {

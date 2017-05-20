@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {Route, Switch, NavLink, withRouter} from 'react-router-dom'
 import {firebaseAuth, firebaseRef} from 'app/firebase/'
 import {push} from 'react-router-redux'
-import { Progress} from 'semantic-ui-react'
+import { Progress, Message} from 'semantic-ui-react'
 
 
 // - Import components
@@ -46,9 +46,19 @@ constructor(props){
     authed:false,
     dataLoaded:false
   };
+
+  // Binding functions to `this`
   this.handleLoading = this.handleLoading.bind(this)
+  this.handleMessage = this.handleMessage.bind(this)
 
 }
+
+// Handle click on message
+handleMessage = (evt) => {
+  this.props.closeMessage()
+}
+
+// Handle loading
 handleLoading = (status) => {
   this.setState({
     loading: status,
@@ -101,6 +111,11 @@ componentWillUnmount = () => {
         <div className='master__progress' style={{
             display: (this.props.global.visible ? 'block' : 'none' )}}>
  <Progress percent={this.props.global.percent} color='teal' size='tiny' active />
+
+ </div>
+ <div className='master__message' style={{
+     display: (this.props.global.messageHidden ? 'none' : 'block')}}>
+   <Message size='mini' color={this.props.global.messageColor || 'teal'} onClick={this.handleMessage} className="master__message" compact>{this.props.global.message}</Message>
  </div>
     <MasterLoading activeLoading={this.state.loading} handleLoading={this.handleLoading}/>
      <BlogHeader/>
@@ -129,8 +144,8 @@ const mapDispatchToProps = (dispatch,ownProps) => {
 
     },
     clearData: () => {
-      dispatch(imageGalleryActions.deleteAllData())
-      dispatch(postActions.deleteAllData())
+      dispatch(imageGalleryActions.clearAllData())
+      dispatch(postActions.clearAllData())
     },
     login: (user) => {
         dispatch(authorizeActions.login(user.uid))
@@ -143,6 +158,9 @@ const mapDispatchToProps = (dispatch,ownProps) => {
     },
     defaultDataEnable: () => {
       dispatch(globalActions.defaultDataEnable())
+    },
+    closeMessage: () => {
+      dispatch(globalActions.hideMessage())
     }
 
   }

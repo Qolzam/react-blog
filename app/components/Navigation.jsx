@@ -36,7 +36,7 @@ export class Navigation extends Component {
  // Handle logout process
  handleLogout = () => {
   var {dispatch} = this.props
-  dispatch(authorizeActions.dblogout(() => dispatch(push('/'))))
+  dispatch(authorizeActions.dbLogout())
 
  }
 

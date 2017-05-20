@@ -39,10 +39,7 @@ export class Login extends Component {
     var {dispatch} = this.props
     evt.preventDefault()
 
-    dispatch(authorizeActions.dbLogin(this.username.value,this.password.value, () => {
-      dispatch(push('/'))
-
-    }))
+    dispatch(authorizeActions.dbLogin(this.username.value,this.password.value))
 
   }
   // Render DOM

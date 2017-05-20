@@ -28,7 +28,15 @@ export class Account extends Component {
     this.state = {
       fullNameInput: props.fullName,
       emailInput: props.email,
-      passwordInput:''
+      confirm:'',
+      passwordInput:'',
+      passwordError: true,
+      passwordErrorMessage:'',
+      infoError: true,
+      infoErrorMessage:'',
+      fullNameError:false,
+      emailError:false
+
     }
 
     // Binding functions to `this`
@@ -41,11 +49,41 @@ export class Account extends Component {
     evt.preventDefault()
     switch (evt.target.name) {
       case "info":
+      if (this.state.fullNameInput === '') {
+        this.setState({
+          fullNameError: true,
+          infoError: false,
+          infoErrorMessage: 'Fields are required'
+        })
+        break
+      }
+      if (this.state.emailInput === '') {
+        this.setState({
+          fullNameError: true,
+          infoError: false,
+          infoErrorMessage: 'Fields are required'
+        })
+        break
+      }
         this.props.saveChange({
           fullName: this.state.fullNameInput,
           email: this.state.emailInput
         })
       case "password":
+      if (this.state.confirm === '' && this.state.passwordInput === '') {
+          this.setState({
+            passwordErrorMessage: 'Fields are required.',
+            passwordError: false
+          })
+          break
+      }
+      else if(this.state.confirm !== this.state.passwordInput){
+        this.setState({
+          passwordErrorMessage: 'Password and confirm are not equal.',
+          passwordError: false
+        })
+        break
+      }
       this.props.changePassword(this.state.passwordInput)
       default:
 
@@ -57,10 +95,30 @@ export class Account extends Component {
    const target = evt.target;
    const value = target.type === 'checkbox' ? target.checked : target.value;
    const name = target.name;
-   console.log('Name: ',name,' value: ', value);
+
    this.setState({
      [name]: value
    });
+
+   switch (name) {
+     case 'passwordInput':
+     case 'confirm':
+     this.setState({
+       passwordError: true,
+       passwordErrorMessage:''
+     })
+       break;
+       case 'fullNameInput':
+       case 'emailInput':
+       this.setState({
+         infoError: true,
+         infoErrorMessage:'',
+         fullNameError:false,
+         emailError:false
+       })
+     default:
+
+   }
  }
 
   // Render DOM for component
@@ -69,16 +127,25 @@ export class Account extends Component {
       <div id="account">
         <Divider horizontal> User information</Divider>
         <Form onSubmit={this.handleOnSubmitForm} name="info" className='attached medium segment yellow'>
-
-          <Form.Input label='Full Name' name="fullNameInput" defaultValue={this.state.fullNameInput} onChange={this.handleInputChange} placeholder='Full Name' type='text'/>
-          <Form.Input label='Email' name="emailInput" defaultValue={this.state.emailInput} onChange={this.handleInputChange} placeholder='Email' type='email'/>
+          <Message
+            hidden={this.state.infoError}
+            content={this.state.infoErrorMessage}
+            color="red"
+          />
+        <Form.Input label='Full Name' name="fullNameInput" error={this.state.fullNameError} defaultValue={this.state.fullNameInput} onChange={this.handleInputChange} placeholder='Full Name' type='text'/>
+          <Form.Input label='Email' name="emailInput" error={this.state.emailError} defaultValue={this.state.emailInput} onChange={this.handleInputChange} placeholder='Email' type='email'/>
           <Button color='blue'>Save Changes</Button>
 
         </Form>
           <Divider horizontal> Change Password</Divider>
             <Form onSubmit={this.handleOnSubmitForm}  name="password" className='attached medium segment yellow'>
-              <Form.Input label='Password' name="passwordInput" onChange={this.handleInputChange} type='password'/>
-              <Form.Input label='Confirm Password' name="confirm" onChange={this.handleInputChange} type='password'/>
+              <Message
+                hidden={this.state.passwordError}
+                content={this.state.passwordErrorMessage}
+                color="red"
+              />
+            <Form.Input label='Password' name="passwordInput" onChange={this.handleInputChange} error={!this.state.passwordError} type='password'/>
+              <Form.Input label='Confirm Password' name="confirm" onChange={this.handleInputChange} error={!this.state.passwordError} type='password'/>
               <Button color='blue'>Change Password</Button>
 
             </Form>

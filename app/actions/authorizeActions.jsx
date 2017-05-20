@@ -1,35 +1,40 @@
-// - Import external components
+// - Import react components
 import {firebaseRef, firebaseAuth} from 'app/firebase/'
 import moment from 'moment'
+import {push} from 'react-router-redux'
 
 // - Import action types
 import * as types from 'actionTypes'
 
+// - Import actions
+import * as globalActions from 'globalActions'
+
 /* _____________ CRUD DB _____________ */
 
 // - Log in user in server
-export var dbLogin = (email, password, callBack) => {
+export var dbLogin = (email, password) => {
   return (dispatch, getState) => {
-    console.log('email: ', email, 'password: ', password);
+    dispatch(globalActions.showNotificationRequest())
+
     return firebaseAuth().signInWithEmailAndPassword(email, password).then((result) => {
-      console.log('Auth worked!', result)
+    dispatch(globalActions.showNotificationSuccess())
       dispatch(login(result.uid))
-      callBack()
+      dispatch(push('/'))
     }, (error) => {
-      console.log(error)
+      dispatch(globalActions.showNotificationError(error.message))
     })
   }
 }
 
 // - Log out user in server
-export var dbLogout = (callBack) => {
+export var dbLogout = () => {
   return (dispatch, getState) => {
     return firebaseAuth().signOut().then((result) => {
-
       dispatch(logout())
-      callBack()
+      dispatch(push('/login'))
+
     }, (error) => {
-      console.log(error)
+      dispatch(globalActions.showNotificationError(error.message))
 
     })
   }
@@ -39,16 +44,16 @@ export var dbLogout = (callBack) => {
 // - Register user in database
 export var dbSignup = (user) => {
   return (dispatch, getState) => {
-
+    dispatch(globalActions.showNotificationRequest())
     return firebaseAuth().createUserWithEmailAndPassword(user.email, user.password).then((signupResult) => {
       firebaseRef.child(`users/${signupResult.uid}/info`).set({
         ...user
       }).then((result) => {
-        console.log(result)
+
+        dispatch(globalActions.showNotificationSuccess())
 
       }, (error) => {
-        console.log(error)
-
+        dispatch(globalActions.showNotificationError(error.message))
       })
 
       dispatch(signup({
@@ -65,15 +70,24 @@ export var dbSignup = (user) => {
 // - Change user's password
 export const dbUpdatePassword = (newPassword) => {
   return (dispatch, getState) => {
+    dispatch(globalActions.showNotificationRequest())
     firebaseAuth().onAuthStateChanged((user) => {
       if (user) {
 
         user.updatePassword(newPassword).then(() => {
           // Update successful.
+          dispatch(globalActions.showNotificationSuccess())
           dispatch(updatePassword())
         }, (error) => {
           // An error happened.
-          console.log(error)
+          switch (error.code) {
+            case 'auth/requires-recent-login':
+                dispatch(globalActions.showNotificationError(error.message))
+                dispatch(authorizeActions.dbLogout())
+              break;
+            default:
+
+          }
         })
       }
 

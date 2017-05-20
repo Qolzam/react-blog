@@ -87,7 +87,8 @@ export class PostWritePage extends Component {
     var {dispatch} = this.props
     var imageURL = this.props.selectURL
     var tags = PostAPI.getContentTags(this.state.body)
-    if (imageURL) {
+
+    if (imageURL === '') {
     this.props.addPost({
         body : this.state.body,
         tags : tags,

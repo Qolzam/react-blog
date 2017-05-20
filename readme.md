@@ -6,7 +6,47 @@ with [react-redux](https://github.com/reactjs/react-redux) for managing states a
 > Now I'm developing this project with `semantic-ui-react`. It hasn't released the final version so
 there are some bugs that I have to face with.
 
-> I'm trying to keep packages updated
+# In my todo list I have :
+  * Documentation
+  * Testing
+  * Add some features and solving bugs
+    * Set vote on posts
+    * Reply on comments and mention
+    * Show hash tag as a link in posts
+    * Show notification for all requests
+    * Show validation in login
+    * Show popular posts
+    * Show popular tags
+    * Show number of comments on posts
+    * Post privacy
+    * Aspect fit image of posts and summary
+    * Read more on posts
+    * Delete comment
+    * Cancel writing comment
+    * Search in posts
+    * Show loading and progress bar until until all posts and data are loaded
+    * Edit web site title in admin
+    * Admin authorization
+    * Set default avatar for users
+    * Validation for profile component
+    * Manage users component
+    * Bug in admin page when I refresh browser in admin page address it will push to login page when user is logged in
+    * Improve user interface
+    * ...
+
+# What I've finished ( need debugging, testing, documentation)
+    * User can login
+    * User can register with validation for inputs
+    * Admin page has authorization to redirect user if user it's not authorized
+    * Create post with hash tag(#) and image
+    * Image gallery with upload, delete and edit features
+    * Create comment on posts
+    * User profile page (:feature: change user summary, contact and avatar)
+    * User account page with validation (:feature: change user full name, email, password )
+    * Show comments on posts
+    * Show date of comment's and posts
+
+
 
 
 # Prerequisites

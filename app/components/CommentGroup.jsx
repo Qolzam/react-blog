@@ -28,6 +28,9 @@ export class CommentGroup extends Component {
 // Get comment's in DOM
   commentList = () => {
     var comments = this.props.comments
+    if (comments) {
+
+
     var parsedComments = [];
     Object.keys(comments).forEach((commentId) => {
       parsedComments.push({
@@ -44,7 +47,7 @@ export class CommentGroup extends Component {
 
     })
 
-
+    }
   }
 
   onCommentChange(evt, data) {
@@ -64,7 +67,7 @@ export class CommentGroup extends Component {
 // Render DOM
   render() {
     return (
-      <Comment.Group size="mini" minimal className={this.props.className}>
+      <Comment.Group size="mini" minimal style={{marginTop: '0'}} className={this.props.className}>
 
         {this.commentList()}
 

@@ -65,6 +65,11 @@
     "karma-mocha-reporter": "^2.2.3",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^2.0.3",
-    "mocha": "^3.2.0"
+    "mocha": "^3.2.0",
+    "redux-logger": "^3.0.1"
+  },
+  "engines": {
+    "node": "7.3.0",
+    "npm": "3.10.10"
   }
 }

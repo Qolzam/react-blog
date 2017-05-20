@@ -2,6 +2,22 @@
 The React Social Blog `(RSB)` Application is a diary app blog based on [Semantic ui React](https://react.semantic-ui.com) for UI, [Redux](http://redux.js.org/)
 with [react-redux](https://github.com/reactjs/react-redux) for managing states and [React](https://facebook.github.io/react/docs/hello-world.html) for managing DOM .It's an open source project as a portfolio.
 
+# Features
+  * [React](https://facebook.github.io/react/docs/hello-world.html) for Managing DOM
+  * [Redux](http://redux.js.org/) for managing states
+  * [Semantic ui React](https://react.semantic-ui.com) for user interface
+  * [react-redux](https://github.com/reactjs/react-redux) connection between redux and react components
+  * [Firebase](https://firebase.google.com/) for Data base and storage
+  * [redux-thunk](https://github.com/gaearon/redux-thunk) for Async actions
+  * [Express](https://expressjs.com/) ast, unopinionated, minimalist web framework for Node.js
+  * [React Router V4](https://github.com/ReactTraining/react-router) for routing website location
+  * [Sass](http://sass-lang.com/) CSS with superpowers. Sass boasts more features and abilities than any other CSS extension language out there.
+  * [Webpack](https://webpack.js.org/) for bundling code
+  * [Image editor](https://github.com/mosch/react-avatar-editor) for editing images
+  * Notification
+  * Authorization
+  
+
 ##ON DEVELOPING
 > Now I'm developing this project with `semantic-ui-react`. It hasn't released the final version so
 there are some bugs that I have to face with.
@@ -39,12 +55,12 @@ there are some bugs that I have to face with.
     * User can register with validation for inputs
     * Admin page has authorization to redirect user if user it's not authorized
     * Create post with hash tag(#) and image
-    * Image gallery with upload, delete and edit features
+    * Image gallery with upload, delete and edit images
     * Create comment on posts
     * User profile page (:feature: change user summary, contact and avatar)
     * User account page with validation (:feature: change user full name, email, password )
     * Show comments on posts
-    * Show date of comment's and posts
+    * Show date of comments and posts
 
 
 

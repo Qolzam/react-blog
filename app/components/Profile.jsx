@@ -60,9 +60,9 @@ constructor(props){
   handleOnSubmitForm = (evt) => {
     evt.preventDefault()
     this.props.saveChange({
-      avatar: this.state.url,
+      avatar: this.state.url || ' ',
       contact: this.state.contactInput,
-      summary: this.state.summaryInput
+      summary: this.state.summaryInput || ' '
     })
   }
 

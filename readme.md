@@ -16,7 +16,7 @@ with [react-redux](https://github.com/reactjs/react-redux) for managing states a
   * [Image editor](https://github.com/mosch/react-avatar-editor) for editing images
   * Notification
   * Authorization
-  
+
 
 ##ON DEVELOPING
 > Now I'm developing this project with `semantic-ui-react`. It hasn't released the final version so
@@ -38,6 +38,7 @@ there are some bugs that I have to face with.
     * Aspect fit image of posts and summary
     * Read more on posts
     * Delete comment
+    * Delete and edit post
     * Cancel writing comment
     * Search in posts
     * Show loading and progress bar until until all posts and data are loaded

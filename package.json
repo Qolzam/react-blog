@@ -8,10 +8,6 @@
     "build": "webpack",
     "start": "npm run build && node server.js"
   },
-  "engines": {
-    "node": "7.3.0",
-    "npm": "3.10.10"
-  },
   "author": "Amir Movahedi",
   "license": "MIT",
   "dependencies": {
@@ -58,6 +54,7 @@
     "uuid": "^3.0.1",
     "webpack": "^2.4.1"
   },
+
   "devDependencies": {
     "karma": "^1.6.0",
     "karma-chrome-launcher": "^2.0.0",
@@ -68,6 +65,7 @@
     "mocha": "^3.2.0",
     "redux-logger": "^3.0.1"
   },
+
   "engines": {
     "node": "7.3.0",
     "npm": "3.10.10"

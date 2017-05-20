@@ -60,6 +60,7 @@ export var dbSignup = (user) => {
         uid: signupResult.uid,
         ...user
       }))
+        dispatch(push('/'))
     }, (error) => {
       console.log(error)
     })

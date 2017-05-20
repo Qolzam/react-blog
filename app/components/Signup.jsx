@@ -17,7 +17,7 @@ import {NavLink, withRouter} from 'react-router-dom'
 
 // - Import actions
 import *  as authorizeActions from 'authorizeActions'
-
+import * as globalActions from 'globalActions'
 
 
 
@@ -30,26 +30,120 @@ export class Signup extends Component {
   constructor(props){
     super(props);
 
-    this.handleFullName = i => {this.fullName = i}
-    this.handleEmail = i => {this.email = i}
-    this.handlePassword = i => {this.password = i}
-    this.handleConfirm = i => {this.confirm = i}
+    this.state = {
+      fullNameInput: '',
+      fullNameInputError: false,
+      emailInput: '',
+      emailInputError: false,
+      passwordInput: '',
+      passwordInputError: false,
+      confirmInput: '',
+      confirmInputError: false,
+      checkInput: false,
+      checkInputError: false
 
-
-
+    }
     // Binding function to `this`
     this.handleForm = this.handleForm.bind(this)
 
   }
 
+  // Handle data on input change
+  handleInputChange = (evt) => {
+   const target = evt.target;
+   const value = target.type === 'checkbox' ? target.checked : target.value;
+   const name = target.name;
+   console.log('Name: ',name,' value: ', value);
+   this.setState({
+     [name]: value
+   });
+
+
+   switch (name) {
+     case 'fullNameInput':
+        this.setState({
+          fullNameInputError: false,
+        })
+      case 'emailInput':
+       this.setState({
+         emailInputError: false
+       })
+     case 'passwordInput':
+      this.setState({
+        confirmInputError: false,
+        passwordInputError: false
+      })
+    case 'confirmInput':
+     this.setState({
+       confirmInputError: false,
+       passwordInputError: false
+     })
+     case 'checkInput':
+      this.setState({
+        checkInputError: false
+      })
+       break;
+     default:
+
+   }
+ }
+
   // Handle register form
   handleForm = (evt) => {
     evt.preventDefault();
-    this.props.dispatch(authorizeActions.dbSignup({email: this.email.value,
-       password: this.password.value,
-       fullName: this.fullName.value
-     }))
 
+     var error= false
+     if (this.state.fullNameInput === '') {
+       this.setState({
+         fullNameInputError: true
+       })
+       error = true
+     }
+     if (this.state.emailInput === '') {
+       this.setState({
+         emailInputError: true
+       })
+       error = true
+     }
+     if (this.state.passwordInput === '') {
+       this.setState({
+         passwordInputError: true
+       })
+       error = true
+     }
+     if (this.state.confirmInput === '') {
+       this.setState({
+         confirmInputError: true
+       })
+       error = true
+     }
+
+     if (error) {
+       this.props.showError("Fields are required")
+     }
+     else if(this.state.confirmInput !== this.state.passwordInput){
+       this.setState({
+         passwordInputError: true,
+         confirmInputError: true
+       })
+       this.props.showError("Password and confirm are not equal")
+       error = true
+     }
+     else if (this.state.checkInput === false) {
+       this.setState({
+         checkInputError: true
+       })
+       this.props.showError("You should agree our rules :)")
+       error = true
+
+     }
+     if (!error) {
+       this.props.register({
+          email: this.state.emailInput,
+          password: this.state.passwordInput,
+          fullName: this.state.fullNameInput
+        })
+     }
   }
 
   // Render DOM
@@ -63,16 +157,21 @@ export class Signup extends Component {
           <Grid.Column computer={6} tablet={10} mobile={16}>
             <Form className='attached medium segment yellow' onSubmit={this.handleForm}>
 
-              <input ref={this.handleFullName} className="fluid" placeholder='Full Name' type='text'/>
+              <Form.Input name="fullNameInput" onChange={this.handleInputChange} error={this.state.fullNameInputError} placeholder='Full Name' type='text'/>
               <Divider hidden/>
-              <input ref={this.handleEmail} className="fluid" placeholder='Email' type='email'/>
+              <Form.Input name="emailInput" onChange={this.handleInputChange} placeholder='Email' error={this.state.emailInputError} type='email'/>
               <Divider hidden/>
-              <input ref={this.handlePassword} className="fluid" placeholder='Password' type='password'/>
+              <Form.Input name="passwordInput" onChange={this.handleInputChange} placeholder='Password' error={this.state.passwordInputError} type='password'/>
               <Divider hidden/>
-              <input ref={this.handleConfirm} className="fluid" placeholder='Confirm Password' type='password'/>
+              <Form.Input name="confirmInput" onChange={this.handleInputChange} placeholder='Confirm Password' error={this.state.confirmInputError} type='password'/>
               <Divider hidden/>
-              <Checkbox ref={this.handleCheck} label='I agree to the terms and conditions'/>
-              <Divider/>
+                <div className="field">
+                  <div className="ui checkbox">
+                    <input type="checkbox" name="checkInput" onChange={this.handleInputChange} value="I agree to the terms and conditions"/>
+                    <label>I agree to the terms and conditions</label>
+                  </div>
+                </div>
+            <Divider/>
               <Button color='blue' >Create</Button>
 
             </Form>
@@ -88,4 +187,25 @@ export class Signup extends Component {
   }
 }
 
-export default withRouter(connect()(Signup))
+
+// - Map dispatch to props
+const mapDispatchToProps = (dispatch,ownProps) => {
+  return {
+    showError: (message) => {
+      dispatch(globalActions.showNotificationError(message))
+    },
+    register: (data) => {
+      dispatch(authorizeActions.dbSignup(data))
+    }
+  }
+}
+
+// - Map state to props
+const mapStateToProps = (state,ownProps) => {
+  return{
+
+  }
+}
+
+// - Connect component to redux store
+export default withRouter(connect(mapStateToProps,mapDispatchToProps)(Signup))

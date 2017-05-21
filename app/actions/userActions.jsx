@@ -86,3 +86,9 @@ export const addUserInfo = (info) => {
     info
   }
 }
+
+export const clearAllData = () => {
+  return {
+    type: types.CLEAR_ALL_DATA_USER
+  }
+}

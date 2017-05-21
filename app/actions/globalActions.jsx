@@ -1,6 +1,10 @@
 // - Import image gallery action types
 import * as types from 'actionTypes'
 
+// - Import actions
+import * as postActions from 'postActions'
+import * as commentActions from 'commentActions'
+import * as userActions from 'userActions'
 
 // - Progress change
 export const progressChange = (percent, visible) => {
@@ -100,7 +104,6 @@ export const showRequestSuccessMessage = () => {
   return{
     type: types.SHOW_REQUEST_SUCCESS_MESSAGE_GLOBAL
   }
-
 }
 
 // - Hide global message
@@ -109,4 +112,19 @@ export const hideMessage = () => {
     type: types.HIDE_MESSAGE_GLOBAL
   }
 
+}
+
+// - Load data for guest
+export const loadDataGuest = () => {
+  return (dispatch,getState) => {
+  var userString = "{\"avatar\":\"http://www.freeimageslive.com/galleries/nature/abstract/preview/frostyleaves00406.jpg\",\"contact\":\"amir.gholzam@live.com\",\"email\":\"amir.gholzam@live.com\",\"fullName\":\"React Social Blog\",\"password\":\"123qwe\",\"summary\":\" The React Social Blog (RSB) Application is a diary app blog\"}"
+  var postString = '[{"id":"-KkauHBOZXlALsHIrNsvsq","body":"The React Social Blog (RSB) Application is a diary app blog based on Semantic ui React for UI, Redux with react-redux for managing states and React for managing DOM .It is an open source project as a portfolio.\\n\\nI will be really grateful to receive any issue: \\nhttps://github.com/Qolzam/react-blog/issues\\n\\n \\n","commentCounter":0,"creationDate":1495301432,"deletationDate":"","deleted":false,"image":"http://www.freeimageslive.com/galleries/nature/abstract/preview/frosty_grass.jpg","lastEditDate":"","ownerAvatar":"http://www.freeimageslive.com/galleries/nature/abstract/preview/frostyleaves00406.jpg","ownerDisplayName":"React Social Blog","ownerUserId":"5flWuB1RieZR7GIAwHYMPYaI5o33","postTypeId":1,"score":0,"video":"","viewCount":0},{"id":"-KkauHBOZXlALsHIrNIq","body":"It is a demo website","commentCounter":0,"creationDate":1495301432,"deletationDate":"","deleted":false,"image":"http://www.freeimageslive.com/galleries/nature/environment/pics/eaten%20_flower0905.jpg","lastEditDate":"","ownerAvatar":"http://www.freeimageslive.com/galleries/nature/abstract/preview/frostyleaves00406.jpg","ownerDisplayName":"React Social Blog","ownerUserId":"5flWuB1RieZR7GIAwHYMPYaI5o33","postTypeId":1,"score":0,"video":"","viewCount":0}]'
+  var postCommentString = "{\"postComments\":{\"-KkauHBOZXlALsHIrNIq\":{\"-KkaxkH1WmfcQaiNHK3R\":{\"creationDate\":1495302341,\"postId\":\"-KkauHBOZXlALsHIrNIq\",\"score\":0,\"text\":\"On developing :)\",\"userAvatar\":\"http://www.freeimageslive.com/galleries/nature/abstract/preview/frostyleaves00406.jpg\",\"userDisplayName\":\"React Social Blog\",\"userId\":\"5flWuB1RieZR7GIAwHYMPYaI5o33\"}}}}"
+  var user = JSON.parse(userString)
+  dispatch(userActions.addUserInfo(user))
+  var post = JSON.parse(postString)
+  dispatch(postActions.addPosts(post))
+  var postComment = JSON.parse(postCommentString)
+  dispatch(commentActions.addCommentList(postComment.postComments))
+  }
 }

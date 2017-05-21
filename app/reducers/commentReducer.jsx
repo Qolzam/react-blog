@@ -36,6 +36,8 @@ export var commentReducer = (state = defaultState, action ) =>{
         ...action.postComments
       }
     }
+    case types.CLEAR_ALL_DATA_COMMENT:
+    return defaultState
 
       break;
     default:

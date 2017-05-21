@@ -3,7 +3,12 @@ import * as types from 'actionTypes'
 
 // - Default state for reducer
 var defaultState = {
-    avatar:''
+    avatar:'',
+    summary: '',
+    fullName: '',
+    contact: '',
+    email: ''
+
 }
 
 // - User reducer
@@ -24,6 +29,8 @@ export var userReducer = (state = defaultState, action ) => {
       ...state,
       ...action.info
     }
+    case types.CLEAR_ALL_DATA_USER:
+    return defaultState
 
     default:
       return state;

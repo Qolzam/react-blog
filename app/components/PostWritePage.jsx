@@ -6,8 +6,9 @@ import {withRouter} from 'react-router-dom'
 import Faker from 'faker'
 
 // - Import app components
-import ImageGallery from 'ImageGallery'
 import Fimg from 'Fimg'
+import ImageGallery from 'ImageGallery'
+import ImageUploader from 'ImageUploader'
 
 // - Import actions
 import * as imageGalleryActions from 'imageGalleryActions'
@@ -30,18 +31,30 @@ export class PostWritePage extends Component {
     this.state = {
       videoState:false,
       body:'',
+      image: ''
 
 
     };
 
     // Binding function to `this`
-    this.close = this.close.bind(this);
-    this.open = this.open.bind(this);
-    this.handleImage = this.handleImage.bind(this);
-    this.handleVideo = this.handleVideo.bind(this);
+    this.close = this.close.bind(this)
+    this.open = this.open.bind(this)
+    this.handleImage = this.handleImage.bind(this)
+    this.handleVideo = this.handleVideo.bind(this)
     this.handleInputChange = this.handleInputChange.bind(this)
-    this.handleForm = this.handleForm.bind(this);
+    this.handleForm = this.handleForm.bind(this)
+    this.selectImage = this.selectImage.bind(this)
 
+  }
+
+  // Select image from image gallery
+  selectImage = (url) => {
+    if(url !== '')
+    {
+      this.setState({
+        image: url
+      })
+    }
   }
 
   // Hide componet
@@ -85,10 +98,9 @@ export class PostWritePage extends Component {
   handleForm = (evt) => {
     evt.preventDefault()
     var {dispatch} = this.props
-    var imageURL = this.props.selectURL
+    var imageURL = this.state.image
     var tags = PostAPI.getContentTags(this.state.body)
-
-    if (imageURL === '') {
+    if (imageURL !== '') {
     this.props.addPost({
         body : this.state.body,
         tags : tags,
@@ -123,7 +135,7 @@ export class PostWritePage extends Component {
       backgroundImage: 'url(' + avatarImage + ')'
     };
 
-    const postImage = this.props.selectURL
+    const postImage = this.state.image
     const postImageStyle = {
       backgroundImage: 'url(' + postImage + ')'
     };
@@ -133,7 +145,7 @@ export class PostWritePage extends Component {
 
            <form onSubmit={this.handleForm}>
             <Card centered fluid>
-              <div className={this.props.selectURL ? 'postWrite__image' : ''} style={postImageStyle}></div>
+              <div className={this.state.image !== '' ? 'postWrite__image' : ''} style={postImageStyle}></div>
 
                <Card.Content>
                  <Card.Header>
@@ -166,6 +178,7 @@ export class PostWritePage extends Component {
                </Card.Content>
            </Card>
         </form>
+        <ImageUploader border='0'/> <ImageGallery select={this.selectImage}/>
       </Modal>
     );
   }

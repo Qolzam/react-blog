@@ -9,11 +9,19 @@ export class Summary extends Component {
 
   // Render DOM
   render() {
+
+    // Define variables
+    const summaryImage = this.props.avatar
+    const summaryStyle = {
+      backgroundImage: 'url(' + summaryImage + ')'
+    };
+
     return (
 
 
       <Card fluid>
-        <Image src={this.props.avatar}/>
+
+          <div className={this.props.avatar ? 'summary__image' : ''} style={summaryStyle}></div>
         <Card.Content>
           <Card.Header>
            {this.props.name}

@@ -83,7 +83,6 @@ export const addVideoPost = (post) => {
 // - Add a post with image
  export const dbAddImagePost = (newPost,callBack) => {
    return(dispatch,getState) => {
-
      var uid = getState().authorize.uid
      var post = {
             postTypeId: 1,

@@ -51,6 +51,7 @@ constructor(props){
   this.handleLoading = this.handleLoading.bind(this)
   this.handleMessage = this.handleMessage.bind(this)
 
+
 }
 
 // Handle click on message
@@ -74,27 +75,25 @@ var {dispatch} = this.props
   this.removeListener = firebaseAuth().onAuthStateChanged((user) => {
 
         if (user) {
-          console.log('User is logged in #');
         this.props.login(user)
           this.setState({
             loading: false
           })
           if (!this.props.global.defaultLoadDataStatus) {
-            console.log('Data load state #',this.state.dataLoaded);
+              this.props.clearData()
               this.props.loadData()
               this.props.defaultDataEnable()
           }
         } else {
-          console.log('User is logged out #');
          this.props.logout()
           this.setState({
             loading: false
           })
           if(this.props.global.defaultLoadDataStatus){
-            console.log('Data load state #',this.state.dataLoaded);
             this.props.defaultDataDisable()
             this.props.clearData()
           }
+            this.props.loadDataGuest()
         }
       })
 
@@ -146,6 +145,8 @@ const mapDispatchToProps = (dispatch,ownProps) => {
     clearData: () => {
       dispatch(imageGalleryActions.clearAllData())
       dispatch(postActions.clearAllData())
+      dispatch(userActions.clearAllData())
+      dispatch(commentActions.clearAllData())
     },
     login: (user) => {
         dispatch(authorizeActions.login(user.uid))
@@ -161,6 +162,9 @@ const mapDispatchToProps = (dispatch,ownProps) => {
     },
     closeMessage: () => {
       dispatch(globalActions.hideMessage())
+    },
+    loadDataGuest: () => {
+      dispatch(globalActions.loadDataGuest())
     }
 
   }

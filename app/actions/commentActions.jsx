@@ -74,3 +74,10 @@ export const addCommentList = (postComments) => {
     postComments
   }
 }
+
+// - Clear all data
+export const clearAllData = () => {
+  return{
+    type: types.CLEAR_ALL_DATA_COMMENT
+  }
+}

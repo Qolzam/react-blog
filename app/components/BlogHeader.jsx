@@ -1,6 +1,7 @@
 // - Import react components
-import React, {Component} from 'react';
-import {Header, Icon} from 'semantic-ui-react';
+import React, {Component} from 'react'
+import {Header, Icon} from 'semantic-ui-react'
+import {NavLink}  from 'react-router-dom'
 
 // - Import components
 
@@ -11,9 +12,9 @@ export default class BlogHeader extends Component {
   render() {
     return (
       <Header as='h2' icon textAlign='center' color="green">
-        <Icon name='suitcase' circular/>
+        <NavLink to='/' style={{color:"#21ba45"}}>  <Icon name='suitcase' circular/></NavLink>
         <Header.Content>
-          Green's Diary
+      <NavLink to='/' style={{color:"#21ba45"}}>  Green's Diary </NavLink>
         </Header.Content>
         <Header.Subheader>
 

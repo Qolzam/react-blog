@@ -67,12 +67,16 @@ export class Post extends Component {
       backgroundImage: 'url(' + avatarImage + ')'
     };
 
+    const postImage = this.props.image
+    const postStyle = {
+      backgroundImage: 'url(' + postImage + ')'
+    };
     return (
 
       <Card fluid>
         {
             this.props.pictureState
-              ? <Image src={this.props.image}/>
+              ? <div className={this.props.image ? 'post__image' : ''} style={postStyle}></div>
               : <Embed id='O6Xo21L0ybE' placeholder='' source='youtube'/>
           }
 

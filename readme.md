@@ -22,7 +22,7 @@ with [react-redux](https://github.com/reactjs/react-redux) for managing states a
 > Now I'm developing this project with `semantic-ui-react`. It hasn't released the final version so
 there are some bugs that I have to face with.
 
-# In my todo list I have :
+# In my todo list :
   * Documentation
   * Testing
   * Add some features and solving bugs
@@ -35,7 +35,6 @@ there are some bugs that I have to face with.
     * Show popular tags
     * Show number of comments on posts
     * Post privacy
-    * Aspect fit image of posts and summary
     * Read more on posts
     * Delete comment
     * Delete and edit post

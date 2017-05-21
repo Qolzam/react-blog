@@ -29,6 +29,7 @@ export const OPEN_IMAGE_EDITOR = 'OPEN_IMAGE_EDITOR'
 /* comment actions */
 export const ADD_COMMENT = 'ADD_COMMENT'
 export const ADD_COMMENT_LIST = 'ADD_COMMENT_LIST'
+export const CLEAR_ALL_DATA_COMMENT = 'CLEAR_ALL_DATA_COMMENT'
 
 /* vote actions */
 export const ADD_POST_VOTE = 'ADD_POST_VOTE'
@@ -54,6 +55,7 @@ export const DOWNLOAD_FILE = 'DOWNLOAD_FILE'
 
 /* user actions */
 export const USER_INFO = 'USER_INFO'
+export const CLEAR_ALL_DATA_USER = 'CLEAR_ALL_DATA_USER'
 
 /* global actions */
 export const PROGRESS_CHANGE = 'PROGRESS_CHANGE'

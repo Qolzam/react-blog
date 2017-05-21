@@ -19,8 +19,7 @@ import Faker from 'faker'
 
 // - Import app components
 import PostWritePage from 'PostWritePage'
-import ImageGallery from 'ImageGallery'
-import ImageUploader from 'ImageUploader'
+
 
 // - Import API
 import * as AuthAPI from 'AuthAPI'
@@ -66,7 +65,7 @@ export class PostWrite extends Component {
             marginLeft: '5px'
           }}/>
         </div>
-<ImageUploader border='0'/> <ImageGallery/>
+
        <PostWritePage/>
       </Container>
 

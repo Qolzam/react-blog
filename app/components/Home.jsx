@@ -20,15 +20,15 @@ export default class Home extends Component {
   render() {
     return (
       <div id="home">
-        <Segment>
+
           <Navigation/>
-        </Segment>
-        <Segment width={7}>
+
+
           <Switch>
             <Route exact={true} patch="/" component={Blog}/>
           </Switch>
 
-        </Segment>
+      
       </div>
 
     )

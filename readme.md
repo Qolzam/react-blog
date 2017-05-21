@@ -3,7 +3,7 @@ The React Social Blog `(RSB)` Application is a diary app blog based on [Semantic
 with [react-redux](https://github.com/reactjs/react-redux) for managing states and [React](https://facebook.github.io/react/docs/hello-world.html) for managing DOM .It's an open source project as a portfolio.
 
 # DEMO
-  (Green's Diary)[http://greendiary.herokuapp.com]
+  [Green's Diary](http://greendiary.herokuapp.com)
 
 # Features
   * [React](https://facebook.github.io/react/docs/hello-world.html) for Managing DOM
